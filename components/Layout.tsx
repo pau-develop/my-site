@@ -1,4 +1,5 @@
 import styles from "../styles/Layout.module.css";
+import LayoutStyled from "./LayoutStyled";
 
 interface LayoutProps {
   children: JSX.Element | JSX.Element[];
@@ -6,9 +7,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
-    <div className={styles.wrap}>
+    <LayoutStyled className="wrap">
       <main>{children}</main>
-    </div>
+    </LayoutStyled>
   );
 };
 
