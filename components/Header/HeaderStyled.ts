@@ -4,7 +4,7 @@ const HeaderStyled = styled.header`
   padding: 0 5%;
   background: #000;
   border-bottom: 2px solid #fff;
-  height: 60px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,9 +13,11 @@ const HeaderStyled = styled.header`
       padding: 0;
       margin: 0;
       color: #fff;
-    }
-    &__title:hover {
-      cursor: pointer;
+      a:-webkit-any-link {
+        color: rgb(95, 81, 255);
+        cursor: pointer;
+        text-decoration: none;
+      }
     }
     &__nav {
       color: white;
@@ -23,9 +25,11 @@ const HeaderStyled = styled.header`
       display: flex;
       justify-content: space-between;
       width: 500px;
-    }
-    &__nav:hover {
-      cursor: pointer;
+      a:-webkit-any-link {
+        color: rgb(95, 81, 255);
+        cursor: pointer;
+        text-decoration: none;
+      }
     }
   }
 `;
