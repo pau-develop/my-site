@@ -6,14 +6,14 @@ const Header = (): JSX.Element => {
   return (
     <HeaderStyled className="header">
       <h2 className="header__title">
-        <Link href="/">Pau-Dev</Link>
+        <Link href="/home">Pau-Dev</Link>
       </h2>
       <ul className="header__nav">
         <li>
-          <Link href="/">Gallery</Link>
+          <Link href="/home">Gallery</Link>
         </li>
         <li>
-          <Link href="/">Games</Link>
+          <Link href="/home">Games</Link>
         </li>
       </ul>
     </HeaderStyled>

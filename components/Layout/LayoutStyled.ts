@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
-const LayoutStyled = styled.div`
+const LayoutStyled = styled.main`
+  background-color: #000;
+  width: 100%;
+  height: 95%;
   .wrap {
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;
+  }
+  .wrap > div {
+    width: 100%;
+    height: 100%;
   }
 `;
 

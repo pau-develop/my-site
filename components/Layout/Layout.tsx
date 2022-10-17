@@ -6,11 +6,7 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-  return (
-    <LayoutStyled className="wrap">
-      <main>{children}</main>
-    </LayoutStyled>
-  );
+  return <LayoutStyled className="wrap">{children}</LayoutStyled>;
 };
 
 export default Layout;
