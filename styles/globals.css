@@ -10,3 +10,8 @@ body {
   box-sizing: border-box;
   font-family: "Press Start 2P", sans-serif;
 }
+
+#__next {
+  width: 100vw;
+  height: 100vh;
+}

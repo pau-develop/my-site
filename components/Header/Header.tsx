@@ -1,14 +1,20 @@
+import Link from "next/link";
 import styles from "../styles/Header.module.css";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
   return (
     <HeaderStyled className="header">
-      <h2 className="header__title">Pau-Dev</h2>
+      <h2 className="header__title">
+        <Link href="/home">Pau-Dev</Link>
+      </h2>
       <ul className="header__nav">
-        <li>Gallery</li>
-        <li>Projects</li>
-        <li>Games</li>
+        <li>
+          <Link href="/home">Gallery</Link>
+        </li>
+        <li>
+          <Link href="/home">Games</Link>
+        </li>
       </ul>
     </HeaderStyled>
   );
