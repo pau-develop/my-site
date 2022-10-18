@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { setPixelArray, getColorIndexes } from "../../utils/colors/functions";
+import {
+  setPixelArray,
+  getColorIndexes,
+  setNewColors,
+} from "../../utils/colors/functions";
 import CanvasStyled from "./CanvasStyled";
 
 interface CanvasProps {
@@ -9,6 +13,7 @@ interface CanvasProps {
 const Canvas = ({ image }: CanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const colors = useRef<number[]>();
+  const laptopColors = useRef<number[]>();
 
   useEffect(() => {
     const newImage = new Image();
@@ -35,6 +40,8 @@ const Canvas = ({ image }: CanvasProps) => {
 
       const pixels = setPixelArray(imgData.data);
       colors.current = getColorIndexes(pixels);
+      laptopColors.current = setNewColors();
+      console.log(laptopColors.current);
     };
   }, [image]);
 
