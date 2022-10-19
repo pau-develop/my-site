@@ -104,6 +104,13 @@ const Canvas = ({ image }: CanvasProps) => {
     }
   }, [laptopColor, currentLaptopColor]);
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
+    if (event.code === "Space") {
+      if (currentLaptopColor < 4) setCurrentLaptopColor(currentLaptopColor + 1);
+      else setCurrentLaptopColor(0);
+    }
+  };
+
   return (
     <CanvasStyled className="canvas-wrap">
       <canvas
@@ -111,6 +118,8 @@ const Canvas = ({ image }: CanvasProps) => {
         ref={canvasRef}
         width={420}
         height={180}
+        tabIndex={0}
+        onKeyPress={(event) => handleKeyPress(event)}
       />
     </CanvasStyled>
   );
