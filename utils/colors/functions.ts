@@ -28,6 +28,41 @@ export const getColorIndexes = (pixels: number[][]) => {
       }
     }
   }
-
   return colorIndexes;
+};
+
+export const setNewColors = () => {
+  const laptopColors = new Array(15);
+  for (let i = 0; i < laptopColors.length; i++) {
+    let addition = 0;
+    laptopColors[i] = new Array(5);
+    for (let y = 0; y < laptopColors[i].length; y++) {
+      laptopColors[i][y] = new Array(3);
+      laptopColors[i][y][0] = laptopRed[i][0] + addition;
+      laptopColors[i][y][1] = laptopRed[i][1] + addition;
+      laptopColors[i][y][2] = laptopRed[i][2] + addition;
+      if (laptopColors[i][y][0] >= 255) laptopColors[i][y][0] = 255;
+      if (laptopColors[i][y][1] >= 255) laptopColors[i][y][1] = 255;
+      if (laptopColors[i][y][2] >= 255) laptopColors[i][y][2] = 255;
+      addition += 5;
+    }
+  }
+  return laptopColors;
+};
+
+export const changeCanvasColors = (
+  indexes: number[][],
+  imageData: ImageData,
+  context: CanvasRenderingContext2D,
+  colors: number[][][],
+  color: number
+) => {
+  for (let i = 0; i < indexes.length; i++) {
+    for (let y = 0; y < indexes[i].length; y++) {
+      imageData.data[indexes[i][y] * 4] = colors[i][color][0];
+      imageData.data[indexes[i][y] * 4 + 1] = colors[i][color][1];
+      imageData.data[indexes[i][y] * 4 + 2] = colors[i][color][2];
+    }
+  }
+  context!.putImageData(imageData, 0, 0);
 };
