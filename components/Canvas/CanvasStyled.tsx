@@ -13,6 +13,9 @@ const CanvasStyled = styled.div`
       image-rendering: pixelated;
       image-rendering: crisp-edges;
     }
+    &__canvas:focus {
+      outline: none;
+    }
   }
 `;
 

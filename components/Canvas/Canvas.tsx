@@ -6,6 +6,13 @@ import {
   changeCanvasColors,
 } from "../../utils/colors/functions";
 import CanvasStyled from "./CanvasStyled";
+import {
+  laptopRed,
+  laptopOrange,
+  laptopYellow,
+  laptopGreen,
+  laptopBlue,
+} from "../../utils/colors/colors";
 
 interface CanvasProps {
   image: string;
@@ -14,10 +21,15 @@ interface CanvasProps {
 const Canvas = ({ image }: CanvasProps) => {
   const [laptopColor, setLaptopColor] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexes = useRef<Array<Array<number>>>();
-  const laptopColors = useRef<Array<Array<Array<number>>>>();
+  const laptopColorsRed = useRef<Array<Array<Array<number>>>>();
+  const laptopColorsOrange = useRef<Array<Array<Array<number>>>>();
+  const laptopColorsYellow = useRef<Array<Array<Array<number>>>>();
+  const laptopColorsGreen = useRef<Array<Array<Array<number>>>>();
+  const laptopColorsBlue = useRef<Array<Array<Array<number>>>>();
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
@@ -55,7 +67,11 @@ const Canvas = ({ image }: CanvasProps) => {
       );
       const pixels = setPixelArray(imgData.data);
       indexes.current = getColorIndexes(pixels);
-      laptopColors.current = setNewColors();
+      laptopColorsRed.current = setNewColors(laptopRed);
+      laptopColorsOrange.current = setNewColors(laptopOrange);
+      laptopColorsYellow.current = setNewColors(laptopYellow);
+      laptopColorsGreen.current = setNewColors(laptopGreen);
+      laptopColorsBlue.current = setNewColors(laptopBlue);
     };
   }, [image]);
 
@@ -70,15 +86,30 @@ const Canvas = ({ image }: CanvasProps) => {
 
   useEffect(() => {
     if (indexes.current !== undefined) {
+      const allLaptopColors = [
+        laptopColorsRed.current,
+        laptopColorsOrange.current,
+        laptopColorsYellow.current,
+        laptopColorsGreen.current,
+        laptopColorsBlue.current,
+      ];
+      const currentColorInDisplay = allLaptopColors[currentLaptopColor];
       changeCanvasColors(
         indexes.current as number[][],
         imageData.current as ImageData,
         contextRef.current as CanvasRenderingContext2D,
-        laptopColors.current as number[][][],
+        currentColorInDisplay as number[][][],
         laptopColor
       );
     }
-  }, [laptopColor]);
+  }, [laptopColor, currentLaptopColor]);
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
+    if (event.code === "Space") {
+      if (currentLaptopColor < 4) setCurrentLaptopColor(currentLaptopColor + 1);
+      else setCurrentLaptopColor(0);
+    }
+  };
 
   return (
     <CanvasStyled className="canvas-wrap">
@@ -87,6 +118,8 @@ const Canvas = ({ image }: CanvasProps) => {
         ref={canvasRef}
         width={420}
         height={180}
+        tabIndex={0}
+        onKeyPress={(event) => handleKeyPress(event)}
       />
     </CanvasStyled>
   );
