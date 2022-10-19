@@ -33,7 +33,6 @@ export const getColorIndexes = (pixels: number[][]) => {
 
 export const setNewColors = () => {
   const laptopColors = new Array(15);
-  console.log(laptopColors);
   for (let i = 0; i < laptopColors.length; i++) {
     let addition = 0;
     laptopColors[i] = new Array(5);
@@ -49,4 +48,21 @@ export const setNewColors = () => {
     }
   }
   return laptopColors;
+};
+
+export const changeCanvasColors = (
+  indexes: number[][],
+  imageData: ImageData,
+  context: CanvasRenderingContext2D,
+  colors: number[][][],
+  color: number
+) => {
+  for (let i = 0; i < indexes.length; i++) {
+    for (let y = 0; y < indexes[i].length; y++) {
+      imageData.data[indexes[i][y] * 4] = colors[i][color][0];
+      imageData.data[indexes[i][y] * 4 + 1] = colors[i][color][1];
+      imageData.data[indexes[i][y] * 4 + 2] = colors[i][color][2];
+    }
+  }
+  context!.putImageData(imageData, 0, 0);
 };

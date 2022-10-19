@@ -3,6 +3,7 @@ import {
   setPixelArray,
   getColorIndexes,
   setNewColors,
+  changeCanvasColors,
 } from "../../utils/colors/functions";
 import CanvasStyled from "./CanvasStyled";
 
@@ -11,39 +12,73 @@ interface CanvasProps {
 }
 
 const Canvas = ({ image }: CanvasProps) => {
+  const [laptopColor, setLaptopColor] = useState(0);
+  const [direction, setDirection] = useState(1);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const colors = useRef<number[]>();
-  const laptopColors = useRef<number[]>();
+  const contextRef = useRef<CanvasRenderingContext2D | null>(null);
+  const indexes = useRef<Array<Array<number>>>();
+  const laptopColors = useRef<Array<Array<Array<number>>>>();
+  const imageData = useRef<ImageData>();
 
   useEffect(() => {
     const newImage = new Image();
     newImage.src = image;
     const canvas = canvasRef.current;
-    const context = canvas!.getContext("2d");
-    context!.fillStyle = "#000";
-    context!.fillRect(0, 0, context!.canvas.width, context!.canvas.height);
+    contextRef.current = canvas!.getContext("2d");
+    contextRef.current!.fillStyle = "#000";
+    contextRef.current!.fillRect(
+      0,
+      0,
+      contextRef.current!.canvas.width,
+      contextRef.current!.canvas.height
+    );
 
     newImage.onload = () => {
-      context!.drawImage(
+      contextRef.current!.drawImage(
         newImage,
         0,
         0,
-        context!.canvas.width,
-        context!.canvas.height
+        contextRef.current!.canvas.width,
+        contextRef.current!.canvas.height
       );
-      const imgData = context!.getImageData(
+      const imgData = contextRef.current!.getImageData(
         0,
         0,
-        context!.canvas.width,
-        context!.canvas.height
+        contextRef.current!.canvas.width,
+        contextRef.current!.canvas.height
       );
-
+      imageData.current = contextRef.current?.getImageData(
+        0,
+        0,
+        canvas!.width,
+        canvas!.height
+      );
       const pixels = setPixelArray(imgData.data);
-      colors.current = getColorIndexes(pixels);
+      indexes.current = getColorIndexes(pixels);
       laptopColors.current = setNewColors();
-      console.log(laptopColors.current);
     };
   }, [image]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (laptopColor === 3) setDirection(-1);
+      if (laptopColor === 1) setDirection(1);
+      setLaptopColor(laptopColor + direction);
+    }, 100);
+    return () => clearInterval(interval);
+  }, [laptopColor, direction]);
+
+  useEffect(() => {
+    if (indexes.current !== undefined) {
+      changeCanvasColors(
+        indexes.current as number[][],
+        imageData.current as ImageData,
+        contextRef.current as CanvasRenderingContext2D,
+        laptopColors.current as number[][][],
+        laptopColor
+      );
+    }
+  }, [laptopColor]);
 
   return (
     <CanvasStyled className="canvas-wrap">
