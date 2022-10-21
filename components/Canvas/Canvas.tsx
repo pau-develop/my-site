@@ -4,6 +4,7 @@ import {
   getColorIndexes,
   setNewColors,
   changeCanvasColors,
+  changeTvColors,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
 import {
@@ -138,6 +139,24 @@ const Canvas = ({ image }: CanvasProps) => {
       );
     }
   }, [tvLightColor, tvLightColors]);
+
+  //TV NOISE
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (tvNoiseColor === 2) setTvNoiseColor(0);
+      else setTvNoiseColor(tvNoiseColor + 1);
+    }, 75);
+
+    return () => clearInterval(interval);
+  }, [tvNoiseColor]);
+
+  useEffect(() => {
+    changeTvColors(
+      indexesTvNoise.current!,
+      imageData.current as ImageData,
+      tvNoiseColor
+    );
+  }, [tvNoiseColor]);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
     if (event.code === "Space") {

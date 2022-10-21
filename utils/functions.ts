@@ -1,4 +1,4 @@
-import { laptopRed } from "./colors";
+import { laptopRed, tvNoise } from "./colors";
 
 export const setPixelArray = (data: any) => {
   const pixels = new Array(data.length / 4);
@@ -65,4 +65,26 @@ export const changeCanvasColors = (
     }
   }
   context!.putImageData(imageData, 0, 0);
+};
+
+export const changeTvColors = (
+  indexes: number[][],
+  imageData: ImageData,
+  tvNoiseColor: number
+) => {
+  let temporaryPositions;
+  if (tvNoiseColor === 0) temporaryPositions = [0, 1, 2];
+  else if (tvNoiseColor === 1) temporaryPositions = [1, 2, 0];
+  else temporaryPositions = [2, 0, 1];
+  if (indexes !== undefined) {
+    for (let i = 0; i < indexes.length; i++) {
+      for (let y = 0; y < indexes[i].length; y++) {
+        imageData.data[indexes[i][y] * 4] = tvNoise[temporaryPositions[i]][0];
+        imageData.data[indexes[i][y] * 4 + 1] =
+          tvNoise[temporaryPositions[i]][1];
+        imageData.data[indexes[i][y] * 4 + 2] =
+          tvNoise[temporaryPositions[i]][2];
+      }
+    }
+  }
 };
