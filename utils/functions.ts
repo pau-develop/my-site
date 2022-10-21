@@ -1,4 +1,4 @@
-import { laptopRed, tvNoise } from "./colors";
+import { laptopRed, routerLed, tvNoise } from "./colors";
 
 export const setPixelArray = (data: any) => {
   const pixels = new Array(data.length / 4);
@@ -86,5 +86,18 @@ export const changeTvColors = (
           tvNoise[temporaryPositions[i]][2];
       }
     }
+  }
+};
+
+export const changeRouterLedColors = (
+  indexes: number[][],
+  imageData: ImageData,
+  tvNoiseColor: boolean
+) => {
+  const index = tvNoiseColor === true ? 0 : 1;
+  for (let i = 0; i < indexes[0].length; i++) {
+    imageData.data[indexes[0][i] * 4] = routerLed[index][0];
+    imageData.data[indexes[0][i] * 4 + 1] = routerLed[index][1];
+    imageData.data[indexes[0][i] * 4 + 2] = routerLed[index][2];
   }
 };

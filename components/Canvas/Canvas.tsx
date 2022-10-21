@@ -5,6 +5,7 @@ import {
   setNewColors,
   changeCanvasColors,
   changeTvColors,
+  changeRouterLedColors,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
 import {
@@ -15,6 +16,7 @@ import {
   laptopBlue,
   tvNoise,
   tvLight,
+  routerLed,
 } from "../../utils/colors";
 
 interface CanvasProps {
@@ -25,6 +27,7 @@ const Canvas = ({ image }: CanvasProps) => {
   const [laptopColor, setLaptopColor] = useState(0);
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
+  const [routerLedColor, setRouterLedColor] = useState(true);
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
   const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
@@ -33,12 +36,14 @@ const Canvas = ({ image }: CanvasProps) => {
   const indexesLaptop = useRef<Array<Array<number>>>();
   const indexesTvNoise = useRef<Array<Array<number>>>();
   const indexesTvLight = useRef<Array<Array<number>>>();
+  const indexesRouterLed = useRef<Array<Array<number>>>();
   const laptopColorsRed = useRef<Array<Array<Array<number>>>>();
   const laptopColorsOrange = useRef<Array<Array<Array<number>>>>();
   const laptopColorsYellow = useRef<Array<Array<Array<number>>>>();
   const laptopColorsGreen = useRef<Array<Array<Array<number>>>>();
   const laptopColorsBlue = useRef<Array<Array<Array<number>>>>();
   const tvLightColors = useRef<Array<Array<Array<number>>>>();
+  const routerLedColors = useRef<Array<Array<Array<number>>>>();
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
@@ -80,6 +85,7 @@ const Canvas = ({ image }: CanvasProps) => {
       indexesTvLight.current = getColorIndexes(pixels, tvLight);
       indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
       indexesTvLight.current = getColorIndexes(pixels, tvLight);
+      indexesRouterLed.current = getColorIndexes(pixels, routerLed);
       laptopColorsRed.current = setNewColors(laptopRed, laptopRed.length);
       laptopColorsOrange.current = setNewColors(laptopOrange, laptopRed.length);
       laptopColorsYellow.current = setNewColors(laptopYellow, laptopRed.length);
@@ -157,6 +163,25 @@ const Canvas = ({ image }: CanvasProps) => {
       tvNoiseColor
     );
   }, [tvNoiseColor]);
+
+  //ROUTER
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRouterLedColor(!routerLedColor);
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, [routerLedColor]);
+
+  useEffect(() => {
+    if (indexesRouterLed.current !== undefined) {
+      changeRouterLedColors(
+        indexesRouterLed.current!,
+        imageData.current as ImageData,
+        routerLedColor
+      );
+    }
+  }, [routerLedColor]);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
     if (event.code === "Space") {
