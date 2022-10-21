@@ -14,15 +14,15 @@ export const setPixelArray = (data: any) => {
   return pixels;
 };
 
-export const getColorIndexes = (pixels: number[][]) => {
-  const colorIndexes = new Array(15).fill(new Array());
+export const getColorIndexes = (pixels: number[][], target: number[][]) => {
+  const colorIndexes = new Array(target.length).fill(new Array());
 
   for (let i = 0; i < pixels.length; i++) {
     for (let y = 0; y < colorIndexes.length; y++) {
       if (
-        pixels[i][0] == laptopRed[y][0] &&
-        pixels[i][1] == laptopRed[y][1] &&
-        pixels[i][2] == laptopRed[y][2]
+        pixels[i][0] == target[y][0] &&
+        pixels[i][1] == target[y][1] &&
+        pixels[i][2] == target[y][2]
       ) {
         colorIndexes[y] = [...colorIndexes[y], i];
       }
@@ -31,8 +31,8 @@ export const getColorIndexes = (pixels: number[][]) => {
   return colorIndexes;
 };
 
-export const setNewColors = (currentColor: number[][]) => {
-  const laptopColors = new Array(15);
+export const setNewColors = (currentColor: number[][], totalColors: number) => {
+  const laptopColors = new Array(totalColors);
   for (let i = 0; i < laptopColors.length; i++) {
     let addition = 0;
     laptopColors[i] = new Array(5);
