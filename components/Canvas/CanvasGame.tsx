@@ -8,6 +8,7 @@ import {
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
 import { tvLight, tvNoise } from "../../utils/colors";
+import GameMenu from "../GameMenu/GameMenu";
 
 interface CanvasProps {
   image: string;
@@ -110,6 +111,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   const handleMenuClick = (index: number) => {
     console.log(index);
+    setCurrentMenu(index);
   };
 
   return (
@@ -122,10 +124,24 @@ const CanvasGame = ({ image }: CanvasProps) => {
         tabIndex={0}
       />
       <div className="canvas-wrap__game-menu">
-        <ul>
-          <li onClick={() => handleMenuClick(0)}>Game List</li>
-          <li onClick={() => handleMenuClick(1)}>KungFu Skate</li>
-        </ul>
+        {currentMenu === 0 ? (
+          <ul>
+            <li
+              onClick={() => handleMenuClick(0)}
+              className="canvas-wrap__big-item"
+            >
+              Game List
+            </li>
+            <li
+              onClick={() => handleMenuClick(1)}
+              className="canvas-wrap__medium-item"
+            >
+              KungFu Skate
+            </li>
+          </ul>
+        ) : (
+          <GameMenu action={handleMenuClick} />
+        )}
       </div>
     </CanvasStyled>
   );

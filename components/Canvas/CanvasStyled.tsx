@@ -22,6 +22,7 @@ const CanvasStyled = styled.div`
       top: 10%;
       right: 0%;
       width: 25%;
+
       ul {
         color: rgb(95, 81, 255);
         list-style: none;
@@ -37,9 +38,12 @@ const CanvasStyled = styled.div`
           justify-content: center;
           align-items: center;
         }
-        li:first-child {
-          height: 80px;
+        li.canvas-wrap__big-item {
+          height: 90px;
           font-size: 1.5rem;
+        }
+        li.canvas-wrap__medium-item {
+          height: 75px;
         }
       }
     }
