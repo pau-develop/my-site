@@ -104,6 +104,7 @@ export const tvLight = [
   [61, 0, 180, 255],
   [56, 13, 115, 255],
   [37, 0, 98, 255],
+  [19, 11, 81, 255],
 ];
 
 export const routerLed = [

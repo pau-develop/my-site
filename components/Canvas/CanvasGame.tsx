@@ -3,9 +3,11 @@ import {
   setPixelArray,
   getColorIndexes,
   changeTvColors,
+  changeCanvasColors,
+  setNewColors,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
-import { tvNoise } from "../../utils/colors";
+import { tvLight, tvNoise } from "../../utils/colors";
 
 interface CanvasProps {
   image: string;
@@ -13,9 +15,14 @@ interface CanvasProps {
 
 const CanvasGame = ({ image }: CanvasProps) => {
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
+  const [tvLightColor, setTvLightColor] = useState(0);
+  const [tvDirection, setTvDirection] = useState(1);
+  const [currentMenu, setCurrentMenu] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesTvNoise = useRef<Array<Array<number>>>();
+  const indexesTvLight = useRef<Array<Array<number>>>();
+  const tvLightColors = useRef<Array<Array<Array<number>>>>();
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
@@ -53,15 +60,39 @@ const CanvasGame = ({ image }: CanvasProps) => {
       );
       const pixels = setPixelArray(imgData.data);
       indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
+      indexesTvLight.current = getColorIndexes(pixels, tvLight);
+      tvLightColors.current = setNewColors(tvLight, tvLight.length);
     };
   }, [image]);
+
+  // TV LIGHT
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (tvLightColor === 3) setTvDirection(-1);
+      if (tvLightColor === 1) setTvDirection(1);
+      setTvLightColor(tvLightColor + tvDirection);
+    }, 50);
+    return () => clearInterval(interval);
+  }, [tvLightColor, tvDirection]);
+
+  useEffect(() => {
+    if (indexesTvLight.current !== undefined) {
+      changeCanvasColors(
+        indexesTvLight.current as number[][],
+        imageData.current as ImageData,
+        contextRef.current as CanvasRenderingContext2D,
+        tvLightColors.current as number[][][],
+        tvLightColor
+      );
+    }
+  }, [tvLightColor, tvLightColors]);
 
   //TV NOISE
   useEffect(() => {
     const interval = setInterval(() => {
       if (tvNoiseColor === 2) setTvNoiseColor(0);
       else setTvNoiseColor(tvNoiseColor + 1);
-    }, 75);
+    }, 50);
 
     return () => clearInterval(interval);
   }, [tvNoiseColor]);
@@ -77,6 +108,10 @@ const CanvasGame = ({ image }: CanvasProps) => {
     }
   }, [tvNoiseColor]);
 
+  const handleMenuClick = (index: number) => {
+    console.log(index);
+  };
+
   return (
     <CanvasStyled className="canvas-wrap">
       <canvas
@@ -86,6 +121,12 @@ const CanvasGame = ({ image }: CanvasProps) => {
         height={180}
         tabIndex={0}
       />
+      <div className="canvas-wrap__game-menu">
+        <ul>
+          <li onClick={() => handleMenuClick(0)}>Game List</li>
+          <li onClick={() => handleMenuClick(1)}>KungFu Skate</li>
+        </ul>
+      </div>
     </CanvasStyled>
   );
 };
