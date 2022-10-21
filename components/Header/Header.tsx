@@ -13,7 +13,7 @@ const Header = (): JSX.Element => {
           <Link href="/home">Gallery</Link>
         </li>
         <li>
-          <Link href="/home">Games</Link>
+          <Link href="/games">Games</Link>
         </li>
       </ul>
     </HeaderStyled>

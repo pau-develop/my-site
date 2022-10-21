@@ -15,7 +15,6 @@ export const setPixelArray = (data: any) => {
 };
 
 export const getColorIndexes = (pixels: number[][], target: number[][]) => {
-  console.log(target);
   const colorIndexes = new Array(target.length).fill(new Array());
 
   for (let i = 0; i < pixels.length; i++) {
@@ -71,7 +70,8 @@ export const changeCanvasColors = (
 export const changeTvColors = (
   indexes: number[][],
   imageData: ImageData,
-  tvNoiseColor: number
+  tvNoiseColor: number,
+  context: CanvasRenderingContext2D
 ) => {
   let temporaryPositions;
   if (tvNoiseColor === 0) temporaryPositions = [0, 1, 2];
@@ -87,6 +87,7 @@ export const changeTvColors = (
           tvNoise[temporaryPositions[i]][2];
       }
     }
+    context!.putImageData(imageData, 0, 0);
   }
 };
 
