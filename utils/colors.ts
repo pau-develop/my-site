@@ -110,3 +110,8 @@ export const routerLed = [
   [57, 242, 0, 255],
   [43, 164, 6, 255],
 ];
+
+export const consoleLed = [
+  [255, 0, 0, 255],
+  [113, 0, 0, 255],
+];

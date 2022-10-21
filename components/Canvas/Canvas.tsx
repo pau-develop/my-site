@@ -17,6 +17,7 @@ import {
   tvNoise,
   tvLight,
   routerLed,
+  consoleLed,
 } from "../../utils/colors";
 
 interface CanvasProps {
@@ -28,6 +29,7 @@ const Canvas = ({ image }: CanvasProps) => {
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
   const [routerLedColor, setRouterLedColor] = useState(true);
+  const [consoleLedColor, setConsoleLedColor] = useState(true);
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
   const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
@@ -37,6 +39,7 @@ const Canvas = ({ image }: CanvasProps) => {
   const indexesTvNoise = useRef<Array<Array<number>>>();
   const indexesTvLight = useRef<Array<Array<number>>>();
   const indexesRouterLed = useRef<Array<Array<number>>>();
+  const indexesConsoleLed = useRef<Array<Array<number>>>();
   const laptopColorsRed = useRef<Array<Array<Array<number>>>>();
   const laptopColorsOrange = useRef<Array<Array<Array<number>>>>();
   const laptopColorsYellow = useRef<Array<Array<Array<number>>>>();
@@ -44,6 +47,7 @@ const Canvas = ({ image }: CanvasProps) => {
   const laptopColorsBlue = useRef<Array<Array<Array<number>>>>();
   const tvLightColors = useRef<Array<Array<Array<number>>>>();
   const routerLedColors = useRef<Array<Array<Array<number>>>>();
+  const consoleLedColors = useRef<Array<Array<Array<number>>>>();
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
@@ -86,6 +90,7 @@ const Canvas = ({ image }: CanvasProps) => {
       indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
       indexesTvLight.current = getColorIndexes(pixels, tvLight);
       indexesRouterLed.current = getColorIndexes(pixels, routerLed);
+      indexesConsoleLed.current = getColorIndexes(pixels, consoleLed);
       laptopColorsRed.current = setNewColors(laptopRed, laptopRed.length);
       laptopColorsOrange.current = setNewColors(laptopOrange, laptopRed.length);
       laptopColorsYellow.current = setNewColors(laptopYellow, laptopRed.length);
@@ -178,10 +183,31 @@ const Canvas = ({ image }: CanvasProps) => {
       changeRouterLedColors(
         indexesRouterLed.current!,
         imageData.current as ImageData,
-        routerLedColor
+        routerLedColor,
+        routerLed
       );
     }
   }, [routerLedColor]);
+
+  //CONSOLE
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setConsoleLedColor(!consoleLedColor);
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [consoleLedColor]);
+
+  useEffect(() => {
+    if (indexesConsoleLed.current !== undefined) {
+      changeRouterLedColors(
+        indexesConsoleLed.current!,
+        imageData.current as ImageData,
+        consoleLedColor,
+        consoleLed
+      );
+    }
+  }, [consoleLedColor]);
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
     if (event.code === "Space") {

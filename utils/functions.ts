@@ -15,6 +15,7 @@ export const setPixelArray = (data: any) => {
 };
 
 export const getColorIndexes = (pixels: number[][], target: number[][]) => {
+  console.log(target);
   const colorIndexes = new Array(target.length).fill(new Array());
 
   for (let i = 0; i < pixels.length; i++) {
@@ -92,12 +93,13 @@ export const changeTvColors = (
 export const changeRouterLedColors = (
   indexes: number[][],
   imageData: ImageData,
-  tvNoiseColor: boolean
+  tvNoiseColor: boolean,
+  colors: number[][]
 ) => {
   const index = tvNoiseColor === true ? 0 : 1;
   for (let i = 0; i < indexes[0].length; i++) {
-    imageData.data[indexes[0][i] * 4] = routerLed[index][0];
-    imageData.data[indexes[0][i] * 4 + 1] = routerLed[index][1];
-    imageData.data[indexes[0][i] * 4 + 2] = routerLed[index][2];
+    imageData.data[indexes[0][i] * 4] = colors[index][0];
+    imageData.data[indexes[0][i] * 4 + 1] = colors[index][1];
+    imageData.data[indexes[0][i] * 4 + 2] = colors[index][2];
   }
 };
