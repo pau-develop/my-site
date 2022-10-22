@@ -1,4 +1,4 @@
-import { laptopRed, routerLed, tvNoise } from "./colors";
+import { laptopRed, routerLed, tvLight, tvNoise } from "./colors";
 
 export const setPixelArray = (data: any) => {
   const pixels = new Array(data.length / 4);
@@ -103,4 +103,29 @@ export const changeRouterLedColors = (
     imageData.data[indexes[0][i] * 4 + 1] = colors[index][1];
     imageData.data[indexes[0][i] * 4 + 2] = colors[index][2];
   }
+};
+
+export const turnOffTv = (
+  indexesNoise: number[][],
+  indexesLight: number[][],
+  imageData: ImageData,
+  context: CanvasRenderingContext2D
+) => {
+  //noise
+  for (let i = 0; i < indexesNoise.length; i++) {
+    for (let y = 0; y < indexesNoise[i].length; y++) {
+      imageData.data[indexesNoise[i][y] * 4] = 0;
+      imageData.data[indexesNoise[i][y] * 4 + 1] = 0;
+      imageData.data[indexesNoise[i][y] * 4 + 2] = 0;
+    }
+  }
+  //light
+  for (let i = 0; i < indexesLight.length; i++) {
+    for (let y = 0; y < indexesLight[i].length; y++) {
+      imageData.data[indexesLight[i][y] * 4] = tvLight[i][0];
+      imageData.data[indexesLight[i][y] * 4 + 1] = tvLight[i][1];
+      imageData.data[indexesLight[i][y] * 4 + 2] = tvLight[i][2];
+    }
+  }
+  context.putImageData(imageData, 0, 0);
 };

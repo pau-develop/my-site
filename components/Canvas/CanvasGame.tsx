@@ -3,9 +3,14 @@ import {
   setPixelArray,
   getColorIndexes,
   changeTvColors,
+  changeCanvasColors,
+  setNewColors,
+  turnOffTv,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
-import { tvNoise } from "../../utils/colors";
+import { tvLight, tvNoise } from "../../utils/colors";
+import GameMenu from "../GameMenu/GameMenu";
+import GameList from "../GameList/GameList";
 
 interface CanvasProps {
   image: string;
@@ -13,9 +18,15 @@ interface CanvasProps {
 
 const CanvasGame = ({ image }: CanvasProps) => {
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
+  const [tvLightColor, setTvLightColor] = useState(0);
+  const [tvDirection, setTvDirection] = useState(1);
+  const [currentMenu, setCurrentMenu] = useState<number>(0);
+  const [menuVisibility, setMenuVisibility] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesTvNoise = useRef<Array<Array<number>>>();
+  const indexesTvLight = useRef<Array<Array<number>>>();
+  const tvLightColors = useRef<Array<Array<Array<number>>>>();
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
@@ -53,29 +64,89 @@ const CanvasGame = ({ image }: CanvasProps) => {
       );
       const pixels = setPixelArray(imgData.data);
       indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
+      indexesTvLight.current = getColorIndexes(pixels, tvLight);
+      tvLightColors.current = setNewColors(tvLight, tvLight.length);
     };
   }, [image]);
 
-  //TV NOISE
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (tvNoiseColor === 2) setTvNoiseColor(0);
-      else setTvNoiseColor(tvNoiseColor + 1);
-    }, 75);
+    if (!menuVisibility) {
+      const interval = setInterval(() => {
+        setMenuVisibility(true);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [menuVisibility]);
 
-    return () => clearInterval(interval);
-  }, [tvNoiseColor]);
+  // TV LIGHT
+  useEffect(() => {
+    if (!menuVisibility) {
+      const interval = setInterval(() => {
+        if (tvLightColor === 3) setTvDirection(-1);
+        if (tvLightColor === 1) setTvDirection(1);
+        setTvLightColor(tvLightColor + tvDirection);
+      }, 50);
+      return () => clearInterval(interval);
+    }
+  }, [tvLightColor, tvDirection, menuVisibility]);
 
   useEffect(() => {
-    if (indexesTvNoise.current !== undefined) {
-      changeTvColors(
+    if (!menuVisibility) {
+      if (indexesTvLight.current !== undefined) {
+        changeCanvasColors(
+          indexesTvLight.current as number[][],
+          imageData.current as ImageData,
+          contextRef.current as CanvasRenderingContext2D,
+          tvLightColors.current as number[][][],
+          tvLightColor
+        );
+      }
+    } else {
+      turnOffTv(
         indexesTvNoise.current!,
-        imageData.current as ImageData,
-        tvNoiseColor,
+        indexesTvLight.current!,
+        imageData.current!,
         contextRef.current!
       );
     }
-  }, [tvNoiseColor]);
+  }, [tvLightColor, tvLightColors, menuVisibility]);
+
+  //TV NOISE
+  useEffect(() => {
+    if (!menuVisibility) {
+      const interval = setInterval(() => {
+        if (tvNoiseColor === 2) setTvNoiseColor(0);
+        else setTvNoiseColor(tvNoiseColor + 1);
+      }, 50);
+
+      return () => clearInterval(interval);
+    }
+  }, [tvNoiseColor, menuVisibility]);
+
+  useEffect(() => {
+    if (!menuVisibility) {
+      if (indexesTvNoise.current !== undefined) {
+        changeTvColors(
+          indexesTvNoise.current!,
+          imageData.current as ImageData,
+          tvNoiseColor,
+          contextRef.current!
+        );
+      }
+    } else {
+      turnOffTv(
+        indexesTvNoise.current!,
+        indexesTvLight.current!,
+        imageData.current!,
+        contextRef.current!
+      );
+    }
+  }, [tvNoiseColor, menuVisibility]);
+
+  const handleMenuClick = (index: number) => {
+    setCurrentMenu(index);
+    setMenuVisibility(false);
+  };
 
   return (
     <CanvasStyled className="canvas-wrap">
@@ -86,6 +157,13 @@ const CanvasGame = ({ image }: CanvasProps) => {
         height={180}
         tabIndex={0}
       />
+      <div className="menu-wrap">
+        {menuVisibility && currentMenu === 0 ? (
+          <GameList action={handleMenuClick} />
+        ) : menuVisibility && currentMenu !== 0 ? (
+          <GameMenu action={handleMenuClick} />
+        ) : null}
+      </div>
     </CanvasStyled>
   );
 };
