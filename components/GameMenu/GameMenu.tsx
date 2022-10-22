@@ -1,10 +1,18 @@
 import CanvasStyled from "../Canvas/CanvasStyled";
+import { Unity, useUnityContext } from "react-unity-webgl";
 
 interface GameMenuProps {
   action: (index: number) => void;
 }
 
 const GameMenu = ({ action }: GameMenuProps) => {
+  const { unityProvider } = useUnityContext({
+    loaderUrl: "/build_web.loader.js",
+    dataUrl: "/build_web.data",
+    frameworkUrl: "/build_web.framework.js",
+    codeUrl: "/build_web.wasm",
+  });
+
   return (
     <CanvasStyled>
       <ul>
@@ -17,7 +25,12 @@ const GameMenu = ({ action }: GameMenuProps) => {
         <li>Top Scores</li>
         <li>Play</li>
       </ul>
-      <section className="menu-wrap__left-container"></section>
+      <section className="menu-wrap__left-container">
+        <Unity
+          unityProvider={unityProvider}
+          className="menu-wrap__unity-canvas"
+        />
+      </section>
     </CanvasStyled>
   );
 };

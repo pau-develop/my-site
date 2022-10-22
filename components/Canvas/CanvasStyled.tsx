@@ -59,6 +59,10 @@ const CanvasStyled = styled.div`
       width: 53.5%;
       height: 64%;
     }
+    &__unity-canvas {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 
