@@ -143,7 +143,8 @@ const CanvasGame = ({ image }: CanvasProps) => {
     }
   }, [tvNoiseColor, menuVisibility]);
 
-  const handleMenuClick = (index: number) => {
+  const handleMenuClick = (index: number, action?: Promise<void>) => {
+    action;
     setCurrentMenu(index);
     setMenuVisibility(false);
   };
