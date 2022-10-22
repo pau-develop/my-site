@@ -8,15 +8,16 @@ const GameMenu = ({ action }: GameMenuProps) => {
   return (
     <CanvasStyled>
       <ul>
-        <li onClick={() => action(0)} className="canvas-wrap__big-item">
+        <li onClick={() => action(0)} className="menu-wrap__big-item">
           Game List
         </li>
-        <li className="canvas-wrap__medium-item">KungFu Skate</li>
+        <li className="menu-wrap__medium-item">KungFu Skate</li>
         <li>About</li>
         <li>How to Play</li>
         <li>Top Scores</li>
         <li>Play</li>
       </ul>
+      <section className="menu-wrap__left-container"></section>
     </CanvasStyled>
   );
 };

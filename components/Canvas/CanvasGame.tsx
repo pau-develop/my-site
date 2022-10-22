@@ -19,7 +19,8 @@ const CanvasGame = ({ image }: CanvasProps) => {
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
   const [tvDirection, setTvDirection] = useState(1);
-  const [currentMenu, setCurrentMenu] = useState(0);
+  const [currentMenu, setCurrentMenu] = useState<number>(0);
+  const [menuVisibility, setMenuVisibility] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesTvNoise = useRef<Array<Array<number>>>();
@@ -67,6 +68,15 @@ const CanvasGame = ({ image }: CanvasProps) => {
     };
   }, [image]);
 
+  useEffect(() => {
+    if (!menuVisibility) {
+      const interval = setInterval(() => {
+        setMenuVisibility(true);
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [menuVisibility]);
+
   // TV LIGHT
   useEffect(() => {
     const interval = setInterval(() => {
@@ -112,6 +122,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   const handleMenuClick = (index: number) => {
     setCurrentMenu(index);
+    setMenuVisibility(false);
   };
 
   return (
@@ -123,12 +134,12 @@ const CanvasGame = ({ image }: CanvasProps) => {
         height={180}
         tabIndex={0}
       />
-      <div className="canvas-wrap__game-menu">
-        {currentMenu === 0 ? (
+      <div className="menu-wrap">
+        {menuVisibility && currentMenu === 0 ? (
           <GameList action={handleMenuClick} />
-        ) : (
+        ) : menuVisibility && currentMenu !== 0 ? (
           <GameMenu action={handleMenuClick} />
-        )}
+        ) : null}
       </div>
     </CanvasStyled>
   );

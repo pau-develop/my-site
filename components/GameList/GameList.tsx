@@ -8,10 +8,10 @@ const GameList = ({ action }: GameListProps) => {
   return (
     <CanvasStyled>
       <ul>
-        <li onClick={() => action(0)} className="canvas-wrap__big-item">
+        <li onClick={() => action(0)} className="menu-wrap__big-item">
           Game List
         </li>
-        <li onClick={() => action(1)} className="canvas-wrap__medium-item">
+        <li onClick={() => action(1)} className="menu-wrap__medium-item">
           KungFu Skate
         </li>
       </ul>
