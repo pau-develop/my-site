@@ -5,10 +5,11 @@ import { useRouter } from "next/router";
 
 interface GameMenuProps {
   action: (index: number, action: Promise<void>) => void;
+  childAction: (index: number, action: Promise<void>) => void;
+  childMenu: number;
 }
 
-const GameMenu = ({ action }: GameMenuProps) => {
-  const [currentMenu, setCurrentMenu] = useState<number>(0);
+const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
   const { unityProvider, unload, UNSAFE__unityInstance } = useUnityContext({
     loaderUrl: "/build_web.loader.js",
     dataUrl: "/build_web.data",
@@ -22,8 +23,7 @@ const GameMenu = ({ action }: GameMenuProps) => {
   router.events.on("routeChangeStart", unloadUnityInstance);
 
   const handleMenuClick = (index: number) => {
-    currentMenu === 4 && unload();
-    setCurrentMenu(index);
+    childMenu === 4 && unload();
   };
 
   return (
@@ -38,13 +38,13 @@ const GameMenu = ({ action }: GameMenuProps) => {
         >
           KungFu Skate
         </li>
-        <li onClick={() => handleMenuClick(1)}>About</li>
-        <li onClick={() => handleMenuClick(2)}>How to Play</li>
-        <li onClick={() => handleMenuClick(3)}>Top Scores</li>
-        <li onClick={() => handleMenuClick(4)}>Play</li>
+        <li onClick={() => childAction(1, unload())}>About</li>
+        <li onClick={() => childAction(2, unload())}>How to Play</li>
+        <li onClick={() => childAction(3, unload())}>Top Scores</li>
+        <li onClick={() => childAction(4, unload())}>Play</li>
       </ul>
       <section className="menu-wrap__left-container">
-        {currentMenu === 4 && (
+        {childMenu === 4 && (
           <Unity
             unityProvider={unityProvider}
             className="menu-wrap__unity-canvas"

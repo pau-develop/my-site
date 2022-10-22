@@ -21,6 +21,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
   const [tvLightColor, setTvLightColor] = useState(0);
   const [tvDirection, setTvDirection] = useState(1);
   const [currentMenu, setCurrentMenu] = useState<number>(0);
+  const [currentChildMenu, setCurrentChildMenu] = useState<number>(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -149,6 +150,12 @@ const CanvasGame = ({ image }: CanvasProps) => {
     setMenuVisibility(false);
   };
 
+  const handleChildMenuClick = (index: number, action: Promise<void>) => {
+    action;
+    setCurrentChildMenu(index);
+    setMenuVisibility(false);
+  };
+
   return (
     <CanvasStyled className="canvas-wrap">
       <canvas
@@ -162,7 +169,11 @@ const CanvasGame = ({ image }: CanvasProps) => {
         {menuVisibility && currentMenu === 0 ? (
           <GameList action={handleMenuClick} />
         ) : menuVisibility && currentMenu !== 0 ? (
-          <GameMenu action={handleMenuClick} />
+          <GameMenu
+            action={handleMenuClick}
+            childAction={handleChildMenuClick}
+            childMenu={currentChildMenu}
+          />
         ) : null}
       </div>
     </CanvasStyled>
