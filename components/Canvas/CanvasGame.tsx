@@ -5,6 +5,7 @@ import {
   changeTvColors,
   changeCanvasColors,
   setNewColors,
+  turnOffTv,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
 import { tvLight, tvNoise } from "../../utils/colors";
@@ -79,46 +80,68 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   // TV LIGHT
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (tvLightColor === 3) setTvDirection(-1);
-      if (tvLightColor === 1) setTvDirection(1);
-      setTvLightColor(tvLightColor + tvDirection);
-    }, 50);
-    return () => clearInterval(interval);
-  }, [tvLightColor, tvDirection]);
-
-  useEffect(() => {
-    if (indexesTvLight.current !== undefined) {
-      changeCanvasColors(
-        indexesTvLight.current as number[][],
-        imageData.current as ImageData,
-        contextRef.current as CanvasRenderingContext2D,
-        tvLightColors.current as number[][][],
-        tvLightColor
-      );
+    if (!menuVisibility) {
+      const interval = setInterval(() => {
+        if (tvLightColor === 3) setTvDirection(-1);
+        if (tvLightColor === 1) setTvDirection(1);
+        setTvLightColor(tvLightColor + tvDirection);
+      }, 50);
+      return () => clearInterval(interval);
     }
-  }, [tvLightColor, tvLightColors]);
-
-  //TV NOISE
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (tvNoiseColor === 2) setTvNoiseColor(0);
-      else setTvNoiseColor(tvNoiseColor + 1);
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, [tvNoiseColor]);
+  }, [tvLightColor, tvDirection, menuVisibility]);
 
   useEffect(() => {
-    if (indexesTvNoise.current !== undefined) {
-      changeTvColors(
+    if (!menuVisibility) {
+      if (indexesTvLight.current !== undefined) {
+        changeCanvasColors(
+          indexesTvLight.current as number[][],
+          imageData.current as ImageData,
+          contextRef.current as CanvasRenderingContext2D,
+          tvLightColors.current as number[][][],
+          tvLightColor
+        );
+      }
+    } else {
+      turnOffTv(
         indexesTvNoise.current!,
-        imageData.current as ImageData,
-        tvNoiseColor,
+        indexesTvLight.current!,
+        imageData.current!,
         contextRef.current!
       );
     }
-  }, [tvNoiseColor]);
+  }, [tvLightColor, tvLightColors, menuVisibility]);
+
+  //TV NOISE
+  useEffect(() => {
+    if (!menuVisibility) {
+      const interval = setInterval(() => {
+        if (tvNoiseColor === 2) setTvNoiseColor(0);
+        else setTvNoiseColor(tvNoiseColor + 1);
+      }, 50);
+
+      return () => clearInterval(interval);
+    }
+  }, [tvNoiseColor, menuVisibility]);
+
+  useEffect(() => {
+    if (!menuVisibility) {
+      if (indexesTvNoise.current !== undefined) {
+        changeTvColors(
+          indexesTvNoise.current!,
+          imageData.current as ImageData,
+          tvNoiseColor,
+          contextRef.current!
+        );
+      }
+    } else {
+      turnOffTv(
+        indexesTvNoise.current!,
+        indexesTvLight.current!,
+        imageData.current!,
+        contextRef.current!
+      );
+    }
+  }, [tvNoiseColor, menuVisibility]);
 
   const handleMenuClick = (index: number) => {
     setCurrentMenu(index);

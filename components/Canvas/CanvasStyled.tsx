@@ -52,7 +52,7 @@ const CanvasStyled = styled.div`
     }
 
     &__left-container {
-      background-color: blue;
+      background-color: black;
       position: absolute;
       top: 12.5%;
       left: 11.5%;
