@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "next": "12.3.1",
+    "nextjs-unity-webgl": "^8.6.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-unity-webgl": "^9.2.1"
   },
   "devDependencies": {
     "@types/node": "18.11.0",
