@@ -1,11 +1,12 @@
 import Image from "next/image";
+import GameHowToStyled from "./GameHowToStyled";
 
 const GameHowTo = () => {
   return (
-    <div className="menu-wrap__about">
+    <GameHowToStyled className="how-to">
       <h2>How to Play</h2>
-      <div className="menu-wrap__about-wrap">
-        <div className="menu-wrap__about-left">
+      <div className="how-to__wrap">
+        <div className="how-to__left">
           <p>
             Use the <span>W</span> <span>A</span> <span>S</span> <span>D</span>{" "}
             keys to move the player.
@@ -24,19 +25,19 @@ const GameHowTo = () => {
             Press <span>P</span> to Insert Coins.
           </p>
         </div>
-        <div className="menu-wrap__about-right">
-          <div className="menu-wrap__about-right-img">
+        <div className="how-to__right">
+          <div>
             <img src={"/how_kung_move.gif"} alt="movement demo" />
           </div>
-          <div className="menu-wrap__about-right-img">
+          <div>
             <img src={"/how_kung_shoot.gif"} alt="shooting demo" />
           </div>
-          <div className="menu-wrap__about-right-img">
+          <div>
             <img src={"/how_kung_wave.gif"} alt="melee attack demo" />
           </div>
         </div>
       </div>
-    </div>
+    </GameHowToStyled>
   );
 };
 

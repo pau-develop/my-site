@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 import GameHowTo from "../GameHowTo/GameHowTo";
 import GameTopScores from "../GameTopScores/GameTopScores";
+import GameMenuStyled from "./GameMenuStyled";
 
 interface GameMenuProps {
   action: (index: number, action: Promise<void>) => void;
@@ -50,10 +51,10 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
   }, [addEventListener, removeEventListener, handleGameOver]);
 
   return (
-    <CanvasStyled>
-      <ul>
+    <GameMenuStyled className="game-menu">
+      <ul className="game-menu__list">
         <li onClick={() => action(0, unload())} className="menu-wrap__big-item">
-          Game List
+          Back to Game List
         </li>
         <li
           onClick={() => handleMenuClick(0)}
@@ -66,7 +67,7 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
         <li onClick={() => childAction(3, unload())}>Top Scores</li>
         <li onClick={() => childAction(4, unload())}>Play</li>
       </ul>
-      <section className="menu-wrap__left-container">
+      <section className="game-menu__left-container">
         {childMenu === 2 && <GameHowTo />}
         {childMenu === 3 && <GameTopScores />}
 
@@ -77,7 +78,7 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
           />
         )}
       </section>
-    </CanvasStyled>
+    </GameMenuStyled>
   );
 };
 

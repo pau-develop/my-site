@@ -165,17 +165,16 @@ const CanvasGame = ({ image }: CanvasProps) => {
         height={180}
         tabIndex={0}
       />
-      <div className="menu-wrap">
-        {menuVisibility && currentMenu === 0 ? (
-          <GameList action={handleMenuClick} />
-        ) : menuVisibility && currentMenu !== 0 ? (
-          <GameMenu
-            action={handleMenuClick}
-            childAction={handleChildMenuClick}
-            childMenu={currentChildMenu}
-          />
-        ) : null}
-      </div>
+
+      {menuVisibility && currentMenu === 0 ? (
+        <GameList action={handleMenuClick} />
+      ) : menuVisibility && currentMenu !== 0 ? (
+        <GameMenu
+          action={handleMenuClick}
+          childAction={handleChildMenuClick}
+          childMenu={currentChildMenu}
+        />
+      ) : null}
     </CanvasStyled>
   );
 };

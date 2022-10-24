@@ -1,5 +1,6 @@
 import connectDB from "../../database/connectDB";
 import { useState, useCallback, useEffect } from "react";
+import GameTopScoresStyled from "./GameTopScoresStyled";
 
 interface scoresProps {
   name: string;
@@ -21,10 +22,10 @@ const GameTopScores = () => {
   }, [fetchScores]);
 
   return (
-    <div className="menu-wrap__scores">
-      <h2>Top Scores</h2>
+    <GameTopScoresStyled className="scores">
+      <h2 className="scores__title">Top Scores</h2>
       {scores !== undefined && (
-        <ul>
+        <ul className="scores__list">
           {scores.map((element, index) => {
             return (
               <li key={index}>
@@ -37,7 +38,7 @@ const GameTopScores = () => {
           })}
         </ul>
       )}
-    </div>
+    </GameTopScoresStyled>
   );
 };
 export default GameTopScores;
