@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import GameHowTo from "../GameHowTo/GameHowTo";
+import GameTopScores from "../GameTopScores/GameTopScores";
 
 interface GameMenuProps {
   action: (index: number, action: Promise<void>) => void;
@@ -67,6 +68,7 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
       </ul>
       <section className="menu-wrap__left-container">
         {childMenu === 2 && <GameHowTo />}
+        {childMenu === 3 && <GameTopScores />}
 
         {childMenu === 4 && (
           <Unity
