@@ -1,4 +1,5 @@
 import CanvasStyled from "../Canvas/CanvasStyled";
+import GameListStyled from "./GameListStyled";
 
 interface GameListProps {
   action: (index: number) => void;
@@ -6,8 +7,8 @@ interface GameListProps {
 
 const GameList = ({ action }: GameListProps) => {
   return (
-    <CanvasStyled>
-      <ul>
+    <GameListStyled className="menu-wrap">
+      <ul className="menu-wrap__list">
         <li onClick={() => action(0)} className="menu-wrap__big-item">
           Game List
         </li>
@@ -15,7 +16,7 @@ const GameList = ({ action }: GameListProps) => {
           KungFu Skate
         </li>
       </ul>
-    </CanvasStyled>
+    </GameListStyled>
   );
 };
 
