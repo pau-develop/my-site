@@ -3,6 +3,8 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import GameHowTo from "../GameHowTo/GameHowTo";
+
 interface GameMenuProps {
   action: (index: number, action: Promise<void>) => void;
   childAction: (index: number, action: Promise<void>) => void;
@@ -44,6 +46,8 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
         <li onClick={() => childAction(4, unload())}>Play</li>
       </ul>
       <section className="menu-wrap__left-container">
+        {childMenu === 2 && <GameHowTo />}
+
         {childMenu === 4 && (
           <Unity
             unityProvider={unityProvider}
