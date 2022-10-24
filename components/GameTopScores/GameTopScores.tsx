@@ -4,8 +4,8 @@ import GameTopScoresStyled from "./GameTopScoresStyled";
 
 interface scoresProps {
   name: string;
-  player: number;
-  score: number;
+  player: string;
+  score: string;
 }
 
 const GameTopScores = () => {
@@ -24,19 +24,31 @@ const GameTopScores = () => {
   return (
     <GameTopScoresStyled className="scores">
       <h2 className="scores__title">Top Scores</h2>
-      {scores !== undefined && (
+      {scores !== undefined ? (
         <ul className="scores__list">
           {scores.map((element, index) => {
             return (
               <li key={index}>
                 <span>{index + 1}</span>
-                <span>{element.player}</span>
+                <span>
+                  {element.player === "0" && (
+                    <img src="/charIcon1.png" alt="bald-guy" />
+                  )}
+                  {element.player === "1" && (
+                    <img src="/charIcon2.png" alt="chinese-girl" />
+                  )}
+                  {element.player === "2" && (
+                    <img src="/charIcon3.png" alt="amazing-dog" />
+                  )}
+                </span>
                 <span>{element.name}</span>
                 <span>{element.score}</span>
               </li>
             );
           })}
         </ul>
+      ) : (
+        <span>Fetching data...</span>
       )}
     </GameTopScoresStyled>
   );
