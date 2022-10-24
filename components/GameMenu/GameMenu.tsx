@@ -12,7 +12,13 @@ interface GameMenuProps {
 }
 
 const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
-  const { unityProvider, unload, UNSAFE__unityInstance } = useUnityContext({
+  const {
+    unityProvider,
+    unload,
+    UNSAFE__unityInstance,
+    addEventListener,
+    removeEventListener,
+  } = useUnityContext({
     loaderUrl: "/build_web.loader.js",
     dataUrl: "/build_web.data",
     frameworkUrl: "/build_web.framework.js",
@@ -27,6 +33,20 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
   const handleMenuClick = (index: number) => {
     childMenu === 4 && unload();
   };
+
+  const handleGameOver = useCallback(
+    (userName: string, points: number, player: number) => {
+      console.log(userName, points, player);
+    },
+    []
+  );
+
+  useEffect(() => {
+    addEventListener("GameOver", handleGameOver);
+    return () => {
+      removeEventListener("GameOver", handleGameOver);
+    };
+  }, [addEventListener, removeEventListener, handleGameOver]);
 
   return (
     <CanvasStyled>
