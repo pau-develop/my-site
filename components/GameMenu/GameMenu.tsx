@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import GameHowTo from "../GameHowTo/GameHowTo";
 import GameTopScores from "../GameTopScores/GameTopScores";
 import GameMenuStyled from "./GameMenuStyled";
+import scoresProps from "../../interfaces/Interfaces";
+import IScore from "../../interfaces/Interfaces";
 
 interface GameMenuProps {
   action: (index: number, action: Promise<void>) => void;
@@ -37,18 +39,36 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
   };
 
   const handleGameOver = useCallback(
-    (userName: string, points: number, player: number) => {
-      console.log(userName, points, player);
+    (userName: string, score: number, player: number) => {
+      const scoreObject: IScore = {
+        name: userName,
+        player: player.toString(),
+        score: score.toString(),
+      };
+      addScore(scoreObject);
     },
     []
   );
 
-  useEffect(() => {
-    addEventListener("GameOver", handleGameOver);
-    return () => {
-      removeEventListener("GameOver", handleGameOver);
-    };
-  }, [addEventListener, removeEventListener, handleGameOver]);
+  const addScore = async (score: IScore) => {
+    const response = await fetch("/api/scores", {
+      method: "POST",
+      headers: {
+        "Content-type": "aplication/json",
+      },
+      body: JSON.stringify(score),
+    });
+  };
+
+  useEffect(
+    function () {
+      addEventListener("GameOver", handleGameOver);
+      return () => {
+        removeEventListener("GameOver", handleGameOver);
+      };
+    },
+    [addEventListener, removeEventListener, handleGameOver]
+  );
 
   return (
     <GameMenuStyled className="game-menu">
@@ -74,7 +94,7 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
         {childMenu === 4 && (
           <Unity
             unityProvider={unityProvider}
-            className="menu-wrap__unity-canvas"
+            className="game-menu__unity-canvas"
           />
         )}
       </section>

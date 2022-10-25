@@ -21,6 +21,16 @@ const scores = async (request: NextApiRequest, response: NextApiResponse) => {
       }
       response.json({ myScores });
       break;
+
+    case "POST":
+      const score = JSON.parse(request.body);
+      const result = await db.collection("scores").insertOne({
+        name: score.name,
+        score: score.score,
+        player: score.player,
+      });
+      console.log(result);
+      response.json({ result });
   }
 };
 
