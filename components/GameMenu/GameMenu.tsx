@@ -8,6 +8,7 @@ import GameTopScores from "../GameTopScores/GameTopScores";
 import GameMenuStyled from "./GameMenuStyled";
 import scoresProps from "../../interfaces/Interfaces";
 import IScore from "../../interfaces/Interfaces";
+import GameAbout from "../GameAbout/GameAbout";
 
 interface GameMenuProps {
   action: (index: number, action: Promise<void>) => void;
@@ -76,22 +77,19 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
         <li onClick={() => action(0, unload())} className="menu-wrap__big-item">
           Back to Game List
         </li>
-        <li
-          onClick={() => handleMenuClick(0)}
-          className="menu-wrap__medium-item"
-        >
-          KungFu Skate
+
+        <li onClick={() => childAction(0, unload())}>
+          <img src="/KUNG_LOGO.png" alt="Kungfu Skate logo" />
         </li>
-        <li onClick={() => childAction(1, unload())}>About</li>
-        <li onClick={() => childAction(2, unload())}>How to Play</li>
-        <li onClick={() => childAction(3, unload())}>Top Scores</li>
-        <li onClick={() => childAction(4, unload())}>Play</li>
+        <li onClick={() => childAction(1, unload())}>How to Play</li>
+        <li onClick={() => childAction(2, unload())}>Top Scores</li>
+        <li onClick={() => childAction(3, unload())}>Play</li>
       </ul>
       <section className="game-menu__left-container">
-        {childMenu === 2 && <GameHowTo />}
-        {childMenu === 3 && <GameTopScores />}
-
-        {childMenu === 4 && (
+        {childMenu === 0 && <GameAbout />}
+        {childMenu === 1 && <GameHowTo />}
+        {childMenu === 2 && <GameTopScores />}
+        {childMenu === 3 && (
           <Unity
             unityProvider={unityProvider}
             className="game-menu__unity-canvas"

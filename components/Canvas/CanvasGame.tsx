@@ -150,7 +150,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
     setMenuVisibility(false);
   };
 
-  const handleChildMenuClick = (index: number, action: Promise<void>) => {
+  const handleChildMenuClick = (index: number, action?: Promise<void>) => {
     action;
     setCurrentChildMenu(index);
     setMenuVisibility(false);
@@ -167,7 +167,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
       />
 
       {menuVisibility && currentMenu === 0 ? (
-        <GameList action={handleMenuClick} />
+        <GameList action={handleMenuClick} childAction={handleChildMenuClick} />
       ) : menuVisibility && currentMenu !== 0 ? (
         <GameMenu
           action={handleMenuClick}
