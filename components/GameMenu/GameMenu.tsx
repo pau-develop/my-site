@@ -76,13 +76,10 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
         <li onClick={() => action(0, unload())} className="menu-wrap__big-item">
           Back to Game List
         </li>
-        <li
-          onClick={() => handleMenuClick(0)}
-          className="menu-wrap__medium-item"
-        >
-          KungFu Skate
+
+        <li onClick={() => childAction(1, unload())}>
+          <img src="/KUNG_LOGO.png" alt="Kungfu Skate logo" />
         </li>
-        <li onClick={() => childAction(1, unload())}>About</li>
         <li onClick={() => childAction(2, unload())}>How to Play</li>
         <li onClick={() => childAction(3, unload())}>Top Scores</li>
         <li onClick={() => childAction(4, unload())}>Play</li>

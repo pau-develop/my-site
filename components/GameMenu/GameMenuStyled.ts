@@ -26,6 +26,13 @@ const GameMenuStyled = styled.div`
         justify-content: center;
         align-items: center;
       }
+      li:nth-child(2) {
+        height: 120px;
+        img {
+          width: 60%;
+          height: 90%;
+        }
+      }
     }
     &__left-container {
       background-color: black;

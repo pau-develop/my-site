@@ -16,7 +16,6 @@ const GameListStyled = styled.div`
       list-style: none;
       padding: 0;
       li {
-        cursor: pointer;
         margin-top: 5%;
         background-color: black;
         border-radius: 25px 0 0 25px;
@@ -25,6 +24,14 @@ const GameListStyled = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      li:not(:first-child) {
+        cursor: pointer;
+        height: 120px;
+        img {
+          width: 60%;
+          height: 90%;
+        }
       }
     }
   }
