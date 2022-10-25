@@ -51,6 +51,13 @@ const Canvas = ({ image }: CanvasProps) => {
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
+    if (localStorage.getItem("currentColor") !== undefined) {
+      const color = Number(localStorage.getItem("currentColor"));
+      setCurrentLaptopColor(color);
+    }
+  }, []);
+
+  useEffect(() => {
     const newImage = new Image();
     newImage.src = image;
     const canvas = canvasRef.current;
@@ -211,8 +218,15 @@ const Canvas = ({ image }: CanvasProps) => {
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
     if (event.code === "Space") {
-      if (currentLaptopColor < 4) setCurrentLaptopColor(currentLaptopColor + 1);
-      else setCurrentLaptopColor(0);
+      if (currentLaptopColor < 4) {
+        const color = currentLaptopColor + 1;
+        localStorage.setItem("currentColor", color.toString());
+        setCurrentLaptopColor(color);
+      } else {
+        const color = 0;
+        localStorage.setItem("currentColor", color.toString());
+        setCurrentLaptopColor(color);
+      }
     }
   };
 

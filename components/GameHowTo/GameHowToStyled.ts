@@ -21,6 +21,9 @@ const GameHowToStyled = styled.div`
     &__right {
       width: 50%;
       height: 100%;
+      div {
+        height: 23%;
+      }
       img {
         width: 100%;
         height: 100%;
