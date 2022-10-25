@@ -17,11 +17,6 @@ const CanvasStyled = styled.div`
       outline: none;
     }
   }
-
-  &__unity-canvas {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export default CanvasStyled;

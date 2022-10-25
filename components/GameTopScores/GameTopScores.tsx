@@ -1,15 +1,11 @@
 import connectDB from "../../database/connectDB";
 import { useState, useCallback, useEffect } from "react";
 import GameTopScoresStyled from "./GameTopScoresStyled";
-
-interface scoresProps {
-  name: string;
-  player: string;
-  score: string;
-}
+import scoresProps from "../../interfaces/Interfaces";
+import IScore from "../../interfaces/Interfaces";
 
 const GameTopScores = () => {
-  const [scores, setScores] = useState<scoresProps[] | undefined>();
+  const [scores, setScores] = useState<IScore[] | undefined>();
   const fetchScores = useCallback(async () => {
     const response = await fetch("/api/scores");
     const { myScores } = await response.json();
@@ -31,13 +27,13 @@ const GameTopScores = () => {
               <li key={index}>
                 <span>{index + 1}</span>
                 <span>
-                  {element.player === "0" && (
+                  {element.player === "1" && (
                     <img src="/charIcon1.png" alt="bald-guy" />
                   )}
-                  {element.player === "1" && (
+                  {element.player === "2" && (
                     <img src="/charIcon2.png" alt="chinese-girl" />
                   )}
-                  {element.player === "2" && (
+                  {element.player === "3" && (
                     <img src="/charIcon3.png" alt="amazing-dog" />
                   )}
                 </span>
