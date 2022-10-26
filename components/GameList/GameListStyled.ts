@@ -3,52 +3,59 @@ import styled from "styled-components";
 const GameListStyled = styled.div`
   width: 20%;
   right: 10%;
+  height: 20%;
   top: 13%;
   z-index: 2;
   position: absolute;
+  border: 1px solid rgb(95, 81, 255);
   .menu-wrap {
     &__list {
       width: 100%;
+      height: 100%;
       color: rgb(95, 81, 255);
+      display: flex;
+      flex-direction: column;
       h2 {
-        background: linear-gradient(
-          to left,
-          #000,
-          rgb(0, 0, 50),
-          rgb(0, 0, 50),
-          rgb(0, 0, 50),
-          #000
-        );
+        margin: 0;
+        border-bottom: 1px solid rgb(95, 81, 255);
+        flex: 1;
         height: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
         padding-right: 5%;
       }
-      ul {
+      div {
+        margin: 0;
+        flex: 1;
         list-style: none;
         width: 100%;
         padding: 0;
-      }
-      li {
-        padding-right: 5%;
-
-        cursor: pointer;
-        margin-top: 5%;
-        background: linear-gradient(
-          to left,
-          #000,
-          rgb(0, 0, 50),
-          rgb(0, 0, 50),
-          rgb(0, 0, 50),
-          #000
-        );
-
-        height: 60px;
-
         display: flex;
-        justify-content: center;
-        align-items: center;
+        button {
+          flex: 1;
+          background-color: transparent;
+          color: rgb(95, 81, 255);
+          cursor: pointer;
+        }
+        button:hover {
+          animation: blink 0.1s infinite;
+        }
+        span {
+          height: 100%;
+          flex: 4;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+    }
+    @keyframes blink {
+      0% {
+        color: rgb(95, 81, 255);
+      }
+      100% {
+        color: white;
       }
     }
   }

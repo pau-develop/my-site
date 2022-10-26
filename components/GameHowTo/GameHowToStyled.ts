@@ -4,17 +4,16 @@ const GameHowToStyled = styled.div`
   width: 100%;
   height: 100%;
   color: rgb(95, 81, 255);
-  padding: 2% 5%;
   .how-to {
     &__contents {
+      display: flex;
+      flex-direction: column;
       width: 100%;
       height: 90%;
-      padding: 5%;
+      padding: 3%;
     }
   }
   h2 {
-    margin: 0;
-    margin-bottom: 5%;
     text-align: center;
   }
   p {

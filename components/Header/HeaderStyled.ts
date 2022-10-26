@@ -17,6 +17,9 @@ const HeaderStyled = styled.header`
         cursor: pointer;
         text-decoration: none;
       }
+      a:hover {
+        animation: blink 0.1s infinite;
+      }
     }
     &__nav {
       color: white;
@@ -24,11 +27,23 @@ const HeaderStyled = styled.header`
       display: flex;
       justify-content: space-between;
       width: 500px;
+
       a:-webkit-any-link {
         color: rgb(95, 81, 255);
         cursor: pointer;
         text-decoration: none;
       }
+      a:hover {
+        animation: blink 0.1s infinite;
+      }
+    }
+  }
+  @keyframes blink {
+    0% {
+      color: rgb(95, 81, 255);
+    }
+    100% {
+      color: white;
     }
   }
 `;

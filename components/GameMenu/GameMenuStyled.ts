@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
-const GameMenuStyled = styled.ul`
+const GameMenuStyled = styled.div`
   width: 20%;
+  height: 40%;
   right: 10%;
   bottom: 22%;
   z-index: 2;
@@ -9,29 +10,28 @@ const GameMenuStyled = styled.ul`
   position: absolute;
   .game-menu {
     &__list {
+      border: 1px solid rgb(95, 81, 255);
       width: 100%;
       color: rgb(95, 81, 255);
       list-style: none;
       padding: 0;
-
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       li {
-        background: linear-gradient(
-          to left,
-          #000,
-          rgb(0, 0, 50),
-          rgb(0, 0, 50),
-          rgb(0, 0, 50),
-          #000
-        );
         cursor: pointer;
-        margin-top: 5%;
-
-        border-radius: 25px 0 0 25px;
-        height: 60px;
+        border-bottom: 1px solid rgb(95, 81, 255);
         width: 100%;
+        flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      li:last-child {
+        border: none;
+      }
+      li:hover {
+        animation: blink 0.1s infinite;
       }
     }
     &__left-container {
@@ -44,6 +44,14 @@ const GameMenuStyled = styled.ul`
     &__unity-canvas {
       width: 100%;
       height: 100%;
+    }
+  }
+  @keyframes blink {
+    0% {
+      color: rgb(95, 81, 255);
+    }
+    100% {
+      color: white;
     }
   }
 `;

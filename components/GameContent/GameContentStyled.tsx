@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const GameContentStyled = styled.section`
-  width: 48%;
-  height: 59%;
+  width: 43.2%;
+  height: 56%;
   position: absolute;
-  top: 16%;
-  left: 15.5%;
+  top: 19%;
+  left: 15.2%;
   .game-content {
     &__unity-canvas {
       width: 100%;
