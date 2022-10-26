@@ -11,6 +11,7 @@ import CanvasStyled from "./CanvasStyled";
 import { tvLight, tvNoise } from "../../utils/colors";
 import GameMenu from "../GameMenu/GameMenu";
 import GameList from "../GameList/GameList";
+import CanvasEdges from "./CanvasEdges";
 
 interface CanvasProps {
   image: string;
@@ -158,6 +159,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   return (
     <CanvasStyled className="canvas-wrap">
+      <CanvasEdges />
       <canvas
         className="canvas-wrap__canvas"
         ref={canvasRef}

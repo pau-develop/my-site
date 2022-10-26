@@ -19,6 +19,7 @@ import {
   routerLed,
   consoleLed,
 } from "../../utils/colors";
+import CanvasEdges from "./CanvasEdges";
 
 interface CanvasProps {
   image: string;
@@ -232,6 +233,7 @@ const Canvas = ({ image }: CanvasProps) => {
 
   return (
     <CanvasStyled className="canvas-wrap">
+      <CanvasEdges />
       <canvas
         className="canvas-wrap__canvas"
         ref={canvasRef}

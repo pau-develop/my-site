@@ -35,12 +35,11 @@ const GameMenuStyled = styled.div`
       }
     }
     &__left-container {
-      background-color: black;
       position: absolute;
-      top: 12.5%;
-      left: 11.5%;
-      width: 53.5%;
-      height: 64%;
+      top: 15.5%;
+      left: 15.5%;
+      width: 48%;
+      height: 59.5%;
     }
     &__unity-canvas {
       width: 100%;
