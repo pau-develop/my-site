@@ -12,6 +12,7 @@ import { tvLight, tvNoise } from "../../utils/colors";
 import GameMenu from "../GameMenu/GameMenu";
 import GameList from "../GameList/GameList";
 import CanvasEdges from "./CanvasEdges";
+import GameContent from "../GameContent/GameContent";
 
 interface CanvasProps {
   image: string;
@@ -21,7 +22,6 @@ const CanvasGame = ({ image }: CanvasProps) => {
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
   const [tvDirection, setTvDirection] = useState(1);
-  const [currentMenu, setCurrentMenu] = useState<number>(0);
   const [currentChildMenu, setCurrentChildMenu] = useState<number>(0);
   const [menuVisibility, setMenuVisibility] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -147,7 +147,6 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   const handleMenuClick = (index: number, action?: Promise<void>) => {
     action;
-    setCurrentMenu(index);
     setMenuVisibility(false);
   };
 
@@ -168,15 +167,21 @@ const CanvasGame = ({ image }: CanvasProps) => {
         tabIndex={0}
       />
 
-      {menuVisibility && currentMenu === 0 ? (
-        <GameList action={handleMenuClick} childAction={handleChildMenuClick} />
-      ) : menuVisibility && currentMenu !== 0 ? (
-        <GameMenu
-          action={handleMenuClick}
-          childAction={handleChildMenuClick}
-          childMenu={currentChildMenu}
-        />
-      ) : null}
+      {menuVisibility && (
+        <>
+          <GameList
+            action={handleMenuClick}
+            childAction={handleChildMenuClick}
+          />
+
+          <GameMenu
+            action={handleMenuClick}
+            childAction={handleChildMenuClick}
+            childMenu={currentChildMenu}
+          />
+          <GameContent childMenu={currentChildMenu} />
+        </>
+      )}
     </CanvasStyled>
   );
 };

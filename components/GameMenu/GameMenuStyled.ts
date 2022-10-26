@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const GameMenuStyled = styled.div`
+const GameMenuStyled = styled.ul`
   width: 100%;
   height: 100%;
   z-index: 2;
@@ -10,15 +10,24 @@ const GameMenuStyled = styled.div`
   .game-menu {
     &__list {
       position: absolute;
-      width: 25%;
-      right: 0%;
+      bottom: 10%;
+      width: 20%;
+      right: 10%;
       color: rgb(95, 81, 255);
       list-style: none;
       padding: 0;
       li {
+        background: linear-gradient(
+          to left,
+          #000,
+          rgb(0, 0, 50),
+          rgb(0, 0, 50),
+          rgb(0, 0, 50),
+          #000
+        );
         cursor: pointer;
         margin-top: 5%;
-        background-color: black;
+
         border-radius: 25px 0 0 25px;
         height: 60px;
         width: 100%;

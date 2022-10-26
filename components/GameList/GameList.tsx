@@ -11,18 +11,20 @@ const GameList = ({ action, childAction }: GameListProps) => {
 
   return (
     <GameListStyled className="menu-wrap">
-      <ul className="menu-wrap__list">
-        <li className="menu-wrap__big-item">Game List</li>
-        <li
-          onClick={() => {
-            action(1);
-            childAction(0);
-          }}
-          className="menu-wrap__medium-item"
-        >
-          <img src="/KUNG_LOGO.png" alt="Kungfu Skate logo" />
-        </li>
-      </ul>
+      <div className="menu-wrap__list">
+        <h2>GAMES</h2>
+        <ul>
+          <li
+            onClick={() => {
+              action(1);
+              childAction(0);
+            }}
+            className="menu-wrap__medium-item"
+          >
+            KungFu Skate
+          </li>
+        </ul>
+      </div>
     </GameListStyled>
   );
 };

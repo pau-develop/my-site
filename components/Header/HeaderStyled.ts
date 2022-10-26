@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const HeaderStyled = styled.header`
-  padding: 0 5%;
+  padding: 0 10%;
   background: #000;
-  height: 5%;
+  height: 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;

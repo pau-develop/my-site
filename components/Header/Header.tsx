@@ -13,6 +13,9 @@ const Header = (): JSX.Element => {
           <Link href="/home">Gallery</Link>
         </li>
         <li>
+          <Link href="/home">Projects</Link>
+        </li>
+        <li>
           <Link href="/games">Games</Link>
         </li>
       </ul>

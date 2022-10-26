@@ -14,6 +14,7 @@ const GameTopScoresStyled = styled.div`
       text-align: center;
     }
     &__list {
+      overflow-y: scroll;
       height: 80%;
       padding: 0 5%;
       margin: 0;

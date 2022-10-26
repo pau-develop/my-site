@@ -8,30 +8,50 @@ const GameListStyled = styled.div`
   top: 0%;
   right: 0%;
   .menu-wrap {
+    &__title {
+      color: rgb(95, 81, 255);
+    }
     &__list {
       position: absolute;
-      width: 25%;
-      right: 0%;
+      top: 7%;
+      width: 20%;
+      right: 10%;
       color: rgb(95, 81, 255);
-      list-style: none;
-      padding: 0;
-      li {
-        margin-top: 5%;
-        background-color: black;
-        border-radius: 25px 0 0 25px;
-        height: 60px;
-        width: 100%;
+      h2 {
+        background: linear-gradient(
+          to right,
+          #000,
+          rgb(0, 0, 50),
+          rgb(0, 0, 50)
+        );
+        height: 80px;
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: flex-end;
+        padding-right: 5%;
       }
-      li:not(:first-child) {
+      ul {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+      }
+      li {
+        padding-right: 5%;
+        text-align: right;
         cursor: pointer;
-        height: 120px;
-        img {
-          width: 60%;
-          height: 90%;
-        }
+        margin-top: 5%;
+        background: linear-gradient(
+          to right,
+          #000,
+          rgb(0, 0, 50),
+          rgb(0, 0, 50)
+        );
+
+        height: 60px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
       }
     }
   }
