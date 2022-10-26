@@ -1,37 +1,54 @@
 import styled from "styled-components";
 
 const GameListStyled = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 20%;
+  right: 10%;
+  top: 13%;
   z-index: 2;
   position: absolute;
-  top: 0%;
-  right: 0%;
   .menu-wrap {
     &__list {
-      position: absolute;
-      width: 25%;
-      right: 0%;
+      width: 100%;
       color: rgb(95, 81, 255);
-      list-style: none;
-      padding: 0;
-      li {
-        margin-top: 5%;
-        background-color: black;
-        border-radius: 25px 0 0 25px;
-        height: 60px;
+      h2 {
+        background: linear-gradient(
+          to left,
+          #000,
+          rgb(0, 0, 50),
+          rgb(0, 0, 50),
+          rgb(0, 0, 50),
+          #000
+        );
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-right: 5%;
+      }
+      ul {
+        list-style: none;
         width: 100%;
+        padding: 0;
+      }
+      li {
+        padding-right: 5%;
+
+        cursor: pointer;
+        margin-top: 5%;
+        background: linear-gradient(
+          to left,
+          #000,
+          rgb(0, 0, 50),
+          rgb(0, 0, 50),
+          rgb(0, 0, 50),
+          #000
+        );
+
+        height: 60px;
+
         display: flex;
         justify-content: center;
         align-items: center;
-      }
-      li:not(:first-child) {
-        cursor: pointer;
-        height: 120px;
-        img {
-          width: 60%;
-          height: 90%;
-        }
       }
     }
   }

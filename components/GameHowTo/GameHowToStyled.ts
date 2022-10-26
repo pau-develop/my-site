@@ -6,28 +6,10 @@ const GameHowToStyled = styled.div`
   color: rgb(95, 81, 255);
   padding: 2% 5%;
   .how-to {
-    &__wrap {
-      display: flex;
-      height: 85%;
-    }
-    &__left {
-      width: 50%;
-      height: 100%;
-      p {
-        font-size: 0.7rem;
-        height: 23%;
-      }
-    }
-    &__right {
-      width: 50%;
-      height: 100%;
-      div {
-        height: 23%;
-      }
-      img {
-        width: 100%;
-        height: 100%;
-      }
+    &__contents {
+      width: 100%;
+      height: 90%;
+      padding: 5%;
     }
   }
   h2 {
@@ -36,6 +18,8 @@ const GameHowToStyled = styled.div`
     text-align: center;
   }
   p {
+    text-align: center;
+    height: 20%;
     font-size: 0.75rem;
     line-height: 200%;
   }

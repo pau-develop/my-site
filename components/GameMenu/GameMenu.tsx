@@ -11,34 +11,18 @@ import IScore from "../../interfaces/Interfaces";
 import GameAbout from "../GameAbout/GameAbout";
 
 interface GameMenuProps {
-  action: (index: number, action: Promise<void>) => void;
-  childAction: (index: number, action: Promise<void>) => void;
+  action: (index: number) => void;
+  childAction: (index: number) => void;
   childMenu: number;
+  unloadAction: () => void;
 }
 
-const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
-  const {
-    unityProvider,
-    unload,
-    UNSAFE__unityInstance,
-    addEventListener,
-    removeEventListener,
-  } = useUnityContext({
-    loaderUrl: "/build_web.loader.js",
-    dataUrl: "/build_web.data",
-    frameworkUrl: "/build_web.framework.js",
-    codeUrl: "/build_web.wasm",
-  });
-  const router = useRouter();
-  const unloadUnityInstance = () => {
-    UNSAFE__unityInstance !== null && unload();
-  };
-  router.events.on("routeChangeStart", unloadUnityInstance);
-
-  const handleMenuClick = (index: number) => {
-    childMenu === 4 && unload();
-  };
-
+const GameMenu = ({
+  action,
+  childAction,
+  childMenu,
+  unloadAction,
+}: GameMenuProps) => {
   const handleGameOver = useCallback(
     (userName: string, score: number, player: number) => {
       const scoreObject: IScore = {
@@ -61,41 +45,52 @@ const GameMenu = ({ action, childAction, childMenu }: GameMenuProps) => {
     });
   };
 
-  useEffect(
-    function () {
-      addEventListener("GameOver", handleGameOver);
-      return () => {
-        removeEventListener("GameOver", handleGameOver);
-      };
-    },
-    [addEventListener, removeEventListener, handleGameOver]
-  );
+  // useEffect(
+  //   function () {
+  //     addEventListener("GameOver", handleGameOver);
+  //     return () => {
+  //       removeEventListener("GameOver", handleGameOver);
+  //     };
+  //   },
+  //   [addEventListener, removeEventListener, handleGameOver]
+  // );
 
   return (
     <GameMenuStyled className="game-menu">
       <ul className="game-menu__list">
-        <li onClick={() => action(0, unload())} className="menu-wrap__big-item">
-          Back to Game List
+        <li
+          onClick={() => {
+            childAction(0);
+            unloadAction();
+          }}
+        >
+          About
         </li>
-
-        <li onClick={() => childAction(0, unload())}>
-          <img src="/KUNG_LOGO.png" alt="Kungfu Skate logo" />
+        <li
+          onClick={() => {
+            childAction(1);
+            unloadAction();
+          }}
+        >
+          How to Play
         </li>
-        <li onClick={() => childAction(1, unload())}>How to Play</li>
-        <li onClick={() => childAction(2, unload())}>Top Scores</li>
-        <li onClick={() => childAction(3, unload())}>Play</li>
+        <li
+          onClick={() => {
+            childAction(2);
+            unloadAction();
+          }}
+        >
+          Top Scores
+        </li>
+        <li
+          onClick={() => {
+            childAction(3);
+            unloadAction();
+          }}
+        >
+          Play
+        </li>
       </ul>
-      <section className="game-menu__left-container">
-        {childMenu === 0 && <GameAbout />}
-        {childMenu === 1 && <GameHowTo />}
-        {childMenu === 2 && <GameTopScores />}
-        {childMenu === 3 && (
-          <Unity
-            unityProvider={unityProvider}
-            className="game-menu__unity-canvas"
-          />
-        )}
-      </section>
     </GameMenuStyled>
   );
 };

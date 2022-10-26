@@ -4,9 +4,7 @@ const GameAbout = () => {
   return (
     <GameAboutStyled className="about">
       <h2 className="about__title">About</h2>
-      <div className="about__image">
-        <img src="/KUNG_LOGO.png" alt="Kungfu Skate logo" />
-      </div>
+
       <p className="about__text">
         {`Inspired by the Arcades of the 90's, an horizontally scrolling shooter made with`}
         <a href="https://unity.com/" target="_blank" rel="noreferrer">
