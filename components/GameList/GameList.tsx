@@ -14,8 +14,9 @@ const GameList = ({ action, childAction, unloadAction }: GameListProps) => {
     <GameListStyled className="menu-wrap">
       <div className="menu-wrap__list">
         <h2>GAMES</h2>
-        <ul>
-          <li
+        <div>
+          <button>{`<<`}</button>
+          <span
             onClick={() => {
               action(1);
               childAction(0);
@@ -24,8 +25,9 @@ const GameList = ({ action, childAction, unloadAction }: GameListProps) => {
             className="menu-wrap__medium-item"
           >
             KungFu Skate
-          </li>
-        </ul>
+          </span>
+          <button>{`>>`}</button>
+        </div>
       </div>
     </GameListStyled>
   );

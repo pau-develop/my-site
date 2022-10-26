@@ -24,10 +24,10 @@ const GameTopScoresStyled = styled.div`
         display: flex;
         list-style: none;
         margin: 2% auto;
-        width: 80%;
+        width: 90%;
         text-align: center;
         span {
-          font-size: 1.5rem;
+          font-size: 1rem;
         }
         span:first-child {
           flex: 1;
