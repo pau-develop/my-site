@@ -6,6 +6,12 @@ const GameContentStyled = styled.section`
   position: absolute;
   top: 16%;
   left: 15.5%;
+  .game-content {
+    &__unity-canvas {
+      width: 100%;
+      height: 100%;
+    }
+  }
 `;
 
 export default GameContentStyled;

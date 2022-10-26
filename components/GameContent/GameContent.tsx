@@ -1,4 +1,5 @@
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { IUnityProvider } from "react-unity-webgl/distribution/interfaces/unity-provider";
 import GameAbout from "../GameAbout/GameAbout";
 import GameHowTo from "../GameHowTo/GameHowTo";
 import GameTopScores from "../GameTopScores/GameTopScores";
@@ -6,32 +7,17 @@ import GameContentStyled from "./GameContentStyled";
 
 interface GameContentProps {
   childMenu: number;
+  unity: IUnityProvider;
 }
 
-const GameContent = ({ childMenu }: GameContentProps) => {
-  const {
-    unityProvider,
-    unload,
-    UNSAFE__unityInstance,
-    addEventListener,
-    removeEventListener,
-  } = useUnityContext({
-    loaderUrl: "/build_web.loader.js",
-    dataUrl: "/build_web.data",
-    frameworkUrl: "/build_web.framework.js",
-    codeUrl: "/build_web.wasm",
-  });
-
+const GameContent = ({ childMenu, unity }: GameContentProps) => {
   return (
     <GameContentStyled className="game-content">
       {childMenu === 0 && <GameAbout />}
       {childMenu === 1 && <GameHowTo />}
       {childMenu === 2 && <GameTopScores />}
       {childMenu === 3 && (
-        <Unity
-          unityProvider={unityProvider}
-          className="game-menu__unity-canvas"
-        />
+        <Unity unityProvider={unity} className="game-content__unity-canvas" />
       )}
     </GameContentStyled>
   );

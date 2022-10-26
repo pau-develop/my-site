@@ -1,21 +1,19 @@
 import styled from "styled-components";
 
 const GameMenuStyled = styled.ul`
-  width: 100%;
-  height: 100%;
+  width: 20%;
+  right: 10%;
+  bottom: 22%;
   z-index: 2;
+  padding: 0;
   position: absolute;
-  top: 0%;
-  right: 0%;
   .game-menu {
     &__list {
-      position: absolute;
-      bottom: 10%;
-      width: 20%;
-      right: 10%;
+      width: 100%;
       color: rgb(95, 81, 255);
       list-style: none;
       padding: 0;
+
       li {
         background: linear-gradient(
           to left,
@@ -34,13 +32,6 @@ const GameMenuStyled = styled.ul`
         display: flex;
         justify-content: center;
         align-items: center;
-      }
-      li:nth-child(2) {
-        height: 120px;
-        img {
-          width: 60%;
-          height: 90%;
-        }
       }
     }
     &__left-container {

@@ -4,9 +4,10 @@ import GameListStyled from "./GameListStyled";
 interface GameListProps {
   action: (index: number) => void;
   childAction: (index: number) => void;
+  unloadAction: () => void;
 }
 
-const GameList = ({ action, childAction }: GameListProps) => {
+const GameList = ({ action, childAction, unloadAction }: GameListProps) => {
   const handleClick = () => {};
 
   return (
@@ -18,6 +19,7 @@ const GameList = ({ action, childAction }: GameListProps) => {
             onClick={() => {
               action(1);
               childAction(0);
+              unloadAction();
             }}
             className="menu-wrap__medium-item"
           >
