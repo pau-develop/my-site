@@ -1,9 +1,11 @@
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useEffect, useCallback } from "react";
 import { IUnityProvider } from "react-unity-webgl/distribution/interfaces/unity-provider";
 import GameAbout from "../GameAbout/GameAbout";
 import GameHowTo from "../GameHowTo/GameHowTo";
 import GameTopScores from "../GameTopScores/GameTopScores";
 import GameContentStyled from "./GameContentStyled";
+import IScore from "../../interfaces/Interfaces";
 
 interface GameContentProps {
   childMenu: number;

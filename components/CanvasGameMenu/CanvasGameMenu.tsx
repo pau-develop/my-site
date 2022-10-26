@@ -3,6 +3,8 @@ import { useUnityContext } from "react-unity-webgl";
 import GameContent from "../GameContent/GameContent";
 import GameList from "../GameList/GameList";
 import GameMenu from "../GameMenu/GameMenu";
+import { useCallback, useEffect } from "react";
+import IScore from "../../interfaces/Interfaces";
 
 interface CanvasGameMenuProps {
   menuVisibility: boolean;
@@ -34,8 +36,39 @@ const CanvasGameMenu = ({
   const unloadUnityInstance = () => {
     UNSAFE__unityInstance !== null && unload();
   };
-  router.events.on("routeChangeStart", unloadUnityInstance);
+  if (router.events !== undefined) {
+    router.events.on("routeChangeStart", unloadUnityInstance);
+  }
 
+  const handleGameOver = useCallback(
+    (userName: string, score: number, player: number) => {
+      const scoreObject: IScore = {
+        name: userName,
+        player: player.toString(),
+        score: score.toString(),
+      };
+      addScore(scoreObject);
+    },
+    []
+  );
+  const addScore = async (score: IScore) => {
+    const response = await fetch("/api/scores", {
+      method: "POST",
+      headers: {
+        "Content-type": "aplication/json",
+      },
+      body: JSON.stringify(score),
+    });
+  };
+  useEffect(
+    function () {
+      addEventListener("GameOver", handleGameOver);
+      return () => {
+        removeEventListener("GameOver", handleGameOver);
+      };
+    },
+    [addEventListener, removeEventListener, handleGameOver]
+  );
   const unloadUnity = () => {
     unload();
   };
