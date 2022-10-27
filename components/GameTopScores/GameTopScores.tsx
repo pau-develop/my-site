@@ -25,13 +25,13 @@ const GameTopScores = () => {
               <li key={index}>
                 <span>{index + 1}</span>
                 <span>
-                  {element.player === "1" && (
+                  {element.player === 1 && (
                     <img src="/charIcon1.png" alt="bald-guy" />
                   )}
-                  {element.player === "2" && (
+                  {element.player === 2 && (
                     <img src="/charIcon2.png" alt="chinese-girl" />
                   )}
-                  {element.player === "3" && (
+                  {element.player === 3 && (
                     <img src="/charIcon3.png" alt="amazing-dog" />
                   )}
                 </span>

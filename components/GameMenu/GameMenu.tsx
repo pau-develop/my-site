@@ -27,8 +27,8 @@ const GameMenu = ({
     (userName: string, score: number, player: number) => {
       const scoreObject: IScore = {
         name: userName,
-        player: player.toString(),
-        score: score.toString(),
+        player: player,
+        score: score,
       };
       addScore(scoreObject);
     },
