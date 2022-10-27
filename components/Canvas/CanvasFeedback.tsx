@@ -136,7 +136,7 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
   };
 
   const handleClick = () => {
-    action();
+    currentItem === 1 && action();
   };
 
   return (
