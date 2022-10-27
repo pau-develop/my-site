@@ -116,3 +116,8 @@ export const consoleLed = [
   [255, 0, 0, 255],
   [113, 0, 0, 255],
 ];
+
+export const powerLine = [
+  [197, 172, 231],
+  [255, 255, 255],
+];

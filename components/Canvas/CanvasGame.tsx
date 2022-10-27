@@ -93,27 +93,6 @@ const CanvasGame = ({ image }: CanvasProps) => {
     }
   }, [tvLightColor, tvDirection, menuVisibility]);
 
-  useEffect(() => {
-    if (!menuVisibility) {
-      if (indexesTvLight.current !== undefined) {
-        changeCanvasColors(
-          indexesTvLight.current as number[][],
-          imageData.current as ImageData,
-          contextRef.current as CanvasRenderingContext2D,
-          tvLightColors.current as number[][][],
-          tvLightColor
-        );
-      }
-    } else {
-      turnOffTv(
-        indexesTvNoise.current!,
-        indexesTvLight.current!,
-        imageData.current!,
-        contextRef.current!
-      );
-    }
-  }, [tvLightColor, tvLightColors, menuVisibility]);
-
   //TV NOISE
   useEffect(() => {
     if (!menuVisibility) {
@@ -128,7 +107,14 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   useEffect(() => {
     if (!menuVisibility) {
-      if (indexesTvNoise.current !== undefined) {
+      if (indexesTvLight.current !== undefined) {
+        changeCanvasColors(
+          indexesTvLight.current as number[][],
+          imageData.current as ImageData,
+          contextRef.current as CanvasRenderingContext2D,
+          tvLightColors.current as number[][][],
+          tvLightColor
+        );
         changeTvColors(
           indexesTvNoise.current!,
           imageData.current as ImageData,
@@ -144,7 +130,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
         contextRef.current!
       );
     }
-  }, [tvNoiseColor, menuVisibility]);
+  }, [tvLightColor, tvLightColors, menuVisibility, tvNoiseColor]);
 
   const handleMenuClick = (index: number, action?: Promise<void>) => {
     action;

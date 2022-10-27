@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const GameListStyled = styled.div`
   width: 20%;
-  right: 10%;
+  left: 10%;
   height: 20%;
   top: 13%;
   z-index: 2;

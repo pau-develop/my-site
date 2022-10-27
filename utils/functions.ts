@@ -1,3 +1,4 @@
+import { bounds } from "./bounds";
 import { laptopRed, routerLed, tvLight, tvNoise } from "./colors";
 
 export const setPixelArray = (data: any) => {
@@ -95,7 +96,8 @@ export const changeRouterLedColors = (
   indexes: number[][],
   imageData: ImageData,
   tvNoiseColor: boolean,
-  colors: number[][]
+  colors: number[][],
+  context: CanvasRenderingContext2D
 ) => {
   const index = tvNoiseColor === true ? 0 : 1;
   for (let i = 0; i < indexes[0].length; i++) {
@@ -103,6 +105,7 @@ export const changeRouterLedColors = (
     imageData.data[indexes[0][i] * 4 + 1] = colors[index][1];
     imageData.data[indexes[0][i] * 4 + 2] = colors[index][2];
   }
+  context.putImageData(imageData, 0, 0);
 };
 
 export const turnOffTv = (
@@ -128,4 +131,29 @@ export const turnOffTv = (
     }
   }
   context.putImageData(imageData, 0, 0);
+};
+
+export const defineCanvasItemBounds = (
+  context: CanvasRenderingContext2D,
+  item: number[][]
+) => {
+  context.beginPath();
+  context.moveTo(item[0][0], item[0][1]);
+  for (let i = 0; i < item.length; i++) {
+    context.lineTo(item[i][0], item[i][1]);
+  }
+  context.lineTo(item[0][0], item[0][1]);
+  context.closePath();
+};
+
+export const gettingMousePosition = (
+  event: React.MouseEvent<HTMLCanvasElement, MouseEvent>,
+  canvas: HTMLCanvasElement
+) => {
+  const cssScaleX = canvas.width / canvas.offsetWidth;
+  const cssScaleY = canvas.height / canvas.offsetHeight;
+  const rect = canvas.getBoundingClientRect();
+  const mouseX = Math.round((event.clientX - rect.left) * cssScaleX);
+  const mouseY = Math.round((event.clientY - rect.top) * cssScaleY);
+  return { mouseX, mouseY };
 };
