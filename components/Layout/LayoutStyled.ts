@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const LayoutStyled = styled.main`
+const LayoutStyled = styled(motion.main)`
   background-color: #000;
   width: 100%;
   height: 85%;
@@ -9,6 +10,10 @@ const LayoutStyled = styled.main`
   .wrap > div {
     width: 100%;
     height: 100%;
+  }
+  .wrap main {
+    width: 100%;
+    height: 85%;
   }
 `;
 

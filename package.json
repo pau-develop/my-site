@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^7.6.2",
     "mongodb": "^4.11.0",
     "next": "12.3.1",
     "nextjs-unity-webgl": "^8.6.0",

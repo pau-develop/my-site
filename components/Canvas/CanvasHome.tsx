@@ -228,7 +228,13 @@ const Canvas = ({ image }: CanvasProps) => {
   };
 
   return (
-    <CanvasStyled className="canvas-wrap">
+    <CanvasStyled
+      className="canvas-wrap"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}
+    >
       <CanvasEdges />
       <canvas
         className="canvas-wrap__canvas"
