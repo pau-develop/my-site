@@ -9,12 +9,13 @@ import {
 } from "../../utils/functions";
 import { powerLine } from "../../utils/colors";
 import { bounds } from "../../utils/bounds";
-
+import { useRouter } from "next/router";
 interface CanvasFeedbackProps {
   action: () => void;
 }
 
 const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
+  const router = useRouter();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const imageData = useRef<ImageData[]>(new Array(4));
@@ -137,6 +138,9 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
 
   const handleClick = () => {
     currentItem === 1 && action();
+    currentItem === 2 && router.push("/home");
+    currentItem === 3 && router.push("/games");
+    currentItem === 4 && router.push("/games");
   };
 
   return (
