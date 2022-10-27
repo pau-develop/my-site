@@ -6,7 +6,7 @@ const CanvasFeedbackStyled = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  pointer-events: none;
+
   canvas {
     margin: auto auto;
     width: 90%;
@@ -15,6 +15,9 @@ const CanvasFeedbackStyled = styled.div`
     image-rendering: -webkit-crisp-edges;
     image-rendering: pixelated;
     image-rendering: crisp-edges;
+  }
+  &__canvas:focus {
+    outline: none;
   }
 `;
 

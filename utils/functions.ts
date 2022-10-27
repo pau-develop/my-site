@@ -146,6 +146,17 @@ export const defineCanvasItemBounds = (
     console.log(item[i][0], item[i][1]);
   }
   context.lineTo(item[0][0], item[0][1]);
-  console.log(item[0][0], item[0][1]);
   context.stroke();
+};
+
+export const gettingMousePosition = (
+  event: React.MouseEvent<HTMLCanvasElement, MouseEvent>,
+  canvas: HTMLCanvasElement
+) => {
+  const cssScaleX = canvas.width / canvas.offsetWidth;
+  const cssScaleY = canvas.height / canvas.offsetHeight;
+  const rect = canvas.getBoundingClientRect();
+  const mouseXPos = Math.round((event.clientX - rect.left) * cssScaleX);
+  const mouseYPos = Math.round((event.clientY - rect.top) * cssScaleY);
+  console.log(mouseXPos, mouseYPos);
 };

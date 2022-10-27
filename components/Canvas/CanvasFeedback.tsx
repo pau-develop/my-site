@@ -4,6 +4,7 @@ import {
   changeRouterLedColors,
   defineCanvasItemBounds,
   getColorIndexes,
+  gettingMousePosition,
   setPixelArray,
 } from "../../utils/functions";
 import { powerLine } from "../../utils/colors";
@@ -74,9 +75,20 @@ const CanvasFeedback = () => {
   //   }
   // }, [indexesPower, powerlineColor]);
 
+  const handleMouseMovement = (
+    event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
+  ) => {
+    gettingMousePosition(event, canvasRef.current!);
+  };
+
   return (
     <CanvasFeedbackStyled>
-      <canvas ref={canvasRef} width={420} height={180} />
+      <canvas
+        ref={canvasRef}
+        width={420}
+        height={180}
+        onMouseMove={(event) => handleMouseMovement(event)}
+      />
     </CanvasFeedbackStyled>
   );
 };
