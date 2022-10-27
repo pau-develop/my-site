@@ -3,7 +3,7 @@ import styled from "styled-components";
 const GameMenuStyled = styled.div`
   width: 20%;
   height: 40%;
-  right: 10%;
+  left: 10%;
   bottom: 22%;
   z-index: 2;
   padding: 0;
