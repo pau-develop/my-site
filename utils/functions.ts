@@ -1,4 +1,4 @@
-import bounds from "./bounds";
+import { bounds } from "./bounds";
 import { laptopRed, routerLed, tvLight, tvNoise } from "./colors";
 
 export const setPixelArray = (data: any) => {

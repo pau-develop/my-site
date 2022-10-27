@@ -1,4 +1,4 @@
-const bounds = {
+export const bounds = {
   laptop: [
     [64, 84],
     [134, 84],
@@ -49,5 +49,3 @@ const bounds = {
     [335, 68],
   ],
 };
-
-export default bounds;
