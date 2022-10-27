@@ -9,10 +9,7 @@ import {
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
 import { tvLight, tvNoise } from "../../utils/colors";
-import GameMenu from "../GameMenu/GameMenu";
-import GameList from "../GameList/GameList";
 import CanvasEdges from "./CanvasEdges";
-import GameContent from "../GameContent/GameContent";
 import CanvasGameMenu from "../CanvasGameMenu/CanvasGameMenu";
 
 interface CanvasProps {

@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import { Unity, useUnityContext } from "react-unity-webgl";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 

@@ -8,7 +8,6 @@ const GameTopScores = () => {
     const response = await fetch("/api/scores");
     console.log(response);
     const { myScores } = await response.json();
-    console.log(myScores);
     setScores(myScores);
   }, []);
 

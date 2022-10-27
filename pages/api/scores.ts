@@ -33,7 +33,6 @@ const scores = async (request: NextApiRequest, response: NextApiResponse) => {
         score: score.score,
         player: score.player,
       });
-      console.log(result);
       response.json({ result });
   }
 };
