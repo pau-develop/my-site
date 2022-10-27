@@ -1,3 +1,4 @@
+import bounds from "./bounds";
 import { laptopRed, routerLed, tvLight, tvNoise } from "./colors";
 
 export const setPixelArray = (data: any) => {
@@ -130,4 +131,21 @@ export const turnOffTv = (
     }
   }
   context.putImageData(imageData, 0, 0);
+};
+
+export const defineCanvasItemBounds = (
+  context: CanvasRenderingContext2D,
+  item: number[][]
+) => {
+  context.beginPath();
+  context.strokeStyle = "blue";
+  context.lineWidth = 1;
+  context.moveTo(item[0][0], item[0][1]);
+  for (let i = 0; i < item.length; i++) {
+    context.lineTo(item[i][0], item[i][1]);
+    console.log(item[i][0], item[i][1]);
+  }
+  context.lineTo(item[0][0], item[0][1]);
+  console.log(item[0][0], item[0][1]);
+  context.stroke();
 };

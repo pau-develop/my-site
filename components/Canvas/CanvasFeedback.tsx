@@ -2,10 +2,12 @@ import CanvasFeedbackStyled from "./CanvasFeedbackStyled";
 import { useRef, useEffect, useState } from "react";
 import {
   changeRouterLedColors,
+  defineCanvasItemBounds,
   getColorIndexes,
   setPixelArray,
 } from "../../utils/functions";
 import { powerLine } from "../../utils/colors";
+import bounds from "../../utils/bounds";
 
 const CanvasFeedback = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -46,27 +48,31 @@ const CanvasFeedback = () => {
     );
     const pixels = setPixelArray(imgData.data);
     indexesPower.current = getColorIndexes(pixels, powerLine);
+    defineCanvasItemBounds(contextRef.current!, bounds.laptop);
+    defineCanvasItemBounds(contextRef.current!, bounds.notebook);
+    defineCanvasItemBounds(contextRef.current!, bounds.console);
+    defineCanvasItemBounds(contextRef.current!, bounds.tv);
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPowerlineColor(!powerlineColor);
-    }, 50);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setPowerlineColor(!powerlineColor);
+  //   }, 50);
 
-    return () => clearInterval(interval);
-  }, [powerlineColor]);
+  //   return () => clearInterval(interval);
+  // }, [powerlineColor]);
 
-  useEffect(() => {
-    if (indexesPower.current !== undefined) {
-      changeRouterLedColors(
-        indexesPower.current!,
-        imageData.current as ImageData,
-        powerlineColor,
-        powerLine,
-        contextRef.current as CanvasRenderingContext2D
-      );
-    }
-  }, [indexesPower, powerlineColor]);
+  // useEffect(() => {
+  //   if (indexesPower.current !== undefined) {
+  //     changeRouterLedColors(
+  //       indexesPower.current!,
+  //       imageData.current as ImageData,
+  //       powerlineColor,
+  //       powerLine,
+  //       contextRef.current as CanvasRenderingContext2D
+  //     );
+  //   }
+  // }, [indexesPower, powerlineColor]);
 
   return (
     <CanvasFeedbackStyled>
