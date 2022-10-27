@@ -78,7 +78,27 @@ const CanvasFeedback = () => {
   const handleMouseMovement = (
     event: React.MouseEvent<HTMLCanvasElement, MouseEvent>
   ) => {
-    gettingMousePosition(event, canvasRef.current!);
+    const { mouseX, mouseY } = gettingMousePosition(event, canvasRef.current!);
+    checkForItemBounds(mouseX, mouseY);
+  };
+
+  const checkForItemBounds = (mouseX: number, mouseY: number) => {
+    defineCanvasItemBounds(contextRef.current!, bounds.laptop);
+    if (contextRef.current!.isPointInPath(mouseX, mouseY)) {
+      console.log("LAPTOP");
+    }
+    defineCanvasItemBounds(contextRef.current!, bounds.notebook);
+    if (contextRef.current!.isPointInPath(mouseX, mouseY)) {
+      console.log("NOTE");
+    }
+    defineCanvasItemBounds(contextRef.current!, bounds.console);
+    if (contextRef.current!.isPointInPath(mouseX, mouseY)) {
+      console.log("CONS");
+    }
+    defineCanvasItemBounds(contextRef.current!, bounds.tv);
+    if (contextRef.current!.isPointInPath(mouseX, mouseY)) {
+      console.log("TV");
+    }
   };
 
   return (

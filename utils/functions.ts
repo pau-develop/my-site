@@ -138,15 +138,12 @@ export const defineCanvasItemBounds = (
   item: number[][]
 ) => {
   context.beginPath();
-  context.strokeStyle = "blue";
-  context.lineWidth = 1;
   context.moveTo(item[0][0], item[0][1]);
   for (let i = 0; i < item.length; i++) {
     context.lineTo(item[i][0], item[i][1]);
-    console.log(item[i][0], item[i][1]);
   }
   context.lineTo(item[0][0], item[0][1]);
-  context.stroke();
+  context.closePath();
 };
 
 export const gettingMousePosition = (
@@ -156,7 +153,7 @@ export const gettingMousePosition = (
   const cssScaleX = canvas.width / canvas.offsetWidth;
   const cssScaleY = canvas.height / canvas.offsetHeight;
   const rect = canvas.getBoundingClientRect();
-  const mouseXPos = Math.round((event.clientX - rect.left) * cssScaleX);
-  const mouseYPos = Math.round((event.clientY - rect.top) * cssScaleY);
-  console.log(mouseXPos, mouseYPos);
+  const mouseX = Math.round((event.clientX - rect.left) * cssScaleX);
+  const mouseY = Math.round((event.clientY - rect.top) * cssScaleY);
+  return { mouseX, mouseY };
 };
