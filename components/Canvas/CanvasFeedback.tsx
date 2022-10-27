@@ -123,16 +123,18 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
   };
 
   const checkForItemBounds = (mouseX: number, mouseY: number) => {
-    defineCanvasItemBounds(contextRef.current!, bounds.laptop);
-    let currentItem = 0;
-    if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 1;
-    defineCanvasItemBounds(contextRef.current!, bounds.notebook);
-    if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 2;
-    defineCanvasItemBounds(contextRef.current!, bounds.console);
-    if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 3;
-    defineCanvasItemBounds(contextRef.current!, bounds.tv);
-    if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 4;
-    setCurrentItem(currentItem);
+    if (contextRef.current !== null) {
+      defineCanvasItemBounds(contextRef.current!, bounds.laptop);
+      let currentItem = 0;
+      if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 1;
+      defineCanvasItemBounds(contextRef.current!, bounds.notebook);
+      if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 2;
+      defineCanvasItemBounds(contextRef.current!, bounds.console);
+      if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 3;
+      defineCanvasItemBounds(contextRef.current!, bounds.tv);
+      if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 4;
+      setCurrentItem(currentItem);
+    }
     return;
   };
 

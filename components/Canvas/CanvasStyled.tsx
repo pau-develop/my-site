@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const CanvasStyled = styled.div`
+const CanvasStyled = styled(motion.div)`
   width: 100%;
   height: 100%;
   display: flex;
