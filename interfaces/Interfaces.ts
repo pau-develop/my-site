@@ -1,7 +1,7 @@
 interface IScore {
   name: string;
-  player: string;
-  score: string;
+  player: number;
+  score: number;
 }
 
 export default IScore;
