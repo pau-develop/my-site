@@ -215,17 +215,15 @@ const Canvas = ({ image }: CanvasProps) => {
     tvNoiseColor,
   ]);
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLCanvasElement>) => {
-    if (event.code === "Space") {
-      if (currentLaptopColor < 4) {
-        const color = currentLaptopColor + 1;
-        localStorage.setItem("currentColor", color.toString());
-        setCurrentLaptopColor(color);
-      } else {
-        const color = 0;
-        localStorage.setItem("currentColor", color.toString());
-        setCurrentLaptopColor(color);
-      }
+  const changeThemeColor = () => {
+    if (currentLaptopColor < 4) {
+      const color = currentLaptopColor + 1;
+      localStorage.setItem("currentColor", color.toString());
+      setCurrentLaptopColor(color);
+    } else {
+      const color = 0;
+      localStorage.setItem("currentColor", color.toString());
+      setCurrentLaptopColor(color);
     }
   };
 
@@ -238,9 +236,8 @@ const Canvas = ({ image }: CanvasProps) => {
         width={420}
         height={180}
         tabIndex={0}
-        onKeyPress={(event) => handleKeyPress(event)}
       />
-      <CanvasFeedback />
+      <CanvasFeedback action={changeThemeColor} />
     </CanvasStyled>
   );
 };

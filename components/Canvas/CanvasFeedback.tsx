@@ -10,7 +10,11 @@ import {
 import { powerLine } from "../../utils/colors";
 import { bounds } from "../../utils/bounds";
 
-const CanvasFeedback = () => {
+interface CanvasFeedbackProps {
+  action: () => void;
+}
+
+const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const imageData = useRef<ImageData[]>(new Array(4));
@@ -131,6 +135,10 @@ const CanvasFeedback = () => {
     return;
   };
 
+  const handleClick = () => {
+    action();
+  };
+
   return (
     <CanvasFeedbackStyled>
       <canvas
@@ -138,6 +146,7 @@ const CanvasFeedback = () => {
         width={420}
         height={180}
         onMouseMove={(event) => handleMouseMovement(event)}
+        onMouseDown={handleClick}
       />
     </CanvasFeedbackStyled>
   );
