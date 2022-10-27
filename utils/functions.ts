@@ -95,7 +95,8 @@ export const changeRouterLedColors = (
   indexes: number[][],
   imageData: ImageData,
   tvNoiseColor: boolean,
-  colors: number[][]
+  colors: number[][],
+  context: CanvasRenderingContext2D
 ) => {
   const index = tvNoiseColor === true ? 0 : 1;
   for (let i = 0; i < indexes[0].length; i++) {
@@ -103,6 +104,7 @@ export const changeRouterLedColors = (
     imageData.data[indexes[0][i] * 4 + 1] = colors[index][1];
     imageData.data[indexes[0][i] * 4 + 2] = colors[index][2];
   }
+  context.putImageData(imageData, 0, 0);
 };
 
 export const turnOffTv = (

@@ -20,6 +20,7 @@ import {
   consoleLed,
 } from "../../utils/colors";
 import CanvasEdges from "./CanvasEdges";
+import CanvasFeedback from "./CanvasFeedback";
 
 interface CanvasProps {
   image: string;
@@ -59,12 +60,8 @@ const Canvas = ({ image }: CanvasProps) => {
   }, []);
 
   useEffect(() => {
-    let imagesLoaded = 0;
     const deskImage = new Image();
     deskImage.src = image;
-    const feedbackImage = new Image();
-    const images = [deskImage, feedbackImage];
-    feedbackImage.src = "/powerLine.png";
     const canvas = canvasRef.current;
     contextRef.current = canvas!.getContext("2d");
     contextRef.current!.fillStyle = "#000";
@@ -74,17 +71,13 @@ const Canvas = ({ image }: CanvasProps) => {
       contextRef.current!.canvas.width,
       contextRef.current!.canvas.height
     );
-    for (let i = 0; i < images.length; i++) {
-      images[i].onload = () => {
-        imagesLoaded++;
-        if (imagesLoaded === images.length) {
-          setImages(deskImage);
-        }
-      };
-    }
+
+    deskImage.onload = () => {
+      drawAndGetData(deskImage);
+    };
   }, [image]);
 
-  const setImages = (image: HTMLImageElement) => {
+  const drawAndGetData = (image: HTMLImageElement) => {
     contextRef.current!.drawImage(
       image,
       0,
@@ -174,13 +167,15 @@ const Canvas = ({ image }: CanvasProps) => {
         indexesConsoleLed.current!,
         imageData.current as ImageData,
         consoleLedColor,
-        consoleLed
+        consoleLed,
+        contextRef.current as CanvasRenderingContext2D
       );
       changeRouterLedColors(
         indexesRouterLed.current!,
         imageData.current as ImageData,
         routerLedColor,
-        routerLed
+        routerLed,
+        contextRef.current as CanvasRenderingContext2D
       );
       changeCanvasColors(
         indexesTvLight.current as number[][],
@@ -245,6 +240,7 @@ const Canvas = ({ image }: CanvasProps) => {
         tabIndex={0}
         onKeyPress={(event) => handleKeyPress(event)}
       />
+      <CanvasFeedback />
     </CanvasStyled>
   );
 };
