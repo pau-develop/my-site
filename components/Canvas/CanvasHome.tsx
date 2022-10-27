@@ -59,8 +59,12 @@ const Canvas = ({ image }: CanvasProps) => {
   }, []);
 
   useEffect(() => {
-    const newImage = new Image();
-    newImage.src = image;
+    let imagesLoaded = 0;
+    const deskImage = new Image();
+    deskImage.src = image;
+    const feedbackImage = new Image();
+    const images = [deskImage, feedbackImage];
+    feedbackImage.src = "/powerLine.png";
     const canvas = canvasRef.current;
     contextRef.current = canvas!.getContext("2d");
     contextRef.current!.fillStyle = "#000";
@@ -70,41 +74,49 @@ const Canvas = ({ image }: CanvasProps) => {
       contextRef.current!.canvas.width,
       contextRef.current!.canvas.height
     );
-
-    newImage.onload = () => {
-      contextRef.current!.drawImage(
-        newImage,
-        0,
-        0,
-        contextRef.current!.canvas.width,
-        contextRef.current!.canvas.height
-      );
-      const imgData = contextRef.current!.getImageData(
-        0,
-        0,
-        contextRef.current!.canvas.width,
-        contextRef.current!.canvas.height
-      );
-      imageData.current = contextRef.current?.getImageData(
-        0,
-        0,
-        canvas!.width,
-        canvas!.height
-      );
-      const pixels = setPixelArray(imgData.data);
-      indexesLaptop.current = getColorIndexes(pixels, laptopRed);
-      indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
-      indexesTvLight.current = getColorIndexes(pixels, tvLight);
-      indexesRouterLed.current = getColorIndexes(pixels, routerLed);
-      indexesConsoleLed.current = getColorIndexes(pixels, consoleLed);
-      laptopColorsRed.current = setNewColors(laptopRed, laptopRed.length);
-      laptopColorsOrange.current = setNewColors(laptopOrange, laptopRed.length);
-      laptopColorsYellow.current = setNewColors(laptopYellow, laptopRed.length);
-      laptopColorsGreen.current = setNewColors(laptopGreen, laptopRed.length);
-      laptopColorsBlue.current = setNewColors(laptopBlue, laptopRed.length);
-      tvLightColors.current = setNewColors(tvLight, tvLight.length);
-    };
+    for (let i = 0; i < images.length; i++) {
+      images[i].onload = () => {
+        imagesLoaded++;
+        if (imagesLoaded === images.length) {
+          setImages(deskImage);
+        }
+      };
+    }
   }, [image]);
+
+  const setImages = (image: HTMLImageElement) => {
+    contextRef.current!.drawImage(
+      image,
+      0,
+      0,
+      contextRef.current!.canvas.width,
+      contextRef.current!.canvas.height
+    );
+    const imgData = contextRef.current!.getImageData(
+      0,
+      0,
+      contextRef.current!.canvas.width,
+      contextRef.current!.canvas.height
+    );
+    imageData.current = contextRef.current?.getImageData(
+      0,
+      0,
+      canvasRef.current!.width,
+      canvasRef.current!.height
+    );
+    const pixels = setPixelArray(imgData.data);
+    indexesLaptop.current = getColorIndexes(pixels, laptopRed);
+    indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
+    indexesTvLight.current = getColorIndexes(pixels, tvLight);
+    indexesRouterLed.current = getColorIndexes(pixels, routerLed);
+    indexesConsoleLed.current = getColorIndexes(pixels, consoleLed);
+    laptopColorsRed.current = setNewColors(laptopRed, laptopRed.length);
+    laptopColorsOrange.current = setNewColors(laptopOrange, laptopRed.length);
+    laptopColorsYellow.current = setNewColors(laptopYellow, laptopRed.length);
+    laptopColorsGreen.current = setNewColors(laptopGreen, laptopRed.length);
+    laptopColorsBlue.current = setNewColors(laptopBlue, laptopRed.length);
+    tvLightColors.current = setNewColors(tvLight, tvLight.length);
+  };
 
   //LAPTOP
   useEffect(() => {
