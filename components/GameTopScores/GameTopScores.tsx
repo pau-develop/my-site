@@ -1,13 +1,12 @@
-import connectDB from "../../database/connectDB";
 import { useState, useCallback, useEffect } from "react";
 import GameTopScoresStyled from "./GameTopScoresStyled";
-import scoresProps from "../../interfaces/Interfaces";
 import IScore from "../../interfaces/Interfaces";
 
 const GameTopScores = () => {
   const [scores, setScores] = useState<IScore[] | undefined>();
   const fetchScores = useCallback(async () => {
     const response = await fetch("/api/scores");
+    console.log(response);
     const { myScores } = await response.json();
     console.log(myScores);
     setScores(myScores);

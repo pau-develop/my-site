@@ -6,21 +6,25 @@ const scores = async (request: NextApiRequest, response: NextApiResponse) => {
   const db = client.db("kungfu-skate");
   switch (request.method) {
     case "GET":
-      const scores = await db
-        .collection("scores")
-        .find({})
-        .sort({ score: -1 })
-        .toArray();
-      const myScores = new Array(scores.length);
-      for (let i = 0; i < scores.length; i++) {
-        myScores[i] = {
-          name: scores[i].name,
-          player: scores[i].player,
-          score: scores[i].score,
-        };
+      try {
+        const scores = await db
+          .collection("scores")
+          .find({})
+          .sort({ score: -1 })
+          .toArray();
+        const myScores = new Array(scores.length);
+        for (let i = 0; i < scores.length; i++) {
+          myScores[i] = {
+            name: scores[i].name,
+            player: scores[i].player,
+            score: scores[i].score,
+          };
+        }
+        response.json({ myScores });
+        break;
+      } catch (error) {
+        response.json({ error });
       }
-      response.json({ myScores });
-      break;
 
     case "POST":
       const score = JSON.parse(request.body);
