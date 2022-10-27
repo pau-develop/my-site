@@ -1,5 +1,4 @@
 import Link from "next/link";
-import styles from "../styles/Header.module.css";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {

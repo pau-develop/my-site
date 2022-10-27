@@ -1,7 +1,5 @@
-import connectDB from "../../database/connectDB";
 import { useState, useCallback, useEffect } from "react";
 import GameTopScoresStyled from "./GameTopScoresStyled";
-import scoresProps from "../../interfaces/Interfaces";
 import IScore from "../../interfaces/Interfaces";
 
 const GameTopScores = () => {
@@ -9,7 +7,6 @@ const GameTopScores = () => {
   const fetchScores = useCallback(async () => {
     const response = await fetch("/api/scores");
     const { myScores } = await response.json();
-    console.log(myScores);
     setScores(myScores);
   }, []);
 

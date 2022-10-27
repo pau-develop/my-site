@@ -1,9 +1,5 @@
 import type { GetStaticPropsContext, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Canvas from "../components/Canvas/CanvasHome";
-import Header from "../components/Header/Header";
-import connectDB from "../database/connectDB";
 
 export async function getServerSideProps(context: GetStaticPropsContext) {
   let res = await fetch("http://localhost:3000/api/scores", {
