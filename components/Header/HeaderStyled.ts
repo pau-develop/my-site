@@ -12,13 +12,22 @@ const HeaderStyled = styled.header`
       padding: 0;
       margin: 0;
       color: #fff;
+    }
+    &__title {
       a:-webkit-any-link {
         color: rgb(95, 81, 255);
         cursor: pointer;
         text-decoration: none;
       }
-      a:hover {
-        animation: blink 0.1s infinite;
+    }
+    &__title a:hover {
+      animation: blink 0.1s infinite;
+    }
+    &__title--current {
+      a:-webkit-any-link {
+        color: rgb(95, 81, 255, 0.5);
+        text-decoration: none;
+        cursor: auto;
       }
     }
     &__nav {
@@ -27,14 +36,22 @@ const HeaderStyled = styled.header`
       display: flex;
       justify-content: space-between;
       width: 500px;
-
+    }
+    &__link {
       a:-webkit-any-link {
         color: rgb(95, 81, 255);
         cursor: pointer;
         text-decoration: none;
       }
-      a:hover {
-        animation: blink 0.1s infinite;
+    }
+    &__link a:hover {
+      animation: blink 0.1s infinite;
+    }
+    &__link--current {
+      a:-webkit-any-link {
+        color: rgb(95, 81, 255, 0.5);
+        text-decoration: none;
+        cursor: auto;
       }
     }
   }
