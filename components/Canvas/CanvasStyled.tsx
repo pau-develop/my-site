@@ -10,7 +10,7 @@ const CanvasStyled = styled(motion.div)`
     &__canvas {
       margin: auto auto;
       width: 90%;
-      height: 90%;
+      height: 95%;
       image-rendering: -moz-crisp-edges;
       image-rendering: -webkit-crisp-edges;
       image-rendering: pixelated;

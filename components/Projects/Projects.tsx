@@ -1,6 +1,7 @@
 import ProjectsList from "../ProjectsList/ProjectsList";
 import ProjectsStyled from "./ProjectsStyled";
 import { useState } from "react";
+import ProjectsDisplay from "../ProjectsDisplay/ProjectsDisplay";
 
 const Projects = () => {
   const [currentProject, setCurrentProject] = useState(0);
@@ -16,6 +17,7 @@ const Projects = () => {
           currentProject={currentProject}
           action={handleMenuClick}
         />
+        <ProjectsDisplay currentProject={currentProject} />
       </div>
     </ProjectsStyled>
   );

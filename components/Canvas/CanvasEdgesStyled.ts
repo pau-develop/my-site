@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const CanvasEdgesStyled = styled.div`
   width: 90%;
-  height: 90%;
+  height: 95%;
   position: absolute;
   left: 50%;
   top: 50%;

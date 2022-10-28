@@ -7,6 +7,8 @@ const ProjectsStyled = styled.div`
   .projects {
     &__wrap {
       margin: auto auto;
+      display: flex;
+      justify-content: space-between;
       width: 80%;
       height: 90%;
     }

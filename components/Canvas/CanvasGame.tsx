@@ -8,7 +8,7 @@ import {
   turnOffTv,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
-import { tvLight, tvNoise } from "../../utils/colors";
+import { tvLight, tvNoise } from "../../data/colors";
 import CanvasEdges from "./CanvasEdges";
 import CanvasGameMenu from "../CanvasGameMenu/CanvasGameMenu";
 

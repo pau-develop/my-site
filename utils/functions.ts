@@ -1,5 +1,5 @@
-import { bounds } from "./bounds";
-import { laptopRed, routerLed, tvLight, tvNoise } from "./colors";
+import { bounds } from "../data/bounds";
+import { laptopRed, routerLed, tvLight, tvNoise } from "../data/colors";
 
 export const setPixelArray = (data: any) => {
   const pixels = new Array(data.length / 4);

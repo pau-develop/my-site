@@ -7,8 +7,8 @@ import {
   gettingMousePosition,
   setPixelArray,
 } from "../../utils/functions";
-import { powerLine } from "../../utils/colors";
-import { bounds } from "../../utils/bounds";
+import { powerLine } from "../../data/colors";
+import { bounds } from "../../data/bounds";
 import { useRouter } from "next/router";
 interface CanvasFeedbackProps {
   action: () => void;

@@ -20,6 +20,16 @@ const ProjectsList = ({ currentProject, action }: ProjectsListProps) => {
         >
           Pixel-junkyard
         </li>
+        <li
+          onClick={() => action(2)}
+          className={
+            currentProject === 2
+              ? "projects-list__list-item--current"
+              : "projects-list__list-item"
+          }
+        >
+          Test
+        </li>
       </ul>
     </ProjectsListStyled>
   );
