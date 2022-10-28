@@ -4,7 +4,6 @@ import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
   const router = useRouter();
-  console.log(router.pathname);
   return (
     <HeaderStyled className="header">
       <h2 className="header__title">
