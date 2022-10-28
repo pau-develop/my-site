@@ -5,18 +5,19 @@ const ProjectsAboutStyled = styled.div`
   width: 100%;
   .projects-about {
     &__text-wrap {
-      height: 50%;
+      height: 40%;
       display: flex;
       justify-content: center;
       align-items: center;
       p {
+        text-align: center;
         font-size: 0.8rem;
         line-height: 150%;
       }
     }
     &__list-wrap {
       font-size: 0.8rem;
-      height: 50%;
+      height: 60%;
       display: flex;
       justify-content: space-between;
     }

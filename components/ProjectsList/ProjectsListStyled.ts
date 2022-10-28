@@ -10,23 +10,23 @@ const ProjectsListStyled = styled.div`
       align-items: center;
       justify-content: center;
       padding-right: 5%;
-      height: 80px;
+      height: 10%;
       margin: 0;
       border: 1px solid rgb(95, 81, 255);
       text-align: center;
     }
     &__list {
+      height: 90%;
       text-align: center;
-      list-style: none;
       padding: 0;
       margin: 0;
     }
     &__list-item {
+      height: 8%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 60px;
       border: 1px solid rgb(95, 81, 255);
       border-top: none;
     }
@@ -34,12 +34,12 @@ const ProjectsListStyled = styled.div`
       animation: blink 0.1s infinite;
     }
     &__list-item--current {
+      height: 8%;
       border: 1px solid rgb(95, 81, 255);
       color: rgb(95, 81, 255, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 60px;
       border-top: none;
     }
   }

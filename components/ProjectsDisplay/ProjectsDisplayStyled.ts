@@ -8,14 +8,15 @@ const ProjectsDisplayStyled = styled.div`
   .project-display {
     &__title {
       margin: 0;
-      height: 8%;
+      height: 10%;
       display: flex;
       align-items: center;
       justify-content: center;
+      border-bottom: 1px solid rgb(95, 81, 255);
     }
     &__contents {
       padding: 5%;
-      height: 92%;
+      height: 90%;
       width: 100%;
       display: flex;
       flex-direction: column;

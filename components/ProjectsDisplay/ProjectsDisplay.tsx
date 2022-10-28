@@ -2,6 +2,7 @@ import projects from "../../data/projects";
 import ProjectsAbout from "../ProjectsAbout/ProjectsAbout";
 import ProjectsDisplayStyled from "./ProjectsDisplayStyled";
 import { useState } from "react";
+import ProjectsFeatures from "../ProjectsFeatures/ProjectsFeatures";
 
 interface ProjectDisplay {
   currentProject: number;
@@ -9,6 +10,12 @@ interface ProjectDisplay {
 
 const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
   const [childMenu, setChildMenu] = useState(0);
+
+  const handleClick = () => {
+    childMenu === 0 && setChildMenu(1);
+    childMenu === 1 && setChildMenu(0);
+  };
+
   return (
     <>
       {currentProject !== 0 && (
@@ -19,6 +26,7 @@ const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
           <div className="project-display__contents">
             <div className="project-display__button-wrap">
               <button
+                onClick={handleClick}
                 className={
                   childMenu === 0
                     ? "project-display__button--disabled"
@@ -28,6 +36,7 @@ const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
                 About
               </button>
               <button
+                onClick={handleClick}
                 className={
                   childMenu === 1
                     ? "project-display__button--disabled"
@@ -39,7 +48,9 @@ const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
             </div>
             {childMenu === 0 ? (
               <ProjectsAbout currentProject={currentProject} />
-            ) : null}
+            ) : (
+              <ProjectsFeatures currentProject={currentProject} />
+            )}
           </div>
         </ProjectsDisplayStyled>
       )}
