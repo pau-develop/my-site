@@ -15,6 +15,7 @@ interface GameMenuProps {
   childAction: (index: number) => void;
   childMenu: number;
   unloadAction: () => void;
+  menuVisibility: boolean;
 }
 
 const GameMenu = ({
@@ -22,6 +23,7 @@ const GameMenu = ({
   childAction,
   childMenu,
   unloadAction,
+  menuVisibility,
 }: GameMenuProps) => {
   const handleGameOver = useCallback(
     (userName: string, score: number, player: number) => {
@@ -45,20 +47,19 @@ const GameMenu = ({
     });
   };
 
-  // useEffect(
-  //   function () {
-  //     addEventListener("GameOver", handleGameOver);
-  //     return () => {
-  //       removeEventListener("GameOver", handleGameOver);
-  //     };
-  //   },
-  //   [addEventListener, removeEventListener, handleGameOver]
-  // );
-
   return (
     <GameMenuStyled className="game-menu">
-      <ul className="game-menu__list">
+      <ul
+        className={
+          menuVisibility ? "game-menu__list" : "game-menu__list--disabled"
+        }
+      >
         <li
+          className={
+            childMenu === 0 || !menuVisibility
+              ? "game-menu__list-item--current"
+              : "game-menu__list-item"
+          }
           onClick={() => {
             childAction(0);
             unloadAction();
@@ -67,6 +68,11 @@ const GameMenu = ({
           About
         </li>
         <li
+          className={
+            childMenu === 1 || !menuVisibility
+              ? "game-menu__list-item--current"
+              : "game-menu__list-item"
+          }
           onClick={() => {
             childAction(1);
             unloadAction();
@@ -75,6 +81,11 @@ const GameMenu = ({
           How to Play
         </li>
         <li
+          className={
+            childMenu === 2 || !menuVisibility
+              ? "game-menu__list-item--current"
+              : "game-menu__list-item"
+          }
           onClick={() => {
             childAction(2);
             unloadAction();
@@ -83,6 +94,11 @@ const GameMenu = ({
           Top Scores
         </li>
         <li
+          className={
+            childMenu === 3 || !menuVisibility
+              ? "game-menu__list-item--current"
+              : "game-menu__list-item"
+          }
           onClick={() => {
             childAction(3);
             unloadAction();

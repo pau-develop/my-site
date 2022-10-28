@@ -75,21 +75,20 @@ const CanvasGameMenu = ({
   {
     return (
       <>
+        <GameList
+          action={action}
+          childAction={childAction}
+          unloadAction={unloadUnity}
+        />
+        <GameMenu
+          action={action}
+          childAction={childAction}
+          childMenu={childMenu}
+          unloadAction={unloadUnity}
+          menuVisibility={menuVisibility}
+        />
         {menuVisibility && (
-          <>
-            <GameList
-              action={action}
-              childAction={childAction}
-              unloadAction={unloadUnity}
-            />
-            <GameMenu
-              action={action}
-              childAction={childAction}
-              childMenu={childMenu}
-              unloadAction={unloadUnity}
-            />
-            <GameContent childMenu={childMenu} unity={unityProvider} />
-          </>
+          <GameContent childMenu={childMenu} unity={unityProvider} />
         )}
       </>
     );

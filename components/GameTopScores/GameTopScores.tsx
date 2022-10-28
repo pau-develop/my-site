@@ -6,7 +6,6 @@ const GameTopScores = () => {
   const [scores, setScores] = useState<IScore[] | undefined>();
   const fetchScores = useCallback(async () => {
     const response = await fetch("/api/scores");
-    console.log(response);
     const { myScores } = await response.json();
     setScores(myScores);
   }, []);

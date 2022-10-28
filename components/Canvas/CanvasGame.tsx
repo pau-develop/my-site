@@ -73,7 +73,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
     if (!menuVisibility) {
       const interval = setInterval(() => {
         setMenuVisibility(true);
-      }, 1000);
+      }, 400);
       return () => clearInterval(interval);
     }
   }, [menuVisibility]);
