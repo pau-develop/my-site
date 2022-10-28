@@ -30,12 +30,12 @@ const Header = (): JSX.Element => {
         </li>
         <li
           className={
-            router.pathname === "/home"
+            router.pathname === "/projects"
               ? "header__link--current"
               : "header__link"
           }
         >
-          <Link href="/home">Projects</Link>
+          <Link href="/projects">Projects</Link>
         </li>
         <li
           className={
