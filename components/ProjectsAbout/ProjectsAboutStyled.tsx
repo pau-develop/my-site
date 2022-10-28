@@ -1,11 +1,14 @@
 import styled from "styled-components";
 
 const ProjectsAboutStyled = styled.div`
-  height: 100%;
+  height: 90%;
   width: 100%;
   .projects-about {
     &__text-wrap {
       height: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       p {
         font-size: 0.8rem;
         line-height: 150%;
@@ -46,7 +49,18 @@ const ProjectsAboutStyled = styled.div`
           cursor: pointer;
           text-decoration: none;
         }
+        a:hover {
+          animation: blink 0.1s infinite;
+        }
       }
+    }
+  }
+  @keyframes blink {
+    0% {
+      color: rgb(95, 81, 255);
+    }
+    100% {
+      color: rgb(200, 200, 250);
     }
   }
 `;

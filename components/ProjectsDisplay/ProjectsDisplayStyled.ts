@@ -17,6 +17,35 @@ const ProjectsDisplayStyled = styled.div`
       padding: 5%;
       height: 92%;
       width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    &__button-wrap {
+      margin: auto auto;
+      height: 10%;
+      width: 60%;
+      display: flex;
+      justify-content: space-around;
+    }
+    &__button {
+      background-color: transparent;
+      color: rgb(95, 81, 255);
+    }
+    &__button--disabled {
+      background-color: transparent;
+      color: rgb(95, 81, 255, 0.5);
+    }
+    &__button:hover {
+      cursor: pointer;
+      animation: blink 0.1s infinite;
+    }
+  }
+  @keyframes blink {
+    0% {
+      color: rgb(95, 81, 255);
+    }
+    100% {
+      color: white;
     }
   }
 `;
