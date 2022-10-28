@@ -8,7 +8,7 @@ import {
   turnOffTv,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
-import { tvLight, tvNoise } from "../../utils/colors";
+import { tvLight, tvNoise } from "../../data/colors";
 import CanvasEdges from "./CanvasEdges";
 import CanvasGameMenu from "../CanvasGameMenu/CanvasGameMenu";
 
@@ -103,8 +103,8 @@ const CanvasGame = ({ image }: CanvasProps) => {
   }, [tvNoiseColor, menuVisibility]);
 
   useEffect(() => {
-    if (!menuVisibility) {
-      if (indexesTvLight.current !== undefined) {
+    if (indexesTvLight.current !== undefined) {
+      if (!menuVisibility) {
         changeCanvasColors(
           indexesTvLight.current as number[][],
           imageData.current as ImageData,
@@ -118,14 +118,15 @@ const CanvasGame = ({ image }: CanvasProps) => {
           tvNoiseColor,
           contextRef.current!
         );
+      } else {
+        console.log(indexesTvNoise.current, indexesTvLight.current);
+        turnOffTv(
+          indexesTvNoise.current!,
+          indexesTvLight.current!,
+          imageData.current!,
+          contextRef.current!
+        );
       }
-    } else {
-      turnOffTv(
-        indexesTvNoise.current!,
-        indexesTvLight.current!,
-        imageData.current!,
-        contextRef.current!
-      );
     }
   }, [tvLightColor, tvLightColors, menuVisibility, tvNoiseColor]);
 

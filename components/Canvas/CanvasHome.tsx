@@ -18,7 +18,7 @@ import {
   tvLight,
   routerLed,
   consoleLed,
-} from "../../utils/colors";
+} from "../../data/colors";
 import CanvasEdges from "./CanvasEdges";
 import CanvasFeedback from "./CanvasFeedback";
 

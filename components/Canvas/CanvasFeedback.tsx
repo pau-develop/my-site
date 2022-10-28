@@ -7,8 +7,8 @@ import {
   gettingMousePosition,
   setPixelArray,
 } from "../../utils/functions";
-import { powerLine } from "../../utils/colors";
-import { bounds } from "../../utils/bounds";
+import { powerLine } from "../../data/colors";
+import { bounds } from "../../data/bounds";
 import { useRouter } from "next/router";
 interface CanvasFeedbackProps {
   action: () => void;
@@ -140,7 +140,7 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
 
   const handleClick = () => {
     currentItem === 1 && action();
-    currentItem === 2 && router.push("/home");
+    currentItem === 2 && router.push("/projects");
     currentItem === 3 && router.push("/games");
     currentItem === 4 && router.push("/games");
   };
