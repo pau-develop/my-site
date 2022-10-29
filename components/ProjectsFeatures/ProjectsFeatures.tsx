@@ -21,7 +21,13 @@ const ProjectsFeatures = ({ currentProject }: ProjectsFeaturesProps) => {
   };
 
   return (
-    <ProjectsFeaturesStyled className="project-features">
+    <ProjectsFeaturesStyled
+      className="project-features"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="project-features__text">
         <h3>{projects[currentProject - 1].features![featureMenu].title}</h3>
         <p>{projects[currentProject - 1].features![featureMenu].text}</p>

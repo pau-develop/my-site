@@ -3,6 +3,7 @@ import ProjectsAbout from "../ProjectsAbout/ProjectsAbout";
 import ProjectsDisplayStyled from "./ProjectsDisplayStyled";
 import { useState } from "react";
 import ProjectsFeatures from "../ProjectsFeatures/ProjectsFeatures";
+import { AnimatePresence } from "framer-motion";
 
 interface ProjectDisplay {
   currentProject: number;
@@ -19,11 +20,17 @@ const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
   return (
     <>
       {currentProject !== 0 && (
-        <ProjectsDisplayStyled className="project-display">
-          <h2 className="project-display__title">
-            {projects[currentProject - 1].name}
-          </h2>
-          <div className="project-display__contents">
+        <ProjectsDisplayStyled
+          className="project-display"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          exit={{ opacity: 0 }}
+        >
+          <div className="project-display__title-wrap">
+            <h2 className="project-display__title">
+              {projects[currentProject - 1].name}
+            </h2>
             <div className="project-display__button-wrap">
               <button
                 onClick={handleClick}
@@ -46,6 +53,9 @@ const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
                 Features
               </button>
             </div>
+          </div>
+
+          <div className="project-display__contents">
             {childMenu === 0 ? (
               <ProjectsAbout currentProject={currentProject} />
             ) : (

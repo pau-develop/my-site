@@ -1,33 +1,43 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const ProjectsDisplayStyled = styled.div`
+const ProjectsDisplayStyled = styled(motion.div)`
   height: 100%;
   width: 70%;
   color: rgb(95, 81, 255);
   border: 1px solid rgb(95, 81, 255);
   .project-display {
-    &__title {
-      margin: 0;
+    &__title-wrap {
+      padding: 0 5%;
+      display: flex;
       height: 10%;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       border-bottom: 1px solid rgb(95, 81, 255);
     }
+    &__button-wrap {
+      width: 30%;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      button {
+        width: 50%;
+        height: 100%;
+      }
+    }
+    &__title {
+      width: 70%;
+      margin: 0;
+    }
     &__contents {
-      padding: 5%;
+      padding: 2% 5%;
       height: 90%;
       width: 100%;
       display: flex;
       flex-direction: column;
     }
-    &__button-wrap {
-      margin: auto auto;
-      height: 10%;
-      width: 60%;
-      display: flex;
-      justify-content: space-around;
-    }
+
     &__button {
       background-color: transparent;
       color: rgb(95, 81, 255);

@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const ProjectsAboutStyled = styled.div`
+const ProjectsAboutStyled = styled(motion.div)`
   height: 90%;
   width: 100%;
   .projects-about {
