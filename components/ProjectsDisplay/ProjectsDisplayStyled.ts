@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const ProjectsDisplayStyled = styled.div`
+const ProjectsDisplayStyled = styled(motion.div)`
   height: 100%;
   width: 70%;
   color: rgb(95, 81, 255);
@@ -17,9 +18,12 @@ const ProjectsDisplayStyled = styled.div`
     }
     &__button-wrap {
       width: 30%;
+      height: 100%;
+      margin: 0;
       display: flex;
       button {
         width: 50%;
+        height: 100%;
       }
     }
     &__title {
@@ -33,13 +37,7 @@ const ProjectsDisplayStyled = styled.div`
       display: flex;
       flex-direction: column;
     }
-    &__button-wrap {
-      margin: auto auto;
-      height: 10%;
-      width: 60%;
-      display: flex;
-      justify-content: space-around;
-    }
+
     &__button {
       background-color: transparent;
       color: rgb(95, 81, 255);

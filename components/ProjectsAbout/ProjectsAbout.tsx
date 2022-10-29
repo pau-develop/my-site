@@ -7,7 +7,13 @@ interface ProjectsAboutProps {
 
 const ProjectsAbout = ({ currentProject }: ProjectsAboutProps) => {
   return (
-    <ProjectsAboutStyled className="projects-about">
+    <ProjectsAboutStyled
+      className="projects-about"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="projects-about__text-wrap">
         <p>{projects[currentProject - 1].about}</p>
       </div>

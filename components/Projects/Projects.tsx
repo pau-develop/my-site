@@ -11,7 +11,13 @@ const Projects = () => {
   };
 
   return (
-    <ProjectsStyled className="projects">
+    <ProjectsStyled
+      className="projects"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="projects__wrap">
         <ProjectsList
           currentProject={currentProject}
