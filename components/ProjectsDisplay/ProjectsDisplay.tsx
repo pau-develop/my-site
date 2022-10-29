@@ -20,10 +20,10 @@ const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
     <>
       {currentProject !== 0 && (
         <ProjectsDisplayStyled className="project-display">
-          <h2 className="project-display__title">
-            {projects[currentProject - 1].name}
-          </h2>
-          <div className="project-display__contents">
+          <div className="project-display__title-wrap">
+            <h2 className="project-display__title">
+              {projects[currentProject - 1].name}
+            </h2>
             <div className="project-display__button-wrap">
               <button
                 onClick={handleClick}
@@ -46,6 +46,8 @@ const ProjectsDisplay = ({ currentProject }: ProjectDisplay) => {
                 Features
               </button>
             </div>
+          </div>
+          <div className="project-display__contents">
             {childMenu === 0 ? (
               <ProjectsAbout currentProject={currentProject} />
             ) : (

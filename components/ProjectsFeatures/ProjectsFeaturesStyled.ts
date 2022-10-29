@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const ProjectsFeaturesStyled = styled.div`
-  height: 90%;
+  height: 100%;
   width: 100%;
   .project-features {
     &__text {
-      height: 40%;
+      height: 30%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -23,7 +23,7 @@ const ProjectsFeaturesStyled = styled.div`
       }
     }
     &__menu {
-      height: 60%;
+      height: 70%;
       width: 100%;
       display: flex;
       align-items: center;
@@ -31,6 +31,7 @@ const ProjectsFeaturesStyled = styled.div`
         height: 100%;
         width: 90%;
         img {
+          object-fit: contain;
           height: 100%;
           width: 100%;
         }

@@ -6,16 +6,28 @@ const ProjectsDisplayStyled = styled.div`
   color: rgb(95, 81, 255);
   border: 1px solid rgb(95, 81, 255);
   .project-display {
-    &__title {
-      margin: 0;
+    &__title-wrap {
+      padding: 0 5%;
+      display: flex;
       height: 10%;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       border-bottom: 1px solid rgb(95, 81, 255);
     }
+    &__button-wrap {
+      width: 30%;
+      display: flex;
+      button {
+        width: 50%;
+      }
+    }
+    &__title {
+      width: 70%;
+      margin: 0;
+    }
     &__contents {
-      padding: 5%;
+      padding: 2% 5%;
       height: 90%;
       width: 100%;
       display: flex;
