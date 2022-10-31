@@ -2,48 +2,60 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const ProjectsDisplayStyled = styled(motion.div)`
-  height: 100%;
-  width: 70%;
+  position: absolute;
+  height: 75%;
+  width: 52.5%;
+  right: 11%;
   color: rgb(95, 81, 255);
-  border: 1px solid rgb(95, 81, 255);
+
   .project-display {
     &__title-wrap {
-      padding: 0 5%;
+      font-size: 0.75rem;
+      padding: 0 4%;
       display: flex;
-      height: 10%;
+      height: 12%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgb(95, 81, 255);
     }
     &__button-wrap {
-      width: 30%;
-      height: 100%;
+      width: 35%;
+      height: 60%;
       margin: 0;
       display: flex;
+      justify-content: space-between;
       button {
-        width: 50%;
+        width: 45%;
+        border: 1px solid rgb(95, 81, 255);
+        background-color: black;
+        padding: 0;
         height: 100%;
       }
     }
     &__title {
-      width: 70%;
+      border: 1px solid rgb(95, 81, 255);
+      width: 40%;
+      height: 60%;
+      background-color: black;
       margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     &__contents {
-      padding: 2% 5%;
-      height: 90%;
+      padding: 4% 4%;
+      height: 95%;
       width: 100%;
       display: flex;
       flex-direction: column;
     }
 
     &__button {
-      background-color: transparent;
       color: rgb(95, 81, 255);
+
+      background-color: black;
     }
     &__button--disabled {
-      background-color: transparent;
       color: rgb(95, 81, 255, 0.5);
     }
     &__button:hover {
