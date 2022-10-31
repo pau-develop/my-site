@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const ProjectsStyled = styled(motion.div)`
+  position: absolute;
+  z-index: 2;
   width: 100%;
   height: 100%;
   display: flex;

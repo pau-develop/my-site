@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 const ProjectsListStyled = styled.div`
   width: 25%;
-  height: 100%;
+  height: 85%;
   color: rgb(95, 81, 255);
   .projects-list {
     &__title {
+      background-color: black;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -22,6 +23,7 @@ const ProjectsListStyled = styled.div`
       margin: 0;
     }
     &__list-item {
+      background-color: black;
       height: 8%;
       cursor: pointer;
       display: flex;
@@ -34,6 +36,7 @@ const ProjectsListStyled = styled.div`
       animation: blink 0.1s infinite;
     }
     &__list-item--current {
+      background-color: black;
       height: 8%;
       border: 1px solid rgb(95, 81, 255);
       color: rgb(95, 81, 255, 0.5);

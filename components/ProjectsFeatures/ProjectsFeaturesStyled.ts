@@ -4,27 +4,32 @@ import { motion } from "framer-motion";
 const ProjectsFeaturesStyled = styled(motion.div)`
   height: 100%;
   width: 100%;
+  background-color: black;
+  border: 1px solid rgb(95, 81, 255);
   .project-features {
     &__text {
-      height: 30%;
+      padding: 2%;
+      height: 35%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       h3 {
+        font-size: 0.9rem;
         text-align: center;
         width: 100%;
         font-size: 1rem;
         margin: 0;
       }
       p {
+        font-size: 0.7rem;
         line-height: 150%;
         text-align: center;
         width: 100%;
-        font-size: 0.8rem;
       }
     }
     &__menu {
-      height: 70%;
+      padding: 2%;
+      height: 65%;
       width: 100%;
       display: flex;
       align-items: center;

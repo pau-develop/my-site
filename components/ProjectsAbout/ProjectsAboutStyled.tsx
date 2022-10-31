@@ -2,8 +2,11 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 
 const ProjectsAboutStyled = styled(motion.div)`
-  height: 90%;
+  height: 100%;
   width: 100%;
+  background-color: black;
+  padding: 2%;
+  border: 1px solid rgb(95, 81, 255);
   .projects-about {
     &__text-wrap {
       height: 40%;
