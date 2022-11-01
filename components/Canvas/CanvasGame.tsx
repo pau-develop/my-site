@@ -80,14 +80,12 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   // TV LIGHT
   useEffect(() => {
-    if (!menuVisibility) {
-      const interval = setInterval(() => {
-        if (tvLightColor === 3) setTvDirection(-1);
-        if (tvLightColor === 1) setTvDirection(1);
-        setTvLightColor(tvLightColor + tvDirection);
-      }, 50);
-      return () => clearInterval(interval);
-    }
+    const interval = setInterval(() => {
+      if (tvLightColor === 3) setTvDirection(-1);
+      if (tvLightColor === 1) setTvDirection(1);
+      setTvLightColor(tvLightColor + tvDirection);
+    }, 75);
+    return () => clearInterval(interval);
   }, [tvLightColor, tvDirection, menuVisibility]);
 
   //TV NOISE
@@ -104,14 +102,14 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
   useEffect(() => {
     if (indexesTvLight.current !== undefined) {
+      changeCanvasColors(
+        indexesTvLight.current as number[][],
+        imageData.current as ImageData,
+        contextRef.current as CanvasRenderingContext2D,
+        tvLightColors.current as number[][][],
+        tvLightColor
+      );
       if (!menuVisibility) {
-        changeCanvasColors(
-          indexesTvLight.current as number[][],
-          imageData.current as ImageData,
-          contextRef.current as CanvasRenderingContext2D,
-          tvLightColors.current as number[][][],
-          tvLightColor
-        );
         changeTvColors(
           indexesTvNoise.current!,
           imageData.current as ImageData,
@@ -122,7 +120,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
         console.log(indexesTvNoise.current, indexesTvLight.current);
         turnOffTv(
           indexesTvNoise.current!,
-          indexesTvLight.current!,
+
           imageData.current!,
           contextRef.current!
         );
