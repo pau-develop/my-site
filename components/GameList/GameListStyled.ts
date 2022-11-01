@@ -8,6 +8,7 @@ const GameListStyled = styled.div`
   z-index: 2;
   position: absolute;
   border: 1px solid rgb(95, 81, 255);
+  background-color: black;
   .menu-wrap {
     &__list {
       width: 100%;

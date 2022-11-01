@@ -8,6 +8,7 @@ const GameMenuStyled = styled.div`
   z-index: 2;
   padding: 0;
   position: absolute;
+  background-color: black;
   .game-menu {
     &__list {
       border: 1px solid rgb(95, 81, 255);
@@ -15,6 +16,7 @@ const GameMenuStyled = styled.div`
       color: rgb(95, 81, 255);
       list-style: none;
       padding: 0;
+      margin: 0;
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -25,6 +27,7 @@ const GameMenuStyled = styled.div`
       color: rgb(95, 81, 255);
       list-style: none;
       padding: 0;
+      margin: 0;
       height: 100%;
       display: flex;
       flex-direction: column;
