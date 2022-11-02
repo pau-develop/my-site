@@ -129,13 +129,11 @@ const CanvasGame = ({ image }: CanvasProps) => {
     }
   }, [tvLightColor, tvLightColors, menuVisibility, tvNoiseColor]);
 
-  const handleMenuClick = (index: number, action?: Promise<void>) => {
-    action;
+  const handleMenuClick = (index: number) => {
     setMenuVisibility(false);
   };
 
-  const handleChildMenuClick = (index: number, action?: Promise<void>) => {
-    action;
+  const handleChildMenuClick = (index: number) => {
     setCurrentChildMenu(index);
     setMenuVisibility(false);
   };
