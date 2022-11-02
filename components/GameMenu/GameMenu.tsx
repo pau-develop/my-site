@@ -1,13 +1,7 @@
-import CanvasStyled from "../Canvas/CanvasStyled";
-import { Unity, useUnityContext } from "react-unity-webgl";
-import { useCallback, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useCallback } from "react";
 
-import GameHowTo from "../GameHowTo/GameHowTo";
-import GameTopScores from "../GameTopScores/GameTopScores";
 import GameMenuStyled from "./GameMenuStyled";
 import { IScore } from "../../interfaces/Interfaces";
-import GameAbout from "../GameAbout/GameAbout";
 
 interface GameMenuProps {
   action: (index: number) => void;
@@ -37,7 +31,7 @@ const GameMenu = ({
   );
 
   const addScore = async (score: IScore) => {
-    const response = await fetch("/api/scores", {
+    await fetch("/api/scores", {
       method: "POST",
       headers: {
         "Content-type": "aplication/json",

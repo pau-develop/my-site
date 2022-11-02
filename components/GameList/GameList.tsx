@@ -1,4 +1,3 @@
-import CanvasStyled from "../Canvas/CanvasStyled";
 import GameListStyled from "./GameListStyled";
 
 interface GameListProps {
@@ -8,8 +7,6 @@ interface GameListProps {
 }
 
 const GameList = ({ action, childAction, unloadAction }: GameListProps) => {
-  const handleClick = () => {};
-
   return (
     <GameListStyled className="menu-wrap">
       <div className="menu-wrap__list">

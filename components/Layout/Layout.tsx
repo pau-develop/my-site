@@ -1,4 +1,3 @@
-import styles from "../styles/Layout.module.css";
 import LayoutStyled from "./LayoutStyled";
 interface LayoutProps {
   children: JSX.Element | JSX.Element[];

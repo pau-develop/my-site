@@ -21,10 +21,10 @@ const scores = async (request: NextApiRequest, response: NextApiResponse) => {
           };
         }
         response.json({ myScores });
-        break;
       } catch (error) {
         response.json({ error });
       }
+      break;
 
     case "POST":
       const score = JSON.parse(request.body);

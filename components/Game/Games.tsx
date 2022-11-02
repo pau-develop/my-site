@@ -52,7 +52,7 @@ const Game = ({
     []
   );
   const addScore = async (score: IScore) => {
-    const response = await fetch("/api/scores", {
+    await fetch("/api/scores", {
       method: "POST",
       headers: {
         "Content-type": "aplication/json",

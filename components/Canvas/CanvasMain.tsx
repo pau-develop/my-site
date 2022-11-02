@@ -45,8 +45,6 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const laptopColorsGreen = useRef<Array<Array<Array<number>>>>();
   const laptopColorsBlue = useRef<Array<Array<Array<number>>>>();
   const tvLightColors = useRef<Array<Array<Array<number>>>>();
-  const routerLedColors = useRef<Array<Array<Array<number>>>>();
-  const consoleLedColors = useRef<Array<Array<Array<number>>>>();
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
@@ -59,8 +57,8 @@ const CanvasMain = ({ image }: CanvasProps) => {
   useEffect(() => {
     const deskImage = new Image();
     deskImage.src = image;
-    const canvas = canvasRef.current;
-    contextRef.current = canvas!.getContext("2d", {
+    const canvas = canvasRef.current as HTMLCanvasElement;
+    contextRef.current = canvas.getContext("2d", {
       willReadFrequently: true,
     });
     contextRef.current!.fillStyle = "#000";

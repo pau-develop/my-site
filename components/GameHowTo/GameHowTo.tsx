@@ -1,4 +1,3 @@
-import Image from "next/image";
 import GameHowToStyled from "./GameHowToStyled";
 
 const GameHowTo = () => {
