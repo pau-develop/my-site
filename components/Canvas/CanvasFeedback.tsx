@@ -30,11 +30,11 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
     const notebookLine = new Image();
     const consoleLine = new Image();
     const paperLine = new Image();
-    tvLine.src = "/feedback_tv.png";
-    laptopLine.src = "/feedback_lap.png";
-    notebookLine.src = "/feedback_note.png";
-    consoleLine.src = "/feedback_console.png";
-    paperLine.src = "/feedback_paper.png";
+    tvLine.src = "/feedback_tv.webp";
+    laptopLine.src = "/feedback_lap.webp";
+    notebookLine.src = "/feedback_note.webp";
+    consoleLine.src = "/feedback_console.webp";
+    paperLine.src = "/feedback_paper.webp";
     imageRef.current = [
       laptopLine,
       notebookLine,
