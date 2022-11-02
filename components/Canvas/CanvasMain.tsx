@@ -60,7 +60,9 @@ const CanvasMain = ({ image }: CanvasProps) => {
     const deskImage = new Image();
     deskImage.src = image;
     const canvas = canvasRef.current;
-    contextRef.current = canvas!.getContext("2d");
+    contextRef.current = canvas!.getContext("2d", {
+      willReadFrequently: true,
+    });
     contextRef.current!.fillStyle = "#000";
     contextRef.current!.fillRect(
       0,

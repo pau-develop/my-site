@@ -33,7 +33,9 @@ const CanvasGame = ({ image }: CanvasProps) => {
     const newImage = new Image();
     newImage.src = image;
     const canvas = canvasRef.current;
-    contextRef.current = canvas!.getContext("2d");
+    contextRef.current = canvas!.getContext("2d", {
+      willReadFrequently: true,
+    });
     contextRef.current!.fillStyle = "#000";
     contextRef.current!.fillRect(
       0,

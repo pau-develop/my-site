@@ -43,7 +43,9 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
       paperLine,
     ];
     const canvas = canvasRef.current;
-    contextRef.current = canvas!.getContext("2d");
+    contextRef.current = canvas!.getContext("2d", {
+      willReadFrequently: true,
+    });
     let imagesLoaded = 0;
     for (let i = 0; i < imageRef.current.length; i++) {
       imageRef.current[i].onload = () => {
