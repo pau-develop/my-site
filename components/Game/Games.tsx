@@ -4,7 +4,7 @@ import GameContent from "../GameContent/GameContent";
 import GameList from "../GameList/GameList";
 import GameMenu from "../GameMenu/GameMenu";
 import { useCallback, useEffect } from "react";
-import IScore from "../../interfaces/Interfaces";
+import { IScore } from "../../interfaces/Interfaces";
 
 interface CanvasGameMenuProps {
   menuVisibility: boolean;
@@ -13,7 +13,7 @@ interface CanvasGameMenuProps {
   childMenu: number;
 }
 
-const CanvasGameMenu = ({
+const Game = ({
   menuVisibility,
   childMenu,
   action,
@@ -95,4 +95,4 @@ const CanvasGameMenu = ({
   }
 };
 
-export default CanvasGameMenu;
+export default Game;

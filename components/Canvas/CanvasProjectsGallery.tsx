@@ -27,7 +27,7 @@ interface CanvasProps {
   image: string;
 }
 
-const Canvas = ({ image }: CanvasProps) => {
+const CanvasProjectsGallery = ({ image }: CanvasProps) => {
   const [laptopColor, setLaptopColor] = useState(0);
   const [direction, setDirection] = useState(1);
   const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
@@ -157,4 +157,4 @@ const Canvas = ({ image }: CanvasProps) => {
     </CanvasStyled>
   );
 };
-export default Canvas;
+export default CanvasProjectsGallery;

@@ -6,8 +6,7 @@ import { useRouter } from "next/router";
 import GameHowTo from "../GameHowTo/GameHowTo";
 import GameTopScores from "../GameTopScores/GameTopScores";
 import GameMenuStyled from "./GameMenuStyled";
-import scoresProps from "../../interfaces/Interfaces";
-import IScore from "../../interfaces/Interfaces";
+import { IScore } from "../../interfaces/Interfaces";
 import GameAbout from "../GameAbout/GameAbout";
 
 interface GameMenuProps {

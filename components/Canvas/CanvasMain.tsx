@@ -21,12 +21,9 @@ import {
 } from "../../data/colors";
 import CanvasEdges from "./CanvasEdges";
 import CanvasFeedback from "./CanvasFeedback";
+import { CanvasProps } from "../../interfaces/Interfaces";
 
-interface CanvasProps {
-  image: string;
-}
-
-const Canvas = ({ image }: CanvasProps) => {
+const CanvasMain = ({ image }: CanvasProps) => {
   const [laptopColor, setLaptopColor] = useState(0);
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
@@ -247,4 +244,4 @@ const Canvas = ({ image }: CanvasProps) => {
     </CanvasStyled>
   );
 };
-export default Canvas;
+export default CanvasMain;

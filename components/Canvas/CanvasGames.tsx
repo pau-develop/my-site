@@ -10,7 +10,7 @@ import {
 import CanvasStyled from "./CanvasStyled";
 import { tvLight, tvNoise } from "../../data/colors";
 import CanvasEdges from "./CanvasEdges";
-import CanvasGameMenu from "../CanvasGameMenu/CanvasGameMenu";
+import Game from "../Game/Games";
 
 interface CanvasProps {
   image: string;
@@ -117,7 +117,6 @@ const CanvasGame = ({ image }: CanvasProps) => {
           contextRef.current!
         );
       } else {
-        console.log(indexesTvNoise.current, indexesTvLight.current);
         turnOffTv(
           indexesTvNoise.current!,
 
@@ -155,7 +154,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
         height={180}
         tabIndex={0}
       />
-      <CanvasGameMenu
+      <Game
         menuVisibility={menuVisibility}
         childMenu={currentChildMenu}
         action={handleMenuClick}
