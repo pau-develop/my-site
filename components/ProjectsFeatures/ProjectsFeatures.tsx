@@ -10,14 +10,14 @@ const ProjectsFeatures = ({ currentProject }: ProjectsFeaturesProps) => {
   const [featureMenu, setFeatureMenu] = useState(0);
 
   const handleClickAscending = () => {
-    featureMenu < projects[currentProject - 1].features!.length - 1
+    featureMenu < projects[currentProject - 1].features.length - 1
       ? setFeatureMenu(featureMenu + 1)
       : setFeatureMenu(0);
   };
   const handleClickDescending = () => {
     featureMenu > 0
       ? setFeatureMenu(featureMenu - 1)
-      : setFeatureMenu(projects[currentProject - 1].features!.length - 1);
+      : setFeatureMenu(projects[currentProject - 1].features.length - 1);
   };
 
   return (
@@ -29,15 +29,15 @@ const ProjectsFeatures = ({ currentProject }: ProjectsFeaturesProps) => {
       exit={{ opacity: 0 }}
     >
       <div className="project-features__text">
-        <h3>{projects[currentProject - 1].features![featureMenu].title}</h3>
-        <p>{projects[currentProject - 1].features![featureMenu].text}</p>
+        <h3>{projects[currentProject - 1].features[featureMenu].title}</h3>
+        <p>{projects[currentProject - 1].features[featureMenu].text}</p>
       </div>
       <div className="project-features__menu">
         <button onClick={handleClickDescending}>{"<<"}</button>
         <div>
           <img
-            src={projects[currentProject - 1].features![featureMenu].img}
-            alt={projects[currentProject - 1].features![featureMenu].alt}
+            src={projects[currentProject - 1].features[featureMenu].img}
+            alt={projects[currentProject - 1].features[featureMenu].alt}
           />
         </div>
         <button onClick={handleClickAscending}>{">>"}</button>

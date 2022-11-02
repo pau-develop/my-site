@@ -1,5 +1,4 @@
-import { bounds } from "../data/bounds";
-import { laptopRed, routerLed, tvLight, tvNoise } from "../data/colors";
+import { tvNoise } from "../data/colors";
 
 export const setPixelArray = (data: any) => {
   const pixels = new Array(data.length / 4);
@@ -65,7 +64,7 @@ export const changeCanvasColors = (
       imageData.data[indexes[i][y] * 4 + 2] = colors[i][color][2];
     }
   }
-  context!.putImageData(imageData, 0, 0);
+  context.putImageData(imageData, 0, 0);
 };
 
 export const changeTvColors = (
@@ -88,7 +87,7 @@ export const changeTvColors = (
           tvNoise[temporaryPositions[i]][2];
       }
     }
-    context!.putImageData(imageData, 0, 0);
+    context.putImageData(imageData, 0, 0);
   }
 };
 

@@ -42,13 +42,13 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
       tvLine,
       paperLine,
     ];
-    const canvas = canvasRef.current;
-    contextRef.current = canvas!.getContext("2d", {
+    const canvas = canvasRef.current as HTMLCanvasElement;
+    contextRef.current = canvas.getContext("2d", {
       willReadFrequently: true,
     });
     let imagesLoaded = 0;
-    for (let i = 0; i < imageRef.current.length; i++) {
-      imageRef.current[i].onload = () => {
+    for (const image of imageRef.current) {
+      image.onload = () => {
         imagesLoaded++;
         if (imagesLoaded === imageRef.current!.length) drawAndGetData();
       };
@@ -147,7 +147,6 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
       if (contextRef.current!.isPointInPath(mouseX, mouseY)) currentItem = 5;
       setCurrentItem(currentItem);
     }
-    return;
   };
 
   const handleClick = () => {

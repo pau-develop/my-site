@@ -4,8 +4,6 @@ import {
   getColorIndexes,
   setNewColors,
   changeCanvasColors,
-  changeTvColors,
-  changeRouterLedColors,
 } from "../../utils/functions";
 import CanvasStyled from "./CanvasStyled";
 import {
@@ -14,13 +12,8 @@ import {
   laptopYellow,
   laptopGreen,
   laptopBlue,
-  tvNoise,
-  tvLight,
-  routerLed,
-  consoleLed,
 } from "../../data/colors";
 import CanvasEdges from "./CanvasEdges";
-import CanvasFeedback from "./CanvasFeedback";
 import Projects from "../Projects/Projects";
 import { useRouter } from "next/router";
 

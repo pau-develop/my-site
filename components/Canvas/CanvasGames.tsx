@@ -32,8 +32,8 @@ const CanvasGame = ({ image }: CanvasProps) => {
   useEffect(() => {
     const newImage = new Image();
     newImage.src = image;
-    const canvas = canvasRef.current;
-    contextRef.current = canvas!.getContext("2d", {
+    const canvas = canvasRef.current as HTMLCanvasElement;
+    contextRef.current = canvas.getContext("2d", {
       willReadFrequently: true,
     });
     contextRef.current!.fillStyle = "#000";
@@ -61,8 +61,8 @@ const CanvasGame = ({ image }: CanvasProps) => {
       imageData.current = contextRef.current?.getImageData(
         0,
         0,
-        canvas!.width,
-        canvas!.height
+        canvas.width,
+        canvas.height
       );
       const pixels = setPixelArray(imgData.data);
       indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
@@ -129,13 +129,11 @@ const CanvasGame = ({ image }: CanvasProps) => {
     }
   }, [tvLightColor, tvLightColors, menuVisibility, tvNoiseColor]);
 
-  const handleMenuClick = (index: number, action?: Promise<void>) => {
-    action;
+  const handleMenuClick = (index: number) => {
     setMenuVisibility(false);
   };
 
-  const handleChildMenuClick = (index: number, action?: Promise<void>) => {
-    action;
+  const handleChildMenuClick = (index: number) => {
     setCurrentChildMenu(index);
     setMenuVisibility(false);
   };
