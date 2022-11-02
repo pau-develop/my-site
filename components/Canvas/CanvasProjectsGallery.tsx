@@ -22,12 +22,14 @@ import {
 import CanvasEdges from "./CanvasEdges";
 import CanvasFeedback from "./CanvasFeedback";
 import Projects from "../Projects/Projects";
+import { useRouter } from "next/router";
 
 interface CanvasProps {
   image: string;
 }
 
 const CanvasProjectsGallery = ({ image }: CanvasProps) => {
+  const router = useRouter();
   const [laptopColor, setLaptopColor] = useState(0);
   const [direction, setDirection] = useState(1);
   const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
@@ -153,7 +155,7 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         height={180}
         tabIndex={0}
       />
-      <Projects />
+      {router.pathname === "/projects" && <Projects />}
     </CanvasStyled>
   );
 };
