@@ -3,7 +3,6 @@ import ProjectsAbout from "../ProjectsAbout/ProjectsAbout";
 import ProjectsDisplayStyled from "./ProjectsDisplayStyled";
 import { useState } from "react";
 import ProjectsFeatures from "../ProjectsFeatures/ProjectsFeatures";
-import { AnimatePresence } from "framer-motion";
 
 interface ProjectDisplay {
   currentProject: number;

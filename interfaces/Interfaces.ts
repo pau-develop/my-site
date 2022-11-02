@@ -1,7 +1,9 @@
-interface IScore {
+export interface IScore {
   name: string;
   player: number;
   score: number;
 }
 
-export default IScore;
+export interface CanvasProps {
+  image: string;
+}

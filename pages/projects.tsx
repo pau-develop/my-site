@@ -1,10 +1,9 @@
-import Projects from "../components/Projects/Projects";
-import CanvasProject from "../components/Canvas/CanvasProject";
+import CanvasProjectsGallery from "../components/Canvas/CanvasProjectsGallery";
 
 const projects = (): JSX.Element => {
   return (
     <>
-      <CanvasProject image={"/NOTEBOOK.png"} />
+      <CanvasProjectsGallery image={"/NOTEBOOK.webp"} />
     </>
   );
 };

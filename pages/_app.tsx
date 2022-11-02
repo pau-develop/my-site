@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Header />
       <Layout>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
       </Layout>

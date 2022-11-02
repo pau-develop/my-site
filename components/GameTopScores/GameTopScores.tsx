@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import GameTopScoresStyled from "./GameTopScoresStyled";
-import IScore from "../../interfaces/Interfaces";
+import { IScore } from "../../interfaces/Interfaces";
 
 const GameTopScores = () => {
   const [scores, setScores] = useState<IScore[] | undefined>();
@@ -25,13 +25,13 @@ const GameTopScores = () => {
                 <span>{index + 1}</span>
                 <span>
                   {element.player === 1 && (
-                    <img src="/charIcon1.png" alt="bald-guy" />
+                    <img src="/charIcon1.webp" alt="bald-guy" />
                   )}
                   {element.player === 2 && (
-                    <img src="/charIcon2.png" alt="chinese-girl" />
+                    <img src="/charIcon2.webp" alt="chinese-girl" />
                   )}
                   {element.player === 3 && (
-                    <img src="/charIcon3.png" alt="amazing-dog" />
+                    <img src="/charIcon3.webp" alt="amazing-dog" />
                   )}
                 </span>
                 <span>{element.name}</span>
