@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const GalleryListStyled = styled.div`
-  width: 25%;
-  height: 85%;
+  width: 30%;
+  height: 100%;
   color: rgb(95, 81, 255);
   @keyframes imageBlink {
     0% {
@@ -40,9 +40,11 @@ const GalleryListStyled = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 0 5% 0 5%;
         img {
           border: 1px solid rgb(95, 81, 255);
           width: 100px;
+          max-width: 100%;
         }
       }
       li:hover {

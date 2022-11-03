@@ -10,5 +10,6 @@ export interface CanvasProps {
 
 export interface IGalleryItem {
   name: string;
+  resolution: string;
   source: string;
 }

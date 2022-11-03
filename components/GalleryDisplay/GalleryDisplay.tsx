@@ -7,9 +7,17 @@ interface GalleryDisplayProps {
 
 const GalleryDisplay = ({ currentImage }: GalleryDisplayProps) => {
   return (
-    <GalleryDisplayStyled>
+    <GalleryDisplayStyled className="gallery-display">
       {currentImage !== undefined && (
-        <img src={currentImage.source} alt={currentImage.name}></img>
+        <>
+          <div className="gallery-display__info">
+            <span>{currentImage.name}</span>
+            <span>{currentImage.resolution}</span>
+          </div>
+          <div className="gallery-display__image">
+            <img src={currentImage.source} alt={currentImage.name}></img>
+          </div>
+        </>
       )}
     </GalleryDisplayStyled>
   );

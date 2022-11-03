@@ -28,7 +28,7 @@ const scores = async (request: NextApiRequest, response: NextApiResponse) => {
 
     case "POST":
       const score = JSON.parse(request.body);
-      const result = await db.collection("kung_scores").insertOne({
+      const result = await db.collection("kung-scores").insertOne({
         name: score.name,
         score: score.score,
         player: score.player,
