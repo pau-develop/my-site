@@ -3,12 +3,12 @@ import connectDB from "../../database/connectDB";
 
 const scores = async (request: NextApiRequest, response: NextApiResponse) => {
   const client = await connectDB();
-  const db = client.db("kungfu-skate");
+  const db = client.db("site");
   switch (request.method) {
     case "GET":
       try {
         const scores = await db
-          .collection("scores")
+          .collection("kung-scores")
           .find({})
           .sort({ score: -1 })
           .toArray();
@@ -28,7 +28,7 @@ const scores = async (request: NextApiRequest, response: NextApiResponse) => {
 
     case "POST":
       const score = JSON.parse(request.body);
-      const result = await db.collection("scores").insertOne({
+      const result = await db.collection("kung_scores").insertOne({
         name: score.name,
         score: score.score,
         player: score.player,
