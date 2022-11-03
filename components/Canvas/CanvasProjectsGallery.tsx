@@ -16,6 +16,7 @@ import {
 import CanvasEdges from "./CanvasEdges";
 import Projects from "../Projects/Projects";
 import { useRouter } from "next/router";
+import Gallery from "../Gallery/Gallery";
 
 interface CanvasProps {
   image: string;
@@ -151,6 +152,7 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         tabIndex={0}
       />
       {router.pathname === "/projects" && <Projects />}
+      {router.pathname === "/gallery" && <Gallery />}
     </CanvasStyled>
   );
 };

@@ -30,11 +30,11 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
     const notebookLine = new Image();
     const consoleLine = new Image();
     const paperLine = new Image();
-    tvLine.src = "/feedback_tv.webp";
+    tvLine.src = "/feedback_tv.png";
     laptopLine.src = "/feedback_lap.webp";
     notebookLine.src = "/feedback_note.webp";
     consoleLine.src = "/feedback_console.webp";
-    paperLine.src = "/feedback_paper.webp";
+    paperLine.src = "/feedback_paper.png";
     imageRef.current = [
       laptopLine,
       notebookLine,
@@ -104,6 +104,7 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
       );
     }
   }, [indexes, powerlineColor, currentItem]);
+
   //CLEAR
   useEffect(() => {
     if (currentItem === 0)
@@ -120,7 +121,6 @@ const CanvasFeedback = ({ action }: CanvasFeedbackProps) => {
       const interval = setInterval(() => {
         setPowerlineColor(!powerlineColor);
       }, 50);
-
       return () => clearInterval(interval);
     }
   }, [powerlineColor, currentItem]);
