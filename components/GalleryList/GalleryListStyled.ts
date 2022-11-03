@@ -4,6 +4,14 @@ const GalleryListStyled = styled.div`
   width: 25%;
   height: 85%;
   color: rgb(95, 81, 255);
+  @keyframes imageBlink {
+    0% {
+      border-color: rgb(95, 81, 255);
+    }
+    100% {
+      border-color: white;
+    }
+  }
   .gallery-list {
     &__title {
       background-color: black;
@@ -39,17 +47,9 @@ const GalleryListStyled = styled.div`
       }
       li:hover {
         img {
-          animation: blink 0.1s infinite;
+          animation: imageBlink 0.1s infinite;
         }
       }
-    }
-  }
-  @keyframes blink {
-    0% {
-      border-color: rgb(95, 81, 255);
-    }
-    100% {
-      border-color: white;
     }
   }
 `;

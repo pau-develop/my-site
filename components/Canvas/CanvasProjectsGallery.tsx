@@ -151,7 +151,8 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         height={180}
         tabIndex={0}
       />
-      {router.pathname === "/projects" ? <Projects /> : <Gallery />}
+      {router.pathname === "/projects" && <Projects />}
+      {router.pathname === "/gallery" && <Gallery />}
     </CanvasStyled>
   );
 };

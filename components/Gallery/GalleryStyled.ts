@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const GalleryStyled = styled.div`
+const GalleryStyled = styled(motion.div)`
   position: absolute;
   z-index: 2;
   width: 100%;
