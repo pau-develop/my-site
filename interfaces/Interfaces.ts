@@ -7,3 +7,8 @@ export interface IScore {
 export interface CanvasProps {
   image: string;
 }
+
+export interface IGalleryItem {
+  name: string;
+  source: string;
+}
