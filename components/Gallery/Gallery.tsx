@@ -1,5 +1,4 @@
-import { useState } from "react";
-import galleryItems from "../../data/galleryItems";
+import { useCallback, useEffect, useState } from "react";
 import { IGalleryItem } from "../../interfaces/Interfaces";
 import GalleryDisplay from "../GalleryDisplay/GalleryDisplay";
 import GalleryList from "../GalleryList/GalleryList";
@@ -7,10 +6,20 @@ import GalleryStyled from "./GalleryStyled";
 
 const Gallery = () => {
   const [currentImage, setCurrentImage] = useState<IGalleryItem>();
-  const files = galleryItems;
+  const [images, setImages] = useState<IGalleryItem[]>();
+
+  const fetchImages = useCallback(async () => {
+    const response = await fetch("/api/galleryPictures");
+    const { myImages } = await response.json();
+    setImages(myImages);
+  }, []);
+
+  useEffect(() => {
+    fetchImages();
+  }, [fetchImages]);
 
   const handleListClick = (index: number) => {
-    setCurrentImage(files[index]);
+    setCurrentImage(images![index]);
   };
 
   return (
@@ -22,7 +31,10 @@ const Gallery = () => {
       exit={{ opacity: 0 }}
     >
       <div className="gallery__wrap">
-        <GalleryList files={files} action={handleListClick} />
+        <GalleryList
+          images={images as IGalleryItem[]}
+          action={handleListClick}
+        />
         <GalleryDisplay currentImage={currentImage as IGalleryItem} />
       </div>
     </GalleryStyled>
