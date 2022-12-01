@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 
 import GameMenuStyled from "./GameMenuStyled";
-import { IScore } from "../../interfaces/Interfaces";
+import { IGame, IScore } from "../../interfaces/Interfaces";
 
 interface GameMenuProps {
   action: (index: number) => void;
@@ -9,6 +9,7 @@ interface GameMenuProps {
   childMenu: number;
   unloadAction: () => void;
   menuVisibility: boolean;
+  game: IGame;
 }
 
 const GameMenu = ({
@@ -17,6 +18,7 @@ const GameMenu = ({
   childMenu,
   unloadAction,
   menuVisibility,
+  game,
 }: GameMenuProps) => {
   const handleGameOver = useCallback(
     (userName: string, score: number, player: number) => {
@@ -73,19 +75,22 @@ const GameMenu = ({
         >
           How to Play
         </li>
-        <li
-          className={
-            childMenu === 2 || !menuVisibility
-              ? "game-menu__list-item--current"
-              : "game-menu__list-item"
-          }
-          onClick={() => {
-            childAction(2);
-            unloadAction();
-          }}
-        >
-          Top Scores
-        </li>
+        {game.topScores && (
+          <li
+            className={
+              childMenu === 2 || !menuVisibility
+                ? "game-menu__list-item--current"
+                : "game-menu__list-item"
+            }
+            onClick={() => {
+              childAction(2);
+              unloadAction();
+            }}
+          >
+            Top Scores
+          </li>
+        )}
+
         <li
           className={
             childMenu === 3 || !menuVisibility

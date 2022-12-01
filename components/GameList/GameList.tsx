@@ -4,15 +4,23 @@ interface GameListProps {
   action: (index: number) => void;
   childAction: (index: number) => void;
   unloadAction: () => void;
+  gameName: string;
+  handleClickList: (direction: number) => void;
 }
 
-const GameList = ({ action, childAction, unloadAction }: GameListProps) => {
+const GameList = ({
+  action,
+  childAction,
+  unloadAction,
+  gameName,
+  handleClickList,
+}: GameListProps) => {
   return (
     <GameListStyled className="menu-wrap">
       <div className="menu-wrap__list">
         <h2>GAMES</h2>
         <div>
-          <button>{`<<`}</button>
+          <button onClick={() => handleClickList(-1)}>{`<<`}</button>
           <span
             onClick={() => {
               action(1);
@@ -21,9 +29,9 @@ const GameList = ({ action, childAction, unloadAction }: GameListProps) => {
             }}
             className="menu-wrap__medium-item"
           >
-            KungFu Skate
+            {gameName}
           </span>
-          <button>{`>>`}</button>
+          <button onClick={() => handleClickList(+1)}>{`>>`}</button>
         </div>
       </div>
     </GameListStyled>
