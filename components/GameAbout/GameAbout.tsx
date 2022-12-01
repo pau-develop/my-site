@@ -9,7 +9,10 @@ const GameAbout = ({ game }: GameAboutProps) => {
   return (
     <GameAboutStyled className="about">
       <h2 className="about__title">About</h2>
-      <p className="about__text">{game.about}</p>
+      <p
+        className="about__text"
+        dangerouslySetInnerHTML={{ __html: game.about }}
+      ></p>
     </GameAboutStyled>
   );
 };

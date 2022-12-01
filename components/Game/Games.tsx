@@ -79,11 +79,13 @@ const Game = ({
     if (direction === 1 && currentGame === games.length - 1) {
       setCurrentGame(0);
       childAction(0);
+      unloadUnity();
       return;
     } else setCurrentGame(currentGame + direction);
     if (direction === -1 && currentGame === 0) setCurrentGame(games.length - 1);
     else setCurrentGame(currentGame + direction);
     childAction(0);
+    unloadUnity();
   };
 
   {

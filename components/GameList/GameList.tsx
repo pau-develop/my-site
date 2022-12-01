@@ -21,16 +21,7 @@ const GameList = ({
         <h2>GAMES</h2>
         <div>
           <button onClick={() => handleClickList(-1)}>{`<<`}</button>
-          <span
-            onClick={() => {
-              action(1);
-              childAction(0);
-              unloadAction();
-            }}
-            className="menu-wrap__medium-item"
-          >
-            {gameName}
-          </span>
+          <span className="menu-wrap__medium-item">{gameName}</span>
           <button onClick={() => handleClickList(+1)}>{`>>`}</button>
         </div>
       </div>

@@ -13,7 +13,15 @@ interface GameDisplayProps {
 const GameDisplay = ({ game, unity }: GameDisplayProps): JSX.Element => {
   return (
     <GameDisplayStyled>
-      <Unity unityProvider={unity} className="game-content__unity-canvas" />
+      {game.framework === "Unity" && (
+        <Unity unityProvider={unity} className="game-display__unity-canvas" />
+      )}
+      {game.framework === "Phaser" && (
+        <iframe
+          className="game-display__phaser-canvas"
+          src="https://pau-dev-stone.netlify.app/"
+        ></iframe>
+      )}
     </GameDisplayStyled>
   );
 };
