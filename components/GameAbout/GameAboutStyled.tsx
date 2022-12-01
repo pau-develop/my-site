@@ -31,6 +31,17 @@ const GameAboutStyled = styled.div`
         color: white;
         text-decoration: none;
       }
+      a:hover {
+        animation: blink 0.1s infinite;
+      }
+    }
+    @keyframes blink {
+      0% {
+        color: rgb(95, 81, 255);
+      }
+      100% {
+        color: white;
+      }
     }
   }
 `;
