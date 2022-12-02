@@ -11,9 +11,9 @@ const GameMenuStyled = styled.div`
   background-color: black;
   .game-menu {
     &__list {
-      border: 1px solid rgb(95, 81, 255);
+      border: 1px solid ${(props) => props.theme.fontColor};
       width: 100%;
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
       list-style: none;
       padding: 0;
       margin: 0;
@@ -22,9 +22,9 @@ const GameMenuStyled = styled.div`
       flex-direction: column;
     }
     &__list--disabled {
-      border: 1px solid rgb(95, 81, 255, 0.5);
+      border: 1px solid ${(props) => props.theme.fontColorFade};
       width: 100%;
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
       list-style: none;
       padding: 0;
       margin: 0;
@@ -34,7 +34,7 @@ const GameMenuStyled = styled.div`
     }
     &__list-item {
       cursor: pointer;
-      border-bottom: 1px solid rgb(95, 81, 255);
+      border-bottom: 1px solid ${(props) => props.theme.fontColor};
       width: 100%;
       flex: 1;
       display: flex;
@@ -50,8 +50,8 @@ const GameMenuStyled = styled.div`
 
     &__list-item--current {
       cursor: auto;
-      color: rgb(95, 81, 255, 0.5);
-      border-bottom: 1px solid rgb(95, 81, 255, 0.5);
+      color: ${(props) => props.theme.fontColorFade};
+      border-bottom: 1px solid ${(props) => props.theme.fontColorFade};
       width: 100%;
       flex: 1;
       display: flex;
@@ -76,7 +76,7 @@ const GameMenuStyled = styled.div`
   }
   @keyframes blink {
     0% {
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
     }
     100% {
       color: white;

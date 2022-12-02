@@ -6,7 +6,7 @@ const GalleryDisplayStyled = styled.div`
   padding: 2%;
   width: 44%;
   right: 14%;
-  color: rgb(95, 81, 255);
+  color: ${(props) => props.theme.fontColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@ const GalleryDisplayStyled = styled.div`
       span {
         background: black;
         height: 70%;
-        border: 1px solid rgb(95, 81, 255);
+        border: 1px solid ${(props) => props.theme.fontColor};
         width: 45%;
         display: flex;
         justify-content: center;
@@ -38,7 +38,7 @@ const GalleryDisplayStyled = styled.div`
     }
   }
   img {
-    border: 1px solid rgb(95, 81, 255);
+    border: 1px solid ${(props) => props.theme.fontColor};
     image-rendering: pixelated;
     width: 100%;
     max-height: 100%;

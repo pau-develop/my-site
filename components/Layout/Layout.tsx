@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { ThemeProvider } from "styled-components";
+import { Context } from "../../context/ContextProvider";
+import styledThemes from "../../context/styledThemes";
 import LoadBar from "../LoadBar/LoadBar";
 import LayoutStyled from "./LayoutStyled";
 interface LayoutProps {
@@ -5,9 +9,13 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
+  const { theme } = useContext(Context);
+  console.log(theme);
   return (
     <>
-      <LayoutStyled>{children}</LayoutStyled>
+      <ThemeProvider theme={styledThemes[0]}>
+        <LayoutStyled>{children}</LayoutStyled>
+      </ThemeProvider>
     </>
   );
 };

@@ -8,8 +8,8 @@ const LoadBarStyled = styled.div`
   width: 300px;
   height: 100px;
   background-color: black;
-  border: 2px solid rgb(95, 81, 255);
-  color: rgb(95, 81, 255);
+  border: 2px solid ${(props) => props.theme.fontColor};
+  color: ${(props) => props.theme.fontColor};
   z-index: 20;
   display: flex;
   flex-direction: column;
@@ -20,8 +20,8 @@ const LoadBarStyled = styled.div`
     margin: auto auto;
     width: 90%;
     height: 20%;
-    background-color: rgb(95, 81, 255);
-    border: 1px solid rgb(95, 81, 255);
+    background-color: ${(props) => props.theme.fontColor};
+    border: 1px solid ${(props) => props.theme.fontColor};
   }
 `;
 

@@ -7,18 +7,18 @@ const GameListStyled = styled.div`
   top: 13%;
   z-index: 2;
   position: absolute;
-  border: 1px solid rgb(95, 81, 255);
+  border: 1px solid ${(props) => props.theme.fontColor};
   background-color: black;
   .menu-wrap {
     &__list {
       width: 100%;
       height: 100%;
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
       display: flex;
       flex-direction: column;
       h2 {
         margin: 0;
-        border-bottom: 1px solid rgb(95, 81, 255);
+        border-bottom: 1px ${(props) => props.theme.fontColor};
         flex: 1;
         height: 80px;
         display: flex;
@@ -36,7 +36,7 @@ const GameListStyled = styled.div`
         button {
           flex: 1;
           background-color: transparent;
-          color: rgb(95, 81, 255);
+          color: ${(props) => props.theme.fontColor};
           cursor: pointer;
         }
         button:hover {
@@ -54,7 +54,7 @@ const GameListStyled = styled.div`
     }
     @keyframes blink {
       0% {
-        color: rgb(95, 81, 255);
+        color: ${(props) => props.theme.fontColor};
       }
       100% {
         color: white;

@@ -7,7 +7,7 @@ const GameTopScoresStyled = styled.div`
   position: absolute;
   top: 0%;
   right: 0%;
-  color: rgb(95, 81, 255);
+  color: ${(props) => props.theme.fontColor};
   .scores {
     &__title {
       width: 100%;

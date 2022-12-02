@@ -6,7 +6,7 @@ const ProjectsAboutStyled = styled(motion.div)`
   width: 100%;
   background-color: black;
   padding: 2%;
-  border: 1px solid rgb(95, 81, 255);
+  border: 1px solid ${(props) => props.theme.fontColor};
   .projects-about {
     &__text-wrap {
       height: 40%;
@@ -50,7 +50,7 @@ const ProjectsAboutStyled = styled(motion.div)`
         display: flex;
         flex-direction: column;
         a:-webkit-any-link {
-          color: rgb(200, 200, 250);
+          color: ${(props) => props.theme.fontColor};
           cursor: pointer;
           text-decoration: none;
         }
@@ -62,7 +62,7 @@ const ProjectsAboutStyled = styled(motion.div)`
   }
   @keyframes blink {
     0% {
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
     }
     100% {
       color: rgb(200, 200, 250);
