@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ProjectsListStyled = styled.div`
   width: 25%;
   height: 85%;
-  color: rgb(95, 81, 255);
+  color: ${(props) => props.theme.fontColor};
   .projects-list {
     &__title {
       background-color: black;
@@ -13,7 +13,7 @@ const ProjectsListStyled = styled.div`
       padding-right: 5%;
       height: 10%;
       margin: 0;
-      border: 1px solid rgb(95, 81, 255);
+      border: 1px solid ${(props) => props.theme.fontColor};
       text-align: center;
     }
     &__list {
@@ -29,7 +29,7 @@ const ProjectsListStyled = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgb(95, 81, 255);
+      border: 1px solid ${(props) => props.theme.fontColor};
       border-top: none;
     }
     &__list-item:hover {
@@ -38,8 +38,8 @@ const ProjectsListStyled = styled.div`
     &__list-item--current {
       background-color: black;
       height: 8%;
-      border: 1px solid rgb(95, 81, 255);
-      color: rgb(95, 81, 255, 0.5);
+      border: 1px solid ${(props) => props.theme.fontColor};
+      color: ${(props) => props.theme.fontColorFade};
       display: flex;
       align-items: center;
       justify-content: center;
@@ -48,7 +48,7 @@ const ProjectsListStyled = styled.div`
   }
   @keyframes blink {
     0% {
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
     }
     100% {
       color: white;

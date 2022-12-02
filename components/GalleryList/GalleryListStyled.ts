@@ -1,17 +1,18 @@
 import styled from "styled-components";
 
 const GalleryListStyled = styled.div`
-  width: 30%;
-  height: 100%;
-  color: rgb(95, 81, 255);
   @keyframes imageBlink {
     0% {
-      border-color: rgb(95, 81, 255);
+      border-color: ${(props) => props.theme.fontColor};
     }
     100% {
       border-color: white;
     }
   }
+  width: 30%;
+  height: 100%;
+  color: ${(props) => props.theme.fontColor};
+
   .gallery-list {
     &__title {
       background-color: black;
@@ -21,12 +22,12 @@ const GalleryListStyled = styled.div`
       padding-right: 5%;
       height: 10%;
       margin: 0;
-      border: 1px solid rgb(95, 81, 255);
+      border: 1px solid ${(props) => props.theme.fontColor};
       text-align: center;
     }
     &__list {
       background-color: black;
-      border: 1px solid rgb(95, 81, 255);
+      border: 1px solid ${(props) => props.theme.fontColor};
       border-top: none;
       max-height: 90%;
       list-style: none;
@@ -42,7 +43,7 @@ const GalleryListStyled = styled.div`
         align-items: center;
         padding: 0 5% 0 5%;
         img {
-          border: 1px solid rgb(95, 81, 255);
+          border: 1px solid ${(props) => props.theme.fontColor};
           width: 100px;
           max-width: 100%;
         }

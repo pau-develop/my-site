@@ -7,7 +7,7 @@ const GameAboutStyled = styled.div`
   position: absolute;
   top: 0%;
   right: 0%;
-  color: rgb(95, 81, 255);
+  color: ${(props) => props.theme.fontColor};
   .about {
     &__title {
       width: 100%;
@@ -37,7 +37,7 @@ const GameAboutStyled = styled.div`
     }
     @keyframes blink {
       0% {
-        color: rgb(95, 81, 255);
+        color: ${(props) => props.theme.fontColor};
       }
       100% {
         color: white;

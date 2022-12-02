@@ -6,7 +6,7 @@ const ProjectsDisplayStyled = styled(motion.div)`
   height: 75%;
   width: 52.5%;
   right: 11%;
-  color: rgb(95, 81, 255);
+  color: ${(props) => props.theme.fontColor};
 
   .project-display {
     &__title-wrap {
@@ -26,14 +26,14 @@ const ProjectsDisplayStyled = styled(motion.div)`
       justify-content: space-between;
       button {
         width: 45%;
-        border: 1px solid rgb(95, 81, 255);
+        border: 1px solid ${(props) => props.theme.fontColor};
         background-color: black;
         padding: 0;
         height: 100%;
       }
     }
     &__title {
-      border: 1px solid rgb(95, 81, 255);
+      border: 1px solid ${(props) => props.theme.fontColor};
       width: 40%;
       height: 60%;
       background-color: black;
@@ -51,12 +51,12 @@ const ProjectsDisplayStyled = styled(motion.div)`
     }
 
     &__button {
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
 
       background-color: black;
     }
     &__button--disabled {
-      color: rgb(95, 81, 255, 0.5);
+      color: ${(props) => props.theme.fontColorFade};
     }
     &__button:hover {
       cursor: pointer;
@@ -65,7 +65,7 @@ const ProjectsDisplayStyled = styled(motion.div)`
   }
   @keyframes blink {
     0% {
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
     }
     100% {
       color: white;

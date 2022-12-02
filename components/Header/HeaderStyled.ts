@@ -1,6 +1,22 @@
 import styled from "styled-components";
 
 const HeaderStyled = styled.header`
+  @keyframes blink {
+    0% {
+      color: ${(props) => props.theme.fontColor};
+    }
+    100% {
+      color: white;
+    }
+  }
+  @keyframes blinkIcon {
+    0% {
+      filter: ${(props) => props.theme.svgColor};
+    }
+    100% {
+      filter: ${(props) => props.theme.filter};
+    }
+  }
   padding: 0 10%;
   background: #000;
   height: 10%;
@@ -8,6 +24,21 @@ const HeaderStyled = styled.header`
   align-items: center;
   justify-content: space-between;
   .header {
+    &__left {
+      display: flex;
+      height: 100%;
+      align-items: center;
+    }
+    &__theme {
+      margin: 0 10px;
+      height: 32px;
+      width: 32px;
+      filter: ${(props) => props.theme.svgColor};
+    }
+    &__theme:hover {
+      cursor: pointer;
+      animation: blinkIcon 0.1s infinite;
+    }
     &__title {
       padding: 0;
       margin: 0;
@@ -15,7 +46,7 @@ const HeaderStyled = styled.header`
     }
     &__title {
       a:-webkit-any-link {
-        color: rgb(95, 81, 255);
+        color: ${(props) => props.theme.fontColor};
         cursor: pointer;
         text-decoration: none;
       }
@@ -25,7 +56,7 @@ const HeaderStyled = styled.header`
     }
     &__title--current {
       a:-webkit-any-link {
-        color: rgb(95, 81, 255, 0.5);
+        color: ${(props) => props.theme.fontColor};
         text-decoration: none;
         cursor: auto;
       }
@@ -39,7 +70,7 @@ const HeaderStyled = styled.header`
     }
     &__link {
       a:-webkit-any-link {
-        color: rgb(95, 81, 255);
+        color: ${(props) => props.theme.fontColor};
         cursor: pointer;
         text-decoration: none;
       }
@@ -49,18 +80,10 @@ const HeaderStyled = styled.header`
     }
     &__link--current {
       a:-webkit-any-link {
-        color: rgb(95, 81, 255, 0.5);
+        color: ${(props) => props.theme.fontColorFade};
         text-decoration: none;
         cursor: auto;
       }
-    }
-  }
-  @keyframes blink {
-    0% {
-      color: rgb(95, 81, 255);
-    }
-    100% {
-      color: white;
     }
   }
 `;

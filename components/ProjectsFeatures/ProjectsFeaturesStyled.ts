@@ -45,7 +45,7 @@ const ProjectsFeaturesStyled = styled(motion.div)`
       button {
         width: 5%;
         height: 10%;
-        color: rgb(95, 81, 255);
+        color: ${(props) => props.theme.fontColor};
         background-color: transparent;
       }
       button:hover {
@@ -56,7 +56,7 @@ const ProjectsFeaturesStyled = styled(motion.div)`
   }
   @keyframes blink {
     0% {
-      color: rgb(95, 81, 255);
+      color: ${(props) => props.theme.fontColor};
     }
     100% {
       color: white;

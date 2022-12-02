@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   setPixelArray,
   getColorIndexes,
@@ -9,7 +9,6 @@ import CanvasStyled from "./CanvasStyled";
 import {
   laptopRed,
   laptopOrange,
-  laptopYellow,
   laptopGreen,
   laptopBlue,
 } from "../../data/colors";
@@ -17,32 +16,26 @@ import CanvasEdges from "./CanvasEdges";
 import Projects from "../Projects/Projects";
 import { useRouter } from "next/router";
 import Gallery from "../Gallery/Gallery";
+import { Context } from "../../context/ContextProvider";
 
 interface CanvasProps {
   image: string;
 }
 
 const CanvasProjectsGallery = ({ image }: CanvasProps) => {
+  const { theme } = useContext(Context);
   const router = useRouter();
   const [laptopColor, setLaptopColor] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
+  const [currentLaptopColor, setCurrentLaptopColor] = useState(theme);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
   const laptopColorsRed = useRef<Array<Array<Array<number>>>>();
   const laptopColorsOrange = useRef<Array<Array<Array<number>>>>();
-  const laptopColorsYellow = useRef<Array<Array<Array<number>>>>();
   const laptopColorsGreen = useRef<Array<Array<Array<number>>>>();
   const laptopColorsBlue = useRef<Array<Array<Array<number>>>>();
   const imageData = useRef<ImageData>();
-
-  useEffect(() => {
-    if (localStorage.getItem("currentColor") !== undefined) {
-      const color = Number(localStorage.getItem("currentColor"));
-      setCurrentLaptopColor(color);
-    }
-  }, []);
 
   useEffect(() => {
     const deskImage = new Image();
@@ -62,7 +55,8 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
     deskImage.onload = () => {
       drawAndGetData(deskImage);
     };
-  }, [image]);
+    setCurrentLaptopColor(theme);
+  }, [image, theme]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
     contextRef.current!.drawImage(
@@ -88,7 +82,6 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
     indexesLaptop.current = getColorIndexes(pixels, laptopRed);
     laptopColorsRed.current = setNewColors(laptopRed, laptopRed.length);
     laptopColorsOrange.current = setNewColors(laptopOrange, laptopRed.length);
-    laptopColorsYellow.current = setNewColors(laptopYellow, laptopRed.length);
     laptopColorsGreen.current = setNewColors(laptopGreen, laptopRed.length);
     laptopColorsBlue.current = setNewColors(laptopBlue, laptopRed.length);
   };
@@ -108,7 +101,6 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
       const allLaptopColors = [
         laptopColorsRed.current,
         laptopColorsOrange.current,
-        laptopColorsYellow.current,
         laptopColorsGreen.current,
         laptopColorsBlue.current,
       ];
@@ -140,7 +132,7 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
       className="canvas-wrap"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.1 }}
       exit={{ opacity: 0 }}
     >
       <CanvasEdges />

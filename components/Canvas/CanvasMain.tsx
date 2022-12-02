@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import {
   setPixelArray,
   getColorIndexes,
@@ -11,7 +11,6 @@ import CanvasStyled from "./CanvasStyled";
 import {
   laptopRed,
   laptopOrange,
-  laptopYellow,
   laptopGreen,
   laptopBlue,
   tvNoise,
@@ -22,8 +21,12 @@ import {
 import CanvasEdges from "./CanvasEdges";
 import CanvasFeedback from "./CanvasFeedback";
 import { CanvasProps } from "../../interfaces/Interfaces";
+import { useUnityContext } from "react-unity-webgl";
+import { changeThemeAction, Context } from "../../context/ContextProvider";
+// import ContextProvider from "../../context/ContextProvider";
 
 const CanvasMain = ({ image }: CanvasProps) => {
+  const { theme, dispatch } = useContext(Context);
   const [laptopColor, setLaptopColor] = useState(0);
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
@@ -31,7 +34,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const [consoleLedColor, setConsoleLedColor] = useState(true);
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
-  const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
+  const [currentLaptopColor, setCurrentLaptopColor] = useState(theme);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
@@ -41,7 +44,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const indexesConsoleLed = useRef<Array<Array<number>>>();
   const laptopColorsRed = useRef<Array<Array<Array<number>>>>();
   const laptopColorsOrange = useRef<Array<Array<Array<number>>>>();
-  const laptopColorsYellow = useRef<Array<Array<Array<number>>>>();
+
   const laptopColorsGreen = useRef<Array<Array<Array<number>>>>();
   const laptopColorsBlue = useRef<Array<Array<Array<number>>>>();
   const tvLightColors = useRef<Array<Array<Array<number>>>>();
@@ -72,7 +75,8 @@ const CanvasMain = ({ image }: CanvasProps) => {
     deskImage.onload = () => {
       drawAndGetData(deskImage);
     };
-  }, [image]);
+    setCurrentLaptopColor(theme);
+  }, [image, theme]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
     contextRef.current!.drawImage(
@@ -102,7 +106,6 @@ const CanvasMain = ({ image }: CanvasProps) => {
     indexesConsoleLed.current = getColorIndexes(pixels, consoleLed);
     laptopColorsRed.current = setNewColors(laptopRed, laptopRed.length);
     laptopColorsOrange.current = setNewColors(laptopOrange, laptopRed.length);
-    laptopColorsYellow.current = setNewColors(laptopYellow, laptopRed.length);
     laptopColorsGreen.current = setNewColors(laptopGreen, laptopRed.length);
     laptopColorsBlue.current = setNewColors(laptopBlue, laptopRed.length);
     tvLightColors.current = setNewColors(tvLight, tvLight.length);
@@ -184,10 +187,10 @@ const CanvasMain = ({ image }: CanvasProps) => {
       const allLaptopColors = [
         laptopColorsRed.current,
         laptopColorsOrange.current,
-        laptopColorsYellow.current,
         laptopColorsGreen.current,
         laptopColorsBlue.current,
       ];
+
       const currentColorInDisplay = allLaptopColors[currentLaptopColor];
       changeCanvasColors(
         indexesLaptop.current as number[][],
@@ -213,12 +216,14 @@ const CanvasMain = ({ image }: CanvasProps) => {
   ]);
 
   const changeThemeColor = () => {
-    if (currentLaptopColor < 4) {
-      const color = currentLaptopColor + 1;
+    if (theme < 3) {
+      const color = theme + 1;
+      dispatch(changeThemeAction(color));
       localStorage.setItem("currentColor", color.toString());
       setCurrentLaptopColor(color);
     } else {
       const color = 0;
+      dispatch(changeThemeAction(color));
       localStorage.setItem("currentColor", color.toString());
       setCurrentLaptopColor(color);
     }
@@ -229,7 +234,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
       className="canvas-wrap"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.1 }}
       exit={{ opacity: 0 }}
     >
       <CanvasEdges />

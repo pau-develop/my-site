@@ -3,7 +3,7 @@ import styled from "styled-components";
 const GameHowToStyled = styled.div`
   width: 100%;
   height: 100%;
-  color: rgb(95, 81, 255);
+  color: ${(props) => props.theme.fontColor};
   .how-to {
     &__contents {
       display: flex;
