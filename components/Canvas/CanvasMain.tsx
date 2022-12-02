@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import {
   setPixelArray,
   getColorIndexes,
@@ -22,8 +22,12 @@ import {
 import CanvasEdges from "./CanvasEdges";
 import CanvasFeedback from "./CanvasFeedback";
 import { CanvasProps } from "../../interfaces/Interfaces";
+import { useUnityContext } from "react-unity-webgl";
+import { changeThemeAction, Context } from "../../context/ContextProvider";
+// import ContextProvider from "../../context/ContextProvider";
 
 const CanvasMain = ({ image }: CanvasProps) => {
+  const { theme, dispatch } = useContext(Context);
   const [laptopColor, setLaptopColor] = useState(0);
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
@@ -31,7 +35,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const [consoleLedColor, setConsoleLedColor] = useState(true);
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
-  const [currentLaptopColor, setCurrentLaptopColor] = useState(0);
+  const [currentLaptopColor, setCurrentLaptopColor] = useState(theme);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
@@ -213,12 +217,14 @@ const CanvasMain = ({ image }: CanvasProps) => {
   ]);
 
   const changeThemeColor = () => {
-    if (currentLaptopColor < 4) {
-      const color = currentLaptopColor + 1;
+    if (theme < 4) {
+      const color = theme + 1;
+      dispatch(changeThemeAction(color));
       localStorage.setItem("currentColor", color.toString());
       setCurrentLaptopColor(color);
     } else {
       const color = 0;
+      dispatch(changeThemeAction(color));
       localStorage.setItem("currentColor", color.toString());
       setCurrentLaptopColor(color);
     }
