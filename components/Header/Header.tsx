@@ -8,27 +8,44 @@ import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
   const { theme, dispatch } = useContext(Context);
-  if (typeof window !== "undefined") {
-    const item = localStorage.getItem("currentColor");
-    item !== null && dispatch(changeThemeAction(Number(item)));
-  }
+  // if (typeof window !== "undefined") {
+  //   const item = localStorage.getItem("currentColor");
+  //   item !== null && dispatch(changeThemeAction(Number(item)));
+  // }
+
+  const handleChangeTheme = () => {
+    let payload = theme;
+
+    if (payload < 3) payload++;
+    else payload = 0;
+    console.log(theme, payload);
+    dispatch(changeThemeAction(payload));
+  };
 
   const router = useRouter();
   return (
     <ThemeProvider theme={styledThemes[theme]}>
       <HeaderStyled className="header">
-        <h2 className="header__title">
-          <Link
-            className={
-              router.pathname === "/home"
-                ? "header__link-current"
-                : "header__link"
-            }
-            href="/home"
-          >
-            Pau-Dev
-          </Link>
-        </h2>
+        <div className="header__left">
+          <h2 className="header__title">
+            <Link
+              className={
+                router.pathname === "/home"
+                  ? "header__link-current"
+                  : "header__link"
+              }
+              href="/home"
+            >
+              Pau-Dev
+            </Link>
+          </h2>
+          <img
+            onClick={handleChangeTheme}
+            className="header__theme"
+            src="/SPLATTER.svg"
+            alt="change color theme"
+          />
+        </div>
         <ul className="header__nav">
           <li
             className={

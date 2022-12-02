@@ -55,7 +55,8 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
     deskImage.onload = () => {
       drawAndGetData(deskImage);
     };
-  }, [image]);
+    setCurrentLaptopColor(theme);
+  }, [image, theme]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
     contextRef.current!.drawImage(

@@ -9,6 +9,14 @@ const HeaderStyled = styled.header`
       color: white;
     }
   }
+  @keyframes blinkIcon {
+    0% {
+      filter: ${(props) => props.theme.svgColor};
+    }
+    100% {
+      filter: ${(props) => props.theme.filter};
+    }
+  }
   padding: 0 10%;
   background: #000;
   height: 10%;
@@ -16,6 +24,21 @@ const HeaderStyled = styled.header`
   align-items: center;
   justify-content: space-between;
   .header {
+    &__left {
+      display: flex;
+      height: 100%;
+      align-items: center;
+    }
+    &__theme {
+      margin: 0 10px;
+      height: 32px;
+      width: 32px;
+      filter: ${(props) => props.theme.svgColor};
+    }
+    &__theme:hover {
+      cursor: pointer;
+      animation: blinkIcon 0.1s infinite;
+    }
     &__title {
       padding: 0;
       margin: 0;

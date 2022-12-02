@@ -35,7 +35,6 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
   const [currentLaptopColor, setCurrentLaptopColor] = useState(theme);
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
@@ -76,7 +75,8 @@ const CanvasMain = ({ image }: CanvasProps) => {
     deskImage.onload = () => {
       drawAndGetData(deskImage);
     };
-  }, [image]);
+    setCurrentLaptopColor(theme);
+  }, [image, theme]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
     contextRef.current!.drawImage(
