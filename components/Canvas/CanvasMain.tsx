@@ -34,7 +34,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const [consoleLedColor, setConsoleLedColor] = useState(true);
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
-  const [currentLaptopColor, setCurrentLaptopColor] = useState(theme);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
@@ -51,31 +51,18 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const imageData = useRef<ImageData>();
 
   useEffect(() => {
-    if (localStorage.getItem("currentColor") !== undefined) {
-      const color = Number(localStorage.getItem("currentColor"));
-      setCurrentLaptopColor(color);
-    }
-  }, []);
-
-  useEffect(() => {
     const deskImage = new Image();
     deskImage.src = image;
     const canvas = canvasRef.current as HTMLCanvasElement;
     contextRef.current = canvas.getContext("2d", {
       willReadFrequently: true,
     });
-    contextRef.current!.fillStyle = "#000";
-    contextRef.current!.fillRect(
-      0,
-      0,
-      contextRef.current!.canvas.width,
-      contextRef.current!.canvas.height
-    );
-
-    deskImage.onload = () => {
-      drawAndGetData(deskImage);
-    };
-    setCurrentLaptopColor(theme);
+    ///drawing image and getting pixel data only if canvas is empty
+    if (canvasRef.current!.toDataURL().length < 3000) {
+      deskImage.onload = () => {
+        drawAndGetData(deskImage);
+      };
+    }
   }, [image, theme]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
@@ -191,7 +178,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
         laptopColorsBlue.current,
       ];
 
-      const currentColorInDisplay = allLaptopColors[currentLaptopColor];
+      const currentColorInDisplay = allLaptopColors[theme];
       changeCanvasColors(
         indexesLaptop.current as number[][],
         imageData.current as ImageData,
@@ -208,7 +195,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
     }
   }, [
     consoleLedColor,
-    currentLaptopColor,
+    theme,
     laptopColor,
     routerLedColor,
     tvLightColor,
@@ -220,12 +207,10 @@ const CanvasMain = ({ image }: CanvasProps) => {
       const color = theme + 1;
       dispatch(changeThemeAction(color));
       localStorage.setItem("currentColor", color.toString());
-      setCurrentLaptopColor(color);
     } else {
       const color = 0;
       dispatch(changeThemeAction(color));
       localStorage.setItem("currentColor", color.toString());
-      setCurrentLaptopColor(color);
     }
   };
 
@@ -234,7 +219,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
       className="canvas-wrap"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.1 }}
+      transition={{ duration: 0.3 }}
       exit={{ opacity: 0 }}
     >
       <CanvasEdges />

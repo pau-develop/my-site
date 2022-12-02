@@ -27,7 +27,6 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
   const router = useRouter();
   const [laptopColor, setLaptopColor] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [currentLaptopColor, setCurrentLaptopColor] = useState(theme);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
@@ -44,18 +43,12 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
     contextRef.current = canvas!.getContext("2d", {
       willReadFrequently: true,
     });
-    contextRef.current!.fillStyle = "#000";
-    contextRef.current!.fillRect(
-      0,
-      0,
-      contextRef.current!.canvas.width,
-      contextRef.current!.canvas.height
-    );
-
-    deskImage.onload = () => {
-      drawAndGetData(deskImage);
-    };
-    setCurrentLaptopColor(theme);
+    //drawing image and getting pixel data only if canvas is empty
+    if (canvasRef.current!.toDataURL().length < 3000) {
+      deskImage.onload = () => {
+        drawAndGetData(deskImage);
+      };
+    }
   }, [image, theme]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
@@ -104,7 +97,7 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         laptopColorsGreen.current,
         laptopColorsBlue.current,
       ];
-      const currentColorInDisplay = allLaptopColors[currentLaptopColor];
+      const currentColorInDisplay = allLaptopColors[theme];
       changeCanvasColors(
         indexesLaptop.current as number[][],
         imageData.current as ImageData,
@@ -113,26 +106,14 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         laptopColor
       );
     }
-  }, [currentLaptopColor, laptopColor]);
-
-  const changeThemeColor = () => {
-    if (currentLaptopColor < 4) {
-      const color = currentLaptopColor + 1;
-      localStorage.setItem("currentColor", color.toString());
-      setCurrentLaptopColor(color);
-    } else {
-      const color = 0;
-      localStorage.setItem("currentColor", color.toString());
-      setCurrentLaptopColor(color);
-    }
-  };
+  }, [theme, laptopColor]);
 
   return (
     <CanvasStyled
       className="canvas-wrap"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.1 }}
+      transition={{ duration: 0.3 }}
       exit={{ opacity: 0 }}
     >
       <CanvasEdges />

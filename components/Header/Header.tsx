@@ -8,10 +8,6 @@ import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
   const { theme, dispatch } = useContext(Context);
-  // if (typeof window !== "undefined") {
-  //   const item = localStorage.getItem("currentColor");
-  //   item !== null && dispatch(changeThemeAction(Number(item)));
-  // }
 
   const handleChangeTheme = () => {
     let payload = theme;

@@ -36,40 +36,37 @@ const CanvasGame = ({ image }: CanvasProps) => {
     contextRef.current = canvas.getContext("2d", {
       willReadFrequently: true,
     });
-    contextRef.current!.fillStyle = "#000";
-    contextRef.current!.fillRect(
+
+    newImage.onload = () => {
+      drawAndGetData(newImage);
+    };
+  }, [image]);
+
+  const drawAndGetData = (image: HTMLImageElement) => {
+    contextRef.current!.drawImage(
+      image,
       0,
       0,
       contextRef.current!.canvas.width,
       contextRef.current!.canvas.height
     );
-
-    newImage.onload = () => {
-      contextRef.current!.drawImage(
-        newImage,
-        0,
-        0,
-        contextRef.current!.canvas.width,
-        contextRef.current!.canvas.height
-      );
-      const imgData = contextRef.current!.getImageData(
-        0,
-        0,
-        contextRef.current!.canvas.width,
-        contextRef.current!.canvas.height
-      );
-      imageData.current = contextRef.current?.getImageData(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-      const pixels = setPixelArray(imgData.data);
-      indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
-      indexesTvLight.current = getColorIndexes(pixels, tvLight);
-      tvLightColors.current = setNewColors(tvLight, tvLight.length);
-    };
-  }, [image]);
+    const imgData = contextRef.current!.getImageData(
+      0,
+      0,
+      contextRef.current!.canvas.width,
+      contextRef.current!.canvas.height
+    );
+    imageData.current = contextRef.current?.getImageData(
+      0,
+      0,
+      canvasRef.current!.width,
+      canvasRef.current!.height
+    );
+    const pixels = setPixelArray(imgData.data);
+    indexesTvNoise.current = getColorIndexes(pixels, tvNoise);
+    indexesTvLight.current = getColorIndexes(pixels, tvLight);
+    tvLightColors.current = setNewColors(tvLight, tvLight.length);
+  };
 
   useEffect(() => {
     if (!menuVisibility) {
@@ -143,7 +140,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
       className="canvas-wrap"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.1 }}
+      transition={{ duration: 0.3 }}
       exit={{ opacity: 0 }}
     >
       <CanvasEdges />
