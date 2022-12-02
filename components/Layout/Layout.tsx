@@ -10,10 +10,10 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
   const { theme } = useContext(Context);
-  console.log(theme);
+
   return (
     <>
-      <ThemeProvider theme={styledThemes[0]}>
+      <ThemeProvider theme={styledThemes[theme]}>
         <LayoutStyled>{children}</LayoutStyled>
       </ThemeProvider>
     </>

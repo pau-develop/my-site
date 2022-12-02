@@ -11,7 +11,6 @@ import CanvasStyled from "./CanvasStyled";
 import {
   laptopRed,
   laptopOrange,
-  laptopYellow,
   laptopGreen,
   laptopBlue,
   tvNoise,
@@ -36,6 +35,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
   const [currentLaptopColor, setCurrentLaptopColor] = useState(theme);
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
@@ -45,7 +45,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const indexesConsoleLed = useRef<Array<Array<number>>>();
   const laptopColorsRed = useRef<Array<Array<Array<number>>>>();
   const laptopColorsOrange = useRef<Array<Array<Array<number>>>>();
-  const laptopColorsYellow = useRef<Array<Array<Array<number>>>>();
+
   const laptopColorsGreen = useRef<Array<Array<Array<number>>>>();
   const laptopColorsBlue = useRef<Array<Array<Array<number>>>>();
   const tvLightColors = useRef<Array<Array<Array<number>>>>();
@@ -106,7 +106,6 @@ const CanvasMain = ({ image }: CanvasProps) => {
     indexesConsoleLed.current = getColorIndexes(pixels, consoleLed);
     laptopColorsRed.current = setNewColors(laptopRed, laptopRed.length);
     laptopColorsOrange.current = setNewColors(laptopOrange, laptopRed.length);
-    laptopColorsYellow.current = setNewColors(laptopYellow, laptopRed.length);
     laptopColorsGreen.current = setNewColors(laptopGreen, laptopRed.length);
     laptopColorsBlue.current = setNewColors(laptopBlue, laptopRed.length);
     tvLightColors.current = setNewColors(tvLight, tvLight.length);
@@ -188,10 +187,10 @@ const CanvasMain = ({ image }: CanvasProps) => {
       const allLaptopColors = [
         laptopColorsRed.current,
         laptopColorsOrange.current,
-        laptopColorsYellow.current,
         laptopColorsGreen.current,
         laptopColorsBlue.current,
       ];
+
       const currentColorInDisplay = allLaptopColors[currentLaptopColor];
       changeCanvasColors(
         indexesLaptop.current as number[][],
@@ -217,7 +216,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
   ]);
 
   const changeThemeColor = () => {
-    if (theme < 4) {
+    if (theme < 3) {
       const color = theme + 1;
       dispatch(changeThemeAction(color));
       localStorage.setItem("currentColor", color.toString());

@@ -1,13 +1,21 @@
+import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
+import { changeThemeAction, Context } from "../../context/ContextProvider";
 import styledThemes from "../../context/styledThemes";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
+  const { theme, dispatch } = useContext(Context);
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem("currentColor");
+    item !== null && dispatch(changeThemeAction(Number(item)));
+  }
+
   const router = useRouter();
   return (
-    <ThemeProvider theme={styledThemes[2]}>
+    <ThemeProvider theme={styledThemes[theme]}>
       <HeaderStyled className="header">
         <h2 className="header__title">
           <Link
