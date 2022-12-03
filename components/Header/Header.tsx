@@ -22,17 +22,14 @@ const Header = (): JSX.Element => {
     <ThemeProvider theme={styledThemes[state.theme]}>
       <HeaderStyled className="header">
         <div className="header__left">
-          <h2 className="header__title">
-            <Link
-              className={
-                router.pathname === "/home"
-                  ? "header__link-current"
-                  : "header__link"
-              }
-              href="/home"
-            >
-              Pau-Dev
-            </Link>
+          <h2
+            className={
+              router.pathname === "/home"
+                ? "header__title--current"
+                : "header__title"
+            }
+          >
+            <Link href="/home">Pau-Dev</Link>
           </h2>
           <img
             onClick={handleChangeTheme}

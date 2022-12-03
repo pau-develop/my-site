@@ -58,7 +58,7 @@ const HeaderStyled = styled.header`
       a:-webkit-any-link {
         color: ${(props) => props.theme.fontColor};
         text-decoration: none;
-        cursor: auto;
+        pointer-events: none;
       }
     }
     &__nav {

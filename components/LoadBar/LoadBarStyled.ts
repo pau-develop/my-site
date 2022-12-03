@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const LoadBarStyled = styled.div`
+const LoadBarStyled = styled(motion.div)`
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
