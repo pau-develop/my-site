@@ -9,7 +9,10 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-  const { theme } = useContext(Context);
+  const { theme, dispatch } = useContext(Context);
+  if (typeof window !== "undefined") {
+    const item = localStorage.getItem("currentColor");
+  }
 
   return (
     <>
