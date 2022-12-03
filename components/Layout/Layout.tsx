@@ -9,14 +9,14 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps): JSX.Element => {
-  const { theme, dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   if (typeof window !== "undefined") {
     const item = localStorage.getItem("currentColor");
   }
 
   return (
     <>
-      <ThemeProvider theme={styledThemes[theme]}>
+      <ThemeProvider theme={styledThemes[state.theme]}>
         <LayoutStyled>{children}</LayoutStyled>
       </ThemeProvider>
     </>

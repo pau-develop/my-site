@@ -2,25 +2,24 @@ import { useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
-import { changeThemeAction, Context } from "../../context/ContextProvider";
+import { changeStateAction, Context } from "../../context/ContextProvider";
 import styledThemes from "../../context/styledThemes";
 import HeaderStyled from "./HeaderStyled";
 
 const Header = (): JSX.Element => {
-  const { theme, dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
 
   const handleChangeTheme = () => {
-    let payload = theme;
-
+    console.log("HEADER");
+    let payload = state.theme;
     if (payload < 3) payload++;
     else payload = 0;
-    console.log(theme, payload);
-    dispatch(changeThemeAction(payload));
+    dispatch(changeStateAction({ ...state, theme: payload }));
   };
 
   const router = useRouter();
   return (
-    <ThemeProvider theme={styledThemes[theme]}>
+    <ThemeProvider theme={styledThemes[state.theme]}>
       <HeaderStyled className="header">
         <div className="header__left">
           <h2 className="header__title">

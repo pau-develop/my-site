@@ -23,7 +23,7 @@ interface CanvasProps {
 }
 
 const CanvasProjectsGallery = ({ image }: CanvasProps) => {
-  const { theme } = useContext(Context);
+  const { state } = useContext(Context);
   const router = useRouter();
   const [laptopColor, setLaptopColor] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -49,7 +49,7 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         drawAndGetData(deskImage);
       };
     }
-  }, [image, theme]);
+  }, [image]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
     contextRef.current!.drawImage(
@@ -97,7 +97,7 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         laptopColorsGreen.current,
         laptopColorsBlue.current,
       ];
-      const currentColorInDisplay = allLaptopColors[theme];
+      const currentColorInDisplay = allLaptopColors[state.theme];
       changeCanvasColors(
         indexesLaptop.current as number[][],
         imageData.current as ImageData,
@@ -106,7 +106,7 @@ const CanvasProjectsGallery = ({ image }: CanvasProps) => {
         laptopColor
       );
     }
-  }, [theme, laptopColor]);
+  }, [state.theme, laptopColor]);
 
   return (
     <CanvasStyled

@@ -22,11 +22,11 @@ import CanvasEdges from "./CanvasEdges";
 import CanvasFeedback from "./CanvasFeedback";
 import { CanvasProps } from "../../interfaces/Interfaces";
 import { useUnityContext } from "react-unity-webgl";
-import { changeThemeAction, Context } from "../../context/ContextProvider";
+import { changeStateAction, Context } from "../../context/ContextProvider";
 // import ContextProvider from "../../context/ContextProvider";
 
 const CanvasMain = ({ image }: CanvasProps) => {
-  const { theme, dispatch } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
   const [laptopColor, setLaptopColor] = useState(0);
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
   const [tvLightColor, setTvLightColor] = useState(0);
@@ -34,7 +34,6 @@ const CanvasMain = ({ image }: CanvasProps) => {
   const [consoleLedColor, setConsoleLedColor] = useState(true);
   const [direction, setDirection] = useState(1);
   const [tvDirection, setTvDirection] = useState(1);
-
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const contextRef = useRef<CanvasRenderingContext2D | null>(null);
   const indexesLaptop = useRef<Array<Array<number>>>();
@@ -63,7 +62,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
         drawAndGetData(deskImage);
       };
     }
-  }, [image, theme]);
+  }, [image]);
 
   const drawAndGetData = (image: HTMLImageElement) => {
     contextRef.current!.drawImage(
@@ -178,7 +177,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
         laptopColorsBlue.current,
       ];
 
-      const currentColorInDisplay = allLaptopColors[theme];
+      const currentColorInDisplay = allLaptopColors[state.theme];
       changeCanvasColors(
         indexesLaptop.current as number[][],
         imageData.current as ImageData,
@@ -195,7 +194,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
     }
   }, [
     consoleLedColor,
-    theme,
+    state.theme,
     laptopColor,
     routerLedColor,
     tvLightColor,
@@ -203,13 +202,13 @@ const CanvasMain = ({ image }: CanvasProps) => {
   ]);
 
   const changeThemeColor = () => {
-    if (theme < 3) {
-      const color = theme + 1;
-      dispatch(changeThemeAction(color));
+    if (state.theme < 3) {
+      const color = state.theme + 1;
+      dispatch(changeStateAction({ ...state, theme: color }));
       localStorage.setItem("currentColor", color.toString());
     } else {
       const color = 0;
-      dispatch(changeThemeAction(color));
+      dispatch(changeStateAction({ ...state, theme: color }));
       localStorage.setItem("currentColor", color.toString());
     }
   };

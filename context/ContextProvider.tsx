@@ -2,21 +2,28 @@ import reducer from "./reducer";
 
 import { createContext, Dispatch } from "react";
 
-interface IActionTheme {
-  payload: number;
+export interface IContextState {
+  theme: number;
+  isLoading: boolean;
+}
+export interface IAction {
+  payload: IContextState;
 }
 
-export const changeThemeAction = (theme: number): IActionTheme => ({
-  payload: theme,
+export const changeStateAction = (contextState: IContextState): IAction => ({
+  payload: contextState,
 });
 
-export interface IThemeContext {
-  theme: number;
-  dispatch: Dispatch<IActionTheme>;
+export interface IContext {
+  state: IContextState;
+  dispatch: Dispatch<IAction>;
 }
 
-export const Context = createContext<IThemeContext>({
-  theme: 0,
+export const Context = createContext<IContext>({
+  state: {
+    theme: 0,
+    isLoading: false,
+  },
   dispatch: () => {},
 });
 
@@ -27,10 +34,14 @@ interface ContextProviderProps {
 }
 
 const ContextProvider = ({ children }: ContextProviderProps): JSX.Element => {
-  const [theme, dispatch] = useReducer(reducer, 0);
+  const contextState: IContextState = {
+    theme: 0,
+    isLoading: false,
+  };
+  const [state, dispatch] = useReducer(reducer, contextState);
 
   return (
-    <Context.Provider value={{ theme, dispatch }}>{children}</Context.Provider>
+    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   );
 };
 
