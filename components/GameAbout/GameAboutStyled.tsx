@@ -13,6 +13,17 @@ const GameAboutStyled = styled.div`
       width: 100%;
       text-align: center;
     }
+    &__images {
+      margin-top: 8%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      img {
+        width: 35%;
+        margin: 0 2%;
+        border: 1px solid ${(props) => props.theme.fontColor};
+      }
+    }
     &__image {
       width: 33%;
       height: 33%;
@@ -23,9 +34,9 @@ const GameAboutStyled = styled.div`
       }
     }
     &__text {
-      padding: 5%;
+      margin: 5%;
       text-align: center;
-      font-size: 0.75rem;
+      font-size: ${(props) => props.theme.fontSizeSmall};
       line-height: 200%;
       a {
         color: white;

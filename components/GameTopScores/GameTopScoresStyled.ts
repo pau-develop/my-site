@@ -27,7 +27,7 @@ const GameTopScoresStyled = styled.div`
         width: 90%;
         text-align: center;
         span {
-          font-size: 1rem;
+          font-size: ${(props) => props.theme.fontSizeMedium};
         }
         span:first-child {
           flex: 1;

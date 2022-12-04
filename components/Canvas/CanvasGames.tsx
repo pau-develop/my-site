@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import {
   setPixelArray,
   getColorIndexes,
@@ -11,12 +11,14 @@ import CanvasStyled from "./CanvasStyled";
 import { tvLight, tvNoise } from "../../data/colors";
 import CanvasEdges from "./CanvasEdges";
 import Game from "../Game/Games";
+import { changeStateAction, Context } from "../../context/ContextProvider";
 
 interface CanvasProps {
   image: string;
 }
 
 const CanvasGame = ({ image }: CanvasProps) => {
+  const { state, dispatch } = useContext(Context);
   const [menuVisibility, setMenuVisibility] = useState(false);
   const [currentChildMenu, setCurrentChildMenu] = useState<number>(0);
   const [tvNoiseColor, setTvNoiseColor] = useState(0);
@@ -39,6 +41,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
 
     newImage.onload = () => {
       drawAndGetData(newImage);
+      dispatch(changeStateAction({ ...state, isLoading: false }));
     };
   }, [image]);
 
@@ -143,7 +146,7 @@ const CanvasGame = ({ image }: CanvasProps) => {
       transition={{ duration: 0.3 }}
       exit={{ opacity: 0 }}
     >
-      <CanvasEdges />
+      {/* <CanvasEdges /> */}
       <canvas
         className="canvas-wrap__canvas"
         ref={canvasRef}

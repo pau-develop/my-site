@@ -11,15 +11,30 @@ interface GameContentProps {
   childMenu: number;
   unity: IUnityProvider;
   game: IGame;
+  loader: number;
+  loaded: boolean;
 }
 
-const GameContent = ({ childMenu, unity, game }: GameContentProps) => {
+const GameContent = ({
+  childMenu,
+  unity,
+  game,
+  loader,
+  loaded,
+}: GameContentProps) => {
   return (
     <GameContentStyled className="game-content">
       {childMenu === 0 && <GameAbout game={game} />}
       {childMenu === 1 && <GameHowTo game={game} />}
       {childMenu === 2 && <GameTopScores />}
-      {childMenu === 3 && <GameDisplay game={game} unity={unity} />}
+      {childMenu === 3 && (
+        <GameDisplay
+          game={game}
+          unity={unity}
+          loader={loader}
+          loaded={loaded}
+        />
+      )}
     </GameContentStyled>
   );
 };

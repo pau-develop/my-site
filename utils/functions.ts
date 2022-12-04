@@ -44,7 +44,7 @@ export const setNewColors = (currentColor: number[][], totalColors: number) => {
       if (laptopColors[i][y][0] >= 255) laptopColors[i][y][0] = 255;
       if (laptopColors[i][y][1] >= 255) laptopColors[i][y][1] = 255;
       if (laptopColors[i][y][2] >= 255) laptopColors[i][y][2] = 255;
-      addition += 5;
+      addition += 2;
     }
   }
   return laptopColors;

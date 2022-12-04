@@ -27,11 +27,13 @@ const Game = ({
       ? (games[currentGame].unityGame as IUnityConfig)
       : (games[0].unityGame as IUnityConfig);
   const {
+    loadingProgression,
     unityProvider,
     unload,
     UNSAFE__unityInstance,
     addEventListener,
     removeEventListener,
+    isLoaded,
   } = useUnityContext(unityFiles);
 
   const router = useRouter();
@@ -110,6 +112,8 @@ const Game = ({
           <GameContent
             childMenu={childMenu}
             unity={unityProvider}
+            loader={loadingProgression}
+            loaded={isLoaded}
             game={games[currentGame]}
           />
         )}

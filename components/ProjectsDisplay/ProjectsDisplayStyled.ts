@@ -10,7 +10,7 @@ const ProjectsDisplayStyled = styled(motion.div)`
 
   .project-display {
     &__title-wrap {
-      font-size: 0.75rem;
+      font-size: ${(props) => props.theme.fontSizeSmall};
       padding: 0 4%;
       display: flex;
       height: 12%;

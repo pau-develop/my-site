@@ -15,12 +15,12 @@ const ProjectsAboutStyled = styled(motion.div)`
       align-items: center;
       p {
         text-align: center;
-        font-size: 0.8rem;
+        font-size: ${(props) => props.theme.fontSizeSmall};
         line-height: 150%;
       }
     }
     &__list-wrap {
-      font-size: 0.8rem;
+      font-size: ${(props) => props.theme.fontSizeSmall};
       height: 60%;
       display: flex;
       justify-content: space-between;

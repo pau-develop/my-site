@@ -23,4 +23,5 @@ export interface IGame {
   topScores: boolean;
   framework: "Unity" | "Phaser";
   unityGame?: IUnityConfig;
+  images: string[];
 }

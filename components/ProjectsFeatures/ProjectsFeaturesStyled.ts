@@ -14,14 +14,14 @@ const ProjectsFeaturesStyled = styled(motion.div)`
       flex-direction: column;
       justify-content: center;
       h3 {
-        font-size: 0.9rem;
+        font-size: ${(props) => props.theme.fontSizeSmall};
         text-align: center;
         width: 100%;
-        font-size: 1rem;
+        font-size: ${(props) => props.theme.fontSizeSmall};
         margin: 0;
       }
       p {
-        font-size: 0.7rem;
+        font-size: ${(props) => props.theme.fontSizeSmall};
         line-height: 150%;
         text-align: center;
         width: 100%;
