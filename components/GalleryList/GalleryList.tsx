@@ -11,12 +11,15 @@ const GalleryList = ({ images, action }: GalleryListProps) => {
     <GalleryListStyled className="gallery-list">
       <h2 className="gallery-list__title">GALLERY</h2>
       <ul className="gallery-list__list">
-        {images !== undefined &&
+        {images === undefined ? (
+          <p>fetching...</p>
+        ) : (
           images.map((file, index) => (
             <li key={index} onClick={() => action(index)}>
               <img src={file.source} alt={file.name} />
             </li>
-          ))}
+          ))
+        )}
       </ul>
     </GalleryListStyled>
   );

@@ -19,7 +19,7 @@ const GameHowToStyled = styled.div`
   p {
     text-align: center;
     height: 20%;
-    font-size: 0.75rem;
+    font-size: ${(props) => props.theme.fontSizeSmall};
     line-height: 200%;
   }
   span {

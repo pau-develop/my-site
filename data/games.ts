@@ -20,10 +20,11 @@ const games: IGame[] = [
       frameworkUrl: "/build_web.framework.js",
       codeUrl: "/build_web.wasm",
     },
+    images: ["/kung_logo.webp", "/kung_screen.webp"],
   },
   {
     title: "Stone Age Runner",
-    about: `Made in one month for the Github's November <a href="https://itch.io/jam/game-off-2022" target="_blank"> Game Off</a> 2022. Written in Typescript using the <a href="https://phaser.io/phaser3">Phaser 3</a> framework.`,
+    about: `Made in one month for the Github's November <a href="https://itch.io/jam/game-off-2022/rate/1815621" target="_blank"> Game Off</a> 2022. Written in Typescript using the <a href="https://phaser.io/phaser3">Phaser 3</a> framework. Play it windowed in this site, or fullscreen on <a href="https://pau-dev.itch.io/stone-age-runner" target="_blank">itch.io</a>.`,
     howto: [
       "Press Space to jump. Hold it down to jump higher",
       "While on air, press and hold space to double jump",
@@ -33,6 +34,7 @@ const games: IGame[] = [
     ],
     framework: "Phaser",
     topScores: false,
+    images: ["/stone_logo.webp", "/stone_screen.webp"],
   },
 ];
 export default games;

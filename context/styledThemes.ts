@@ -7,6 +7,8 @@ const styledThemes = [
       "invert(36%) sepia(96%) saturate(3806%) hue-rotate(355deg) brightness(93%) contrast(112%)",
     filter:
       "invert(100%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(102%) contrast(105%);",
+    fontSizeSmall: "0.8rem",
+    fontSizeMedium: "1.5rem",
   },
   //ORANGE
   {
@@ -16,6 +18,8 @@ const styledThemes = [
       "invert(36%) sepia(98%) saturate(1740%) hue-rotate(19deg) brightness(88%) contrast(94%)",
     filter:
       "invert(100%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(102%) contrast(105%)",
+    fontSizeSmall: "0.8rem",
+    fontSizeMedium: "1.5rem",
   },
   //GREEN
   {
@@ -25,6 +29,8 @@ const styledThemes = [
       "invert(46%) sepia(81%) saturate(822%) hue-rotate(72deg) brightness(97%) contrast(93%)",
     filter:
       "invert(100%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(102%) contrast(105%)",
+    fontSizeSmall: "0.8rem",
+    fontSizeMedium: "1.5rem",
   },
   //BLUE
   {
@@ -34,6 +40,8 @@ const styledThemes = [
       "invert(46%) sepia(95%) saturate(5890%) hue-rotate(237deg) brightness(102%) contrast(104%)",
     filter:
       "invert(100%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(102%) contrast(105%)",
+    fontSizeSmall: "0.8rem",
+    fontSizeMedium: "1.5rem",
   },
 ];
 

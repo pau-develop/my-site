@@ -41,7 +41,7 @@ const GameTopScores = () => {
           })}
         </ul>
       ) : (
-        <span>Fetching data...</span>
+        <span>fetching</span>
       )}
     </GameTopScoresStyled>
   );
