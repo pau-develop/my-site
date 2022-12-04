@@ -1,10 +1,10 @@
 const styledThemes = [
   //RED
   {
-    fontColor: "#8f280b",
-    fontColorFade: "#8f280b50",
+    fontColor: "#fc3503",
+    fontColorFade: "#fc350350",
     svgColor:
-      "invert(17%) sepia(68%) saturate(2125%) hue-rotate(353deg) brightness(101%) contrast(98%)",
+      "invert(36%) sepia(96%) saturate(3806%) hue-rotate(355deg) brightness(93%) contrast(112%)",
     filter:
       "invert(100%) sepia(100%) saturate(0%) hue-rotate(224deg) brightness(102%) contrast(105%);",
   },

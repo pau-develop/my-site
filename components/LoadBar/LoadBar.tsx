@@ -1,6 +1,10 @@
 import LoadBarStyled from "./LoadBarStyled";
 
-const LoadBar = (): JSX.Element => {
+interface LoadBarProps {
+  loadingProgression?: number;
+}
+
+const LoadBar = ({ loadingProgression }: LoadBarProps): JSX.Element => {
   return (
     <LoadBarStyled
       initial={{ opacity: 0 }}
@@ -9,7 +13,9 @@ const LoadBar = (): JSX.Element => {
       exit={{ opacity: 0 }}
     >
       <span>Loading</span>
-      <div></div>
+      {loadingProgression !== undefined && (
+        <span>{Math.round(loadingProgression * 100)} %</span>
+      )}
     </LoadBarStyled>
   );
 };

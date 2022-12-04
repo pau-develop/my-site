@@ -229,7 +229,7 @@ const CanvasMain = ({ image }: CanvasProps) => {
       transition={{ duration: 0.3 }}
       exit={{ opacity: 0 }}
     >
-      <CanvasEdges />
+      {/* <CanvasEdges /> */}
       <canvas
         className="canvas-wrap__canvas"
         ref={canvasRef}
